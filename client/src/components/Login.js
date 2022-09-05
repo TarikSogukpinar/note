@@ -1,8 +1,30 @@
-import React from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import React, { useContext, useState } from "react";
+import { Alert, Button, Col, Container, Form, Row } from "react-bootstrap";
+import { loginUser } from "../services/authService";
 import { FaPushed } from "react-icons/fa";
-import "../styles/Login.css"
-export default function Login() {
+import "../styles/Login.css";
+
+export default function Login({ setLoginUser }) {
+  const [data, setData] = useState({ email: "", password: "" });
+  //const [error, setError] = useState("");
+
+  const handleChange = (key) => (value) => {
+    let valueTemp = value?.target ? value?.target?.value : value;
+    setData({ ...data, [key]: valueTemp });
+  };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    loginUser(data.email, data.password)
+      .then((res) => {
+        localStorage.setItem("user", JSON.stringify(res.data));
+        window.location.href = "/";
+      })
+      .catch(() => {
+        alert("hataa !");
+      });
+  };
+
   return (
     <>
       <Container>
@@ -17,12 +39,13 @@ export default function Login() {
             className="p-5 m-auto shadow-lg rounded-lg"
             style={{ borderRadius: "15px" }}
           >
-            <Form>
+            <Form onSubmit={handleLogin}>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label className="form-label">Email address</Form.Label>
                 <Form.Control
                   name="email"
                   type="email"
+                  onChange={handleChange("email")}
                   placeholder="Enter email"
                   required
                 />
@@ -33,6 +56,7 @@ export default function Login() {
                 <Form.Control
                   name="password"
                   type="password"
+                  onChange={handleChange("password")}
                   placeholder="Password"
                   required
                 />

@@ -2,9 +2,11 @@ import expres from "express";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import colors from "colors";
-import initCors from "./helpers/cors/cors.js"
-import rateLimit from "./helpers/limiter/limiter.js"
+import initCors from "./helpers/cors/cors.js";
+import rateLimit from "./helpers/limiter/limiter.js";
 import authRoutes from "./routes/authRoutes.js";
+import noteRoutes from "./routes/noteRoutes.js";
+import connectionDatabase from "./helpers/connectionDatabase/connectDatabase.js";
 
 dotenv.config();
 const app = expres();
@@ -12,8 +14,10 @@ app.use(expres.json());
 app.use(helmet());
 app.use(rateLimit);
 initCors(app);
+connectionDatabase();
 
-app.use('/auth',authRoutes);
+app.use("/auth", authRoutes);
+app.use("/note", noteRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

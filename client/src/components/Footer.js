@@ -6,12 +6,12 @@ export default function Footer() {
     <div className="container">
       <footer className="footer-section d-flex flex-wrap justify-content-between align-items-center py-5 my-5 border-top">
         <p className="col-md-4 mb-0 text-muted footer-text">
-          &copy; 2022 Car Rental, App
+          &copy; 2022 Note App
         </p>
 
         <a
           href="/"
-          classNameName="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
+          className="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
         ></a>
 
         <ul className="nav col-md-4 justify-content-end">

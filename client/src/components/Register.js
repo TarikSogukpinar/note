@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { FaPushed } from "react-icons/fa";
+import "../styles/Register.css";
+
 export default function Register() {
   return (
     <>
@@ -39,6 +41,9 @@ export default function Register() {
                 Register
               </Button>
             </Form>
+            <div className="register-register">
+              Already Register? <a href="/login">Login</a>{" "}
+            </div>
           </Col>
         </Row>
       </Container>
