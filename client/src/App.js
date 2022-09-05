@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'react-notifications/lib/notifications.css';
 import './App.css';
 import Dashboard from "./components/Dashboard";
 import Container from "react-bootstrap/esm/Container"

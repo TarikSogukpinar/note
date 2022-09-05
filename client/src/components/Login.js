@@ -1,5 +1,7 @@
-import React, { useContext, useState } from "react";
-import { Alert, Button, Col, Container, Form, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
+// import {NotificationContainer, NotificationManager} from 'react-notifications';
+// import { ToastContainer, toast } from 'react-toastify';
 import { loginUser } from "../services/authService";
 import { FaPushed } from "react-icons/fa";
 import "../styles/Login.css";
@@ -22,6 +24,8 @@ export default function Login({ setLoginUser }) {
       })
       .catch(() => {
         alert("hataa !");
+        // toast("Wow so easy!");
+        //NotificationManager.info('Info message');
       });
   };
 

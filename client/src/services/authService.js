@@ -15,3 +15,7 @@ export const registerUser = async (firstName, lastName, email, password) => {
     password,
   });
 };
+
+export const getAllNotes = async () => {
+  return await axios.get("note/getAllNotes");
+};
