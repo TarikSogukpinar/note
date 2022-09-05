@@ -27,7 +27,7 @@ const AddNote = asyncHandler(async (req, res) => {
 
   if (noteValidation) {
     const note = new Note({
-    //   user: req.user._id,
+      user: req.user._id,
       title: req.body.title,
       content: req.body.content,
       category: req.body.category,

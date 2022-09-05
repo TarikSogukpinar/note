@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/esm/Button";
 export default function Navigation() {
+  
   const auth = JSON.parse(localStorage.getItem("user"));
 
   const logoutOnClick = (e) => {
