@@ -13,6 +13,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
@@ -23,7 +24,8 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.4",
     "mongo-sanitize": "^1.1.0",
-    "mongoose": "^6.5.4",
+    "mongoose": "^5.13.15",
+    "update": "^0.7.4",
     "winston": "^3.8.1",
     "winston-mail": "^2.0.0",
     "winston-mongodb": "^5.0.7"

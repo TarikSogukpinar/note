@@ -1,9 +1,10 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import Profile from "./Profile";
+import Profile from "../components/Profile";
 
-export default function PrivateRoute() {
+export default function profilePrivateRoute() {
   const auth = localStorage.getItem("user");
 
   return auth ? <Profile /> : <Navigate to="/login" />;
 }
+

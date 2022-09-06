@@ -4,7 +4,9 @@ import Main from "./Main";
 import Container from "react-bootstrap/esm/Container";
 import Login from "./Login";
 import Register from "./Register";
-import PrivateRoute from "./PrivateRoute";
+import ProfilePrivateRoutes from "../constants/ProfilePrivateRoute";
+import NotesPrivateRoutes from "../constants/NotesPrivateRoutes";
+import CreateNote from "./CreateNote";
 
 export default function Dashboard() {
   return (
@@ -17,8 +19,14 @@ export default function Dashboard() {
           <Route
             exact
             path="/profile"
-            element={<PrivateRoute></PrivateRoute>}
+            element={<ProfilePrivateRoutes></ProfilePrivateRoutes>}
           ></Route>
+          <Route
+            exact
+            path="/notes"
+            element={<NotesPrivateRoutes></NotesPrivateRoutes>}
+          ></Route>
+          <Route exact path="/createnote" element={<CreateNote></CreateNote>}></Route>
         </Routes>
       </Container>
     </div>
