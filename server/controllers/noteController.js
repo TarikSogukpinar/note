@@ -28,12 +28,8 @@ const AddNote = asyncHandler(async (req, res) => {
     sanitize(req.body)
   );
 
-  // if (!title || !content || !category) {
-  //   return res.status(500).json({ message: "All fields required" });
-  // }
 
   if (addNoteValidation) {
-    // return res.status(500).json({ message: "All fields required" });
     const newNote = new Note({
       title,
       content,
