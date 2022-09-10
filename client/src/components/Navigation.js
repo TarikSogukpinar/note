@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/esm/Button";
-
+import { FaEvernote } from "react-icons/fa";
 export default function Navigation() {
   const auth = JSON.parse(localStorage.getItem("user"));
  
@@ -20,7 +20,10 @@ export default function Navigation() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="/">Note App</Navbar.Brand>
+        <Navbar.Brand href="/">
+          {" "}
+          <FaEvernote /> Note App
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto"></Nav>

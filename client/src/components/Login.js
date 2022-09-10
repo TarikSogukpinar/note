@@ -4,6 +4,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 // import { ToastContainer, toast } from 'react-toastify';
 import { loginUser } from "../services/authService";
 import { FaPushed } from "react-icons/fa";
+import {GrLogin} from "react-icons/gr"
 import "../styles/Login.css";
 
 export default function Login({ setLoginUser }) {
@@ -34,7 +35,7 @@ export default function Login({ setLoginUser }) {
     <>
       <Container>
         <h1 className="login-text text-dark shadow-sm text-warning mt-5 p-3 text-center rounded">
-          <FaPushed /> Login
+          <GrLogin /> Login
         </h1>
         <Row className="mt-5">
           <Col
@@ -48,6 +49,7 @@ export default function Login({ setLoginUser }) {
               <Form.Group controlId="formBasicEmail">
                 <Form.Label className="form-label">Email address</Form.Label>
                 <Form.Control
+                  size="lg"
                   name="email"
                   type="email"
                   onChange={handleChange("email")}
@@ -59,6 +61,7 @@ export default function Login({ setLoginUser }) {
               <Form.Group controlId="formBasicPassword">
                 <Form.Label className="form-label">Password</Form.Label>
                 <Form.Control
+                  size="lg"
                   name="password"
                   type="password"
                   onChange={handleChange("password")}
@@ -67,7 +70,7 @@ export default function Login({ setLoginUser }) {
                 />
               </Form.Group>
               <br></br>
-              <Button variant="dark btn-block" type="submit">
+              <Button  size="lg" variant="dark btn-block" type="submit">
                 Login
               </Button>
               <div className="login-register">

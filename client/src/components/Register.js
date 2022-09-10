@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { FaPushed } from "react-icons/fa";
+import { FaRegPaperPlane } from "react-icons/fa";
 import { registerUser } from "../services/authService";
 import "../styles/Register.css";
 
@@ -31,7 +31,7 @@ export default function Register() {
     <>
       <Container>
         <h1 className="login-text text-dark shadow-sm text-warning mt-5 p-3 text-center rounded">
-          <FaPushed /> Register
+          <FaRegPaperPlane /> Register
         </h1>
         <Row className="mt-5">
           <Col
@@ -45,6 +45,7 @@ export default function Register() {
               <Form.Group controlId="formBasicfirstName">
                 <Form.Label className="form-label">First Name</Form.Label>
                 <Form.Control
+                  size="lg"
                   name="firstName"
                   type="text"
                   onChange={handleChange("firstName")}
@@ -55,6 +56,7 @@ export default function Register() {
               <Form.Group controlId="formBasiclastName">
                 <Form.Label className="form-label">Last Name</Form.Label>
                 <Form.Control
+                  size="lg"
                   name="lastName"
                   type="text"
                   onChange={handleChange("lastName")}
@@ -65,6 +67,7 @@ export default function Register() {
               <Form.Group controlId="formBasicEmail">
                 <Form.Label className="form-label">Email address</Form.Label>
                 <Form.Control
+                  size="lg"
                   name="email"
                   onChange={handleChange("email")}
                   type="email"
@@ -76,6 +79,7 @@ export default function Register() {
               <Form.Group controlId="formBasicPassword">
                 <Form.Label className="form-label">Password</Form.Label>
                 <Form.Control
+                  size="lg"
                   name="password"
                   type="password"
                   onChange={handleChange("password")}
@@ -84,7 +88,7 @@ export default function Register() {
                 />
               </Form.Group>
               <br></br>
-              <Button variant="dark btn-block" type="submit">
+              <Button  size="lg" variant="dark btn-block" type="submit">
                 Register
               </Button>
             </Form>

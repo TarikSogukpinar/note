@@ -1,5 +1,5 @@
 import React from "react";
-import { FaPushed } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import "../styles/Footer.css";
 export default function Footer() {
   return (
@@ -16,13 +16,19 @@ export default function Footer() {
 
         <ul className="nav col-md-4 justify-content-end">
           <li className="nav-item">
-            <a href="#" className="nav-link px-2 text-muted footer-text">
-              <FaPushed /> Github
+            <a
+              href="https://github.com/TarikSogukpinar"
+              className="nav-link px-2 text-muted footer-text"
+            >
+              <FaGithub /> Github
             </a>
           </li>
           <li className="nav-item">
-            <a href="#" className="nav-link px-2 text-muted footer-text">
-              <FaPushed /> Linkedin
+            <a
+              href="https://www.linkedin.com/in/tar%C4%B1k-so%C4%9Fukp%C4%B1nar/"
+              className="nav-link px-2 text-muted footer-text"
+            >
+              <FaLinkedin /> Linkedin
             </a>
           </li>
         </ul>
