@@ -1,0 +1,10 @@
+.note-text {
+  letter-spacing: 1px;
+  font-weight: bolder;
+}
+
+.note-titles {
+  display: flex;
+  letter-spacing: 1px;
+  font-weight: 300;
+}

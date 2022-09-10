@@ -6,6 +6,7 @@ import Login from "./Login";
 import Register from "./Register";
 import ProfilePrivateRoutes from "../constants/ProfilePrivateRoute";
 import NotesPrivateRoutes from "../constants/NotesPrivateRoutes";
+import CreateNotePrivateRoutes from "../constants/NotesPrivateRoutes";
 import CreateNote from "./CreateNote";
 import NoteFound from "./NoteFound";
 
@@ -27,8 +28,12 @@ export default function Dashboard() {
             path="/notes"
             element={<NotesPrivateRoutes></NotesPrivateRoutes>}
           ></Route>
-          <Route exact path="/createnote" element={<CreateNote></CreateNote>}></Route>
-          <Route exact path ="*" element={<NoteFound></NoteFound>}></Route>
+          <Route
+            exact
+            path="/createnote"
+            element={<CreateNotePrivateRoutes></CreateNotePrivateRoutes>}
+          ></Route>
+          <Route exact path="*" element={<NoteFound></NoteFound>}></Route>
         </Routes>
       </Container>
     </div>

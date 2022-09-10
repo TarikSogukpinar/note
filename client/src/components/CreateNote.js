@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import "../styles/CreateNote.css";
 import { AddNote } from "../services/noteService";
+import { FaStickyNote } from "react-icons/fa";
 import axios from "axios";
 
 export default function CreateNote() {
@@ -52,15 +54,18 @@ export default function CreateNote() {
           lg={5}
           md={6}
           sm={12}
-          className="p-5 m-auto shadow-lg rounded-lg"
+          className="p-5 m-auto"
           style={{ borderRadius: "15px" }}
         >
           <Form onSubmit={handleAddNote}>
-            <h1>Create New Note</h1>
+            <h1 className="note-text">
+              <FaStickyNote /> Create New Note
+            </h1>
             <br></br>
             <Form.Group className="mb-3" controlId="formBasicTitle">
-              <Form.Label>Title</Form.Label>
+              <Form.Label className="note-titles">Title</Form.Label>
               <Form.Control
+                size="lg"
                 name="title"
                 type="text"
                 onChange={handleChange("title")}
@@ -69,34 +74,33 @@ export default function CreateNote() {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicContent">
-              <Form.Label>Content</Form.Label>
+            <Form.Group className="mb-4" controlId="formBasicContent">
+              <Form.Label className="note-titles">Category</Form.Label>
               <Form.Control
-                name="content"
-                onChange={handleChange("category")}
-                type="text"
-                placeholder="Content"
-                required
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCategory">
-              <Form.Label>Category</Form.Label>
-              <Form.Control
+                size="lg"
                 name="category"
-                onChange={handleChange("content")}
+                onChange={handleChange("category")}
                 type="text"
                 placeholder="Category"
                 required
               />
             </Form.Group>
-            {/* <Form.Group
+            <Form.Group
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Example textarea</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group> */}
-            <Button variant="primary" type="submit">
+              <Form.Label className="note-titles">Content</Form.Label>
+              <Form.Control
+                size="lg"
+                name="content"
+                onChange={handleChange("content")}
+                type="text"
+                placeholder="Content"
+                as="textarea"
+                rows={3}
+              />
+            </Form.Group>
+            <Button size="md" variant="dark" type="submit">
               Send Notes
             </Button>
           </Form>

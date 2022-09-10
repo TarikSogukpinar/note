@@ -6,15 +6,13 @@ import noteValidationSchema from "../validations/noteValidationSchema.js";
 const getNotes = asyncHandler(async (req, res) => {
   try {
     const notes = await Note.find({ user_id: req.user.id });
-    res.json(notes)
+    res.json(notes);
   } catch (error) {
-    console.log('here')
     return res.status(500).json({ message: error.message });
   }
 });
 
 const getNote = asyncHandler(async (req, res) => {
-  // const note = await Note.findById(req.params.id);
   try {
     const note = await Note.findById(req.params.id);
     res.json(note);
@@ -41,7 +39,6 @@ const AddNote = asyncHandler(async (req, res) => {
       content,
       category,
       user_id: req.user.id,
-      // name: req.user.name
     });
 
     await newNote.save();

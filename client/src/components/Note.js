@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import CreateNote from "./CreateNote";
-// import {
-//   Accordion,
-//   Button,
-//   Col,
-//   Container,
-//   Row,
-//   Card,
-//   Nav,
-// } from "react-bootstrap";
+import {
+  Accordion,
+  Button,
+  Col,
+  Container,
+  Row,
+  Card,
+  Nav,
+  Badge,
+} from "react-bootstrap";
 // import { Link } from "react-router-dom";
 // import { getAllNotes } from "../services/noteService";
 import axios from "axios";
+import "../styles/Note.css"
 
 export default function Note() {
   const [notes, setNotes] = useState([]);
@@ -36,20 +38,30 @@ export default function Note() {
 
   return (
     <div>
+      <br></br>
+      <Button href="/createnote">Create Notes</Button>
+      <br></br>
+      <h1 className="my-notes-text">My Notes</h1>
       {notes.map((note) => (
-        <div className="card" key={note._id}>
-          <h4 title={note.title}>{note.title}</h4>
-          <h4 title={note.title}>{note.content}</h4>
-          <h4 title={note.title}>{note.category}</h4>
-          {/* <div className="text-wrapper">
-            <p>{note.content}</p>
-          </div> */}
-          {/* <p className="date">{format(note.content)}</p> */}
-
-          {/* <button className="close" onClick={() => deleteNote(note._id)}>
-            X
-          </button> */}
-        </div>
+        <Container key={note._id}>
+          <Accordion defaultActiveKey="0">
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>Title : {note.title}</Accordion.Header>
+              <Accordion.Body>
+                <Row>
+                  <Col xs={6}>
+                    <p>Content : {note.content}</p>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={5}>
+                    <p>Category :{note.category}</p>
+                  </Col>
+                </Row>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+        </Container>
       ))}
     </div>
   );
