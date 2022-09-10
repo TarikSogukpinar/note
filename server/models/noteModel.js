@@ -19,9 +19,10 @@ const noteSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    reminderTime: {
-      type: Number,
-    },
+    // name: {
+    //   type: String,
+    //   required: true,
+    // },
   },
   {
     timestamps: true,

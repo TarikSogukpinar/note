@@ -7,7 +7,7 @@ import rateLimit from "./helpers/limiter/limiter.js";
 import authRoutes from "./routes/authRoutes.js";
 import noteRoutes from "./routes/noteRoutes.js";
 import connectionDatabase from "./helpers/connectionDatabase/connectDatabase.js";
-import cookieparser from "cookie-parser"
+import cors from "cors"
 
 dotenv.config();
 const app = express();
@@ -15,8 +15,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(rateLimit);
-// app.use(cookieparser())
-initCors(app);
+app.use(cors())
+// initCors(app);
 connectionDatabase();
 
 app.use("/auth", authRoutes);

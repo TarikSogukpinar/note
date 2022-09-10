@@ -3,14 +3,18 @@ import Note from "../models/noteModel.js";
 import sanitize from "mongo-sanitize";
 import noteValidationSchema from "../validations/noteValidationSchema.js";
 
-const getAllNotes = asyncHandler(async (req, res) => {
-  const notes = await Note.find({ _id: req.user._id });
-  // console.log(notes)
-  return res.status(200).json(notes);
+const getNotes = asyncHandler(async (req, res) => {
+  try {
+    const notes = await Note.find({ user_id: req.user.id });
+    res.json(notes)
+  } catch (error) {
+    console.log('here')
+    return res.status(500).json({ message: error.message });
+  }
 });
 
-const getNoteById = asyncHandler(async (req, res) => {
-  const note = await Note.findById(req.params.id);
+const getNote = asyncHandler(async (req, res) => {
+  // const note = await Note.findById(req.params.id);
   try {
     const note = await Note.findById(req.params.id);
     res.json(note);
@@ -20,23 +24,30 @@ const getNoteById = asyncHandler(async (req, res) => {
 });
 
 const AddNote = asyncHandler(async (req, res) => {
-  try {
-    const { title, content, category } = req.body;
+  const { title, content, category } = sanitize(req.body);
 
-    if (!title || !content || !category) {
-      return res.status(500).json({ message: "All fields required" });
-    }
+  const addNoteValidation = await noteValidationSchema.validateAsync(
+    sanitize(req.body)
+  );
 
+  // if (!title || !content || !category) {
+  //   return res.status(500).json({ message: "All fields required" });
+  // }
+
+  if (addNoteValidation) {
+    // return res.status(500).json({ message: "All fields required" });
     const newNote = new Note({
       title,
       content,
       category,
-      user_id: req.verifiedUser._id,
+      user_id: req.user.id,
+      // name: req.user.name
     });
+
     await newNote.save();
     res.status(201).json({ message: "Note created" });
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
+  } else {
+    return res.status(500).json({ message: error.message });
   }
 });
 
@@ -66,4 +77,4 @@ const updateNote = asyncHandler(async (req, res) => {
   }
 });
 
-export { AddNote, getAllNotes, getNoteById, deleteNote, updateNote };
+export { AddNote, getNotes, getNote, deleteNote, updateNote };

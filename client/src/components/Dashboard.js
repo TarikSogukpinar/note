@@ -7,6 +7,7 @@ import Register from "./Register";
 import ProfilePrivateRoutes from "../constants/ProfilePrivateRoute";
 import NotesPrivateRoutes from "../constants/NotesPrivateRoutes";
 import CreateNote from "./CreateNote";
+import NoteFound from "./NoteFound";
 
 export default function Dashboard() {
   return (
@@ -27,6 +28,7 @@ export default function Dashboard() {
             element={<NotesPrivateRoutes></NotesPrivateRoutes>}
           ></Route>
           <Route exact path="/createnote" element={<CreateNote></CreateNote>}></Route>
+          <Route exact path ="*" element={<NoteFound></NoteFound>}></Route>
         </Routes>
       </Container>
     </div>

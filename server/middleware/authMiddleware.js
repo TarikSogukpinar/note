@@ -1,17 +1,19 @@
 import jwt from "jsonwebtoken";
+import asyncHandler from "express-async-handler";
 
-const authUser = (req, res, next) => {
+const authUser = asyncHandler(async (req, res, next) => {
   try {
-    const token = req.cookies.loginCookie;
-    const verifiedUser = jwt.verify(token, process.env.JWT_SECRET);
-    if (!verifiedUser) {
-      return res.status(400).json({ msg: "User Not Found" });
-    }
-    req.verifiedUser = verifiedUser;
-    next();
+    const token = req.header("Authorization");
+    if (!token) return res.status(400).json({ msg: "Invalid Authentication" });
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+      if (err) return res.status(400).json({ msg: "Authorization not valid." });
+
+      req.user = user;
+      next();
+    });
   } catch (error) {
-    res.status(401).send(error);
+    return res.status(500).json({ msg: error.message });
   }
-};
+});
 
 export { authUser };

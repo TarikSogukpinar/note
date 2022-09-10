@@ -19,6 +19,7 @@ export default function Login({ setLoginUser }) {
     e.preventDefault();
     loginUser(data.email, data.password)
       .then((res) => {
+        localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data));
         window.location.href = "/";
       })
