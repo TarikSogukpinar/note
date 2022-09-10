@@ -8,11 +8,6 @@ import axios from "axios";
 export default function CreateNote() {
   const [data, setData] = useState({ title: "", content: "", category: "" });
 
-  // const handleChange = (key) => (value) => {
-  //   let valueTemp = value?.target ? value?.target?.value : value;
-  //   setNote({ ...note, [key]: valueTemp });
-  // };
-
   const handleChange = (key) => (value) => {
     let valueTemp = value?.target ? value?.target?.value : value;
     setData({ ...data, [key]: valueTemp });

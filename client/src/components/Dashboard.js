@@ -6,8 +6,8 @@ import ProfilePrivateRoutes from "../constants/ProfilePrivateRoute";
 import NotesPrivateRoutes from "../constants/NotesPrivateRoutes";
 import LoginPrivateRoutes from "../constants/LoginPrivateRoutes";
 import RegisterPrivateRoutes from "../constants/RegisterPrivateRoutes";
-import NoteFound from "./NoteFound";
 import CreateNotePrivateRoutes from "../constants/CreateNotesPrivateRoutes";
+import NotFound from "./NotFound";
 
 export default function Dashboard() {
   return (
@@ -40,7 +40,7 @@ export default function Dashboard() {
             path="/createnote"
             element={<CreateNotePrivateRoutes></CreateNotePrivateRoutes>}
           ></Route>
-          <Route exact path="*" element={<NoteFound></NoteFound>}></Route>
+          <Route exact path="*" element={<NotFound></NotFound>}></Route>
         </Routes>
       </Container>
     </div>

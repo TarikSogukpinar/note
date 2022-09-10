@@ -28,7 +28,6 @@ const AddNote = asyncHandler(async (req, res) => {
     sanitize(req.body)
   );
 
-
   if (addNoteValidation) {
     const newNote = new Note({
       title,

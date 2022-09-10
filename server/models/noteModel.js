@@ -19,6 +19,10 @@ const noteSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    createdAt: {
+      type: String,
+      default: moment().format("MMMM Do YYYY, h:mm:ss a"),
+    },
   },
   {
     timestamps: true,
