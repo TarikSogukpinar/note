@@ -8,6 +8,8 @@ import axios from "axios";
 export default function CreateNote() {
   const [data, setData] = useState({ title: "", content: "", category: "" });
 
+
+
   const handleChange = (key) => (value) => {
     let valueTemp = value?.target ? value?.target?.value : value;
     setData({ ...data, [key]: valueTemp });
@@ -96,7 +98,7 @@ export default function CreateNote() {
               />
             </Form.Group>
             <Button size="md" variant="dark" type="submit">
-              Send Notes
+              Create Note
             </Button>
           </Form>
         </Col>

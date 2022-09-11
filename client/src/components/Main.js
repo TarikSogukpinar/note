@@ -52,27 +52,21 @@ export default function Main() {
           )}
         </div>
         <hr></hr>
-       
+
         <Container>
           <Row>
             <Col>
-              <a href={"https://www.google.com.tr"}>
-                <FaGithub
-                  href="https://www.google.com.tr"
-                  style={{ fontSize: "30px", marginRight: "10px" }}
-                />
+              <a href={"https://github.com/TarikSogukpinar"}>
+                <FaGithub style={{ fontSize: "30px", marginRight: "10px" }} />
               </a>
-              <a href={"https://www.google.com.tr"}>
-                <FaLinkedin
-                  href="https://www.google.com.tr"
-                  style={{ fontSize: "30px", marginRight: "10px" }}
-                />
+              <a href={"https://www.linkedin.com/in/tar%C4%B1k-so%C4%9Fukp%C4%B1nar/"}>
+                <FaLinkedin style={{ fontSize: "30px", marginRight: "10px" }} />
               </a>
             </Col>
           </Row>
         </Container>
 
-        <a href="https://www.google.com.tr"> Project Link </a>
+        <a href="https://github.com/TarikSogukpinar/note"> Project Link </a>
       </Alert>
     </div>
   );
