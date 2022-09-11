@@ -4,32 +4,29 @@ import "../styles/Main.css";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/esm/Container";
 import { Col, Row } from "react-bootstrap";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { Link } from "react-router-dom";
 export default function Main() {
   const auth = localStorage.getItem("token");
   return (
-    <div className="main-page">
-      <Alert variant="light">
-        <Alert.Heading>Welcome Note App!</Alert.Heading>
-        <p>
-          Aww yeah, you successfully read this important alert message. This
-          example text is going to run a bit longer so that you can see how
-          spacing within an alert works with this kind of content.
-        </p>
-        <hr />
-        <p className="mb-0">
-          Whenever you need to, be sure to use margin utilities to keep things
-          nice and tidy.
-        </p>
+    <div className="main-page m-4 p-3">
+      <Alert variant="warning">
+        <Alert.Heading>Welcome!</Alert.Heading>
+        <h4>
+          Welcome to the note taking application, this application is completely
+          free. We encrypt your passwords and all your notes. You can start
+          here.
+        </h4>
 
         <div className="main-button">
           {!auth ? (
             <Container>
               <Row>
                 <Col>
-                  <Button className="m-2" variant="primary" href="/login">
+                  <Button className="m-2" variant="outline-dark" href="/login">
                     Login
                   </Button>
-                  <Button variant="primary" href="/register">
+                  <Button variant="outline-dark" href="/register">
                     Register
                   </Button>
                 </Col>
@@ -37,12 +34,45 @@ export default function Main() {
             </Container>
           ) : (
             <Container>
-              <Button variant="primary" href="/createnote">
-                Create Note
-              </Button>
+              <Row>
+                <Col>
+                  <Button
+                    className="m-2"
+                    variant="outline-dark"
+                    href="/createnote"
+                  >
+                    Create Note
+                  </Button>
+                  <Button variant="outline-dark" href="/notes">
+                    My Notes
+                  </Button>
+                </Col>
+              </Row>
             </Container>
           )}
         </div>
+        <hr></hr>
+       
+        <Container>
+          <Row>
+            <Col>
+              <a href={"https://www.google.com.tr"}>
+                <FaGithub
+                  href="https://www.google.com.tr"
+                  style={{ fontSize: "30px", marginRight: "10px" }}
+                />
+              </a>
+              <a href={"https://www.google.com.tr"}>
+                <FaLinkedin
+                  href="https://www.google.com.tr"
+                  style={{ fontSize: "30px", marginRight: "10px" }}
+                />
+              </a>
+            </Col>
+          </Row>
+        </Container>
+
+        <a href="https://www.google.com.tr"> Project Link </a>
       </Alert>
     </div>
   );

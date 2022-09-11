@@ -10,10 +10,9 @@ import {
   Nav,
   Badge,
 } from "react-bootstrap";
-// import { Link } from "react-router-dom";
-// import { getAllNotes } from "../services/noteService";
+import {IoCreateSharp} from "react-icons/io5"
 import axios from "axios";
-import "../styles/Note.css"
+import "../styles/Note.css";
 
 export default function Note() {
   const [notes, setNotes] = useState([]);
@@ -34,28 +33,32 @@ export default function Note() {
     }
   }, []);
 
-  // console.log(notes);
-
   return (
     <div>
-      <br></br>
-      <Button href="/createnote">Create Notes</Button>
-      <br></br>
-      <h1 className="my-notes-text">My Notes</h1>
+      <Container className="d-inline-flex p-2 bd-highlight">
+        <Row className="justify-content-end">
+          <Col className="p-3">
+            <Button size="xs" variant="link" bg="dark" href="/createnote">
+              <IoCreateSharp></IoCreateSharp> Create Note
+            </Button>
+          </Col>
+        </Row>
+      </Container>
+
       {notes.map((note) => (
         <Container key={note._id}>
           <Accordion defaultActiveKey="0">
             <Accordion.Item eventKey="0">
-              <Accordion.Header>Title : {note.title}</Accordion.Header>
+              <Accordion.Header>{note.category}</Accordion.Header>
               <Accordion.Body>
                 <Row>
-                  <Col xs={6}>
-                    <p>Content : {note.content}</p>
+                  <Col>
+                    <h4>{note.title}</h4>
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={5}>
-                    <p>Category :{note.category}</p>
+                  <Col>
+                    <h5>{note.content}</h5>
                   </Col>
                 </Row>
               </Accordion.Body>
