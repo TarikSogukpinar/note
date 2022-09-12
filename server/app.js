@@ -7,7 +7,7 @@ import rateLimit from "./helpers/limiter/limiter.js";
 import authRoutes from "./routes/authRoutes.js";
 import noteRoutes from "./routes/noteRoutes.js";
 import connectionDatabase from "./helpers/connectionDatabase/connectDatabase.js";
-import cors from "cors"
+import cors from "cors";
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(rateLimit);
-app.use(cors())
+app.use(cors());
 // initCors(app);
 connectionDatabase();
 

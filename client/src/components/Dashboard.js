@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams } from "react-router-dom";
 import Main from "./Main";
 import Container from "react-bootstrap/esm/Container";
 import ProfilePrivateRoutes from "../constants/ProfilePrivateRoute";
@@ -8,8 +8,12 @@ import LoginPrivateRoutes from "../constants/LoginPrivateRoutes";
 import RegisterPrivateRoutes from "../constants/RegisterPrivateRoutes";
 import CreateNotePrivateRoutes from "../constants/CreateNotesPrivateRoutes";
 import NotFound from "./NotFound";
+import EditNote from "./EditNote";
 
 export default function Dashboard() {
+ 
+//   const edit = edit.find((p) => p._id === id);
+//  const { id } = useParams();
   return (
     <div>
       <Container>
@@ -41,6 +45,7 @@ export default function Dashboard() {
             element={<CreateNotePrivateRoutes></CreateNotePrivateRoutes>}
           ></Route>
           <Route exact path="*" element={<NotFound></NotFound>}></Route>
+          <Route exact path="/edit/:id" element={<EditNote></EditNote>}></Route>
         </Routes>
       </Container>
     </div>

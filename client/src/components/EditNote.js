@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useParams } from "react-router";
 
-export default function EditNote() {
+export default function EditNote({ match }) {
   const [note, setNote] = useState({
     title: "",
     content: "",
@@ -12,22 +13,25 @@ export default function EditNote() {
   useEffect(() => {
     const getNote = async () => {
       const token = localStorage.getItem("token");
-      if (match.params.id) {
-        const res = await axios.get(`http://localhost:5000/notes/${id}`, {
+      //if (match.params._id) {
+      const { res } = await axios.get(
+        `http://localhost:5000/notes/getNote/${note.id}`,
+        {
           headers: { Authorization: token },
-        });
-        setNote({
-          title: res.data.title,
-          content: res.data.content,
-          category: res.data.category,
-          id: res.data._id,
-        });
-      }
+        }
+      );
+      setNote({
+        title: res.data.title,
+        content: res.data.content,
+        category: res.data.category,
+        id: res.data._id,
+      });
+      //}
     };
     getNote();
-  }, [match.params.id]);
+  }, []);
 
-  const onChangeInput = (e) => {
+  const onChangeInput = async (e) => {
     const { name, value } = e.target;
     setNote({ ...note, [name]: value });
   };
@@ -43,9 +47,13 @@ export default function EditNote() {
           content,
           category,
         };
-        await axios.put(`http://localhost:5000/notes/${id}`, newNote, {
-          headers: { Authorization: token },
-        });
+        await axios.up(
+          `http://localhost:5000/notes/updateNote/${id}`,
+          newNote,
+          {
+            headers: { Authorization: token },
+          }
+        );
         window.location.href = "/";
       }
     } catch (error) {
@@ -53,5 +61,47 @@ export default function EditNote() {
     }
   };
 
-  return <div>EditNote</div>;
+  return (
+    <div className="create-note">
+      <h2>Edit Note</h2>
+      <form onSubmit={editNote} autoComplete="off">
+        <div className="row">
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            value={note.title}
+            id="title"
+            name="title"
+            required
+            onChange={onChangeInput}
+          />
+        </div>
+
+        <div className="row">
+          <label htmlFor="content">Content</label>
+          <textarea
+            type="text"
+            value={note.content}
+            id="content"
+            name="content"
+            required
+            rows="10"
+            onChange={onChangeInput}
+          />
+        </div>
+
+        <label htmlFor="date">Category: {note.category} </label>
+        <div className="row">
+          <input
+            type="text"
+            id="category"
+            name="category"
+            onChange={onChangeInput}
+          />
+        </div>
+
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  );
 }

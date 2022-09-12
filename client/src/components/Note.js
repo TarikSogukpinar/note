@@ -90,7 +90,7 @@ export default function Note() {
                         <Button
                           variant="link"
                           className="close"
-                          href={`edit/${note._id}`}
+                          href={`/edit/${note._id}`}
                         >
                           <FaRegEdit /> Edit Note
                         </Button>

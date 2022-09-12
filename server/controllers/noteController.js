@@ -17,7 +17,7 @@ const getNote = asyncHandler(async (req, res) => {
     const note = await Note.findById(req.params.id);
     res.json(note);
   } catch (error) {
-    return res.status(500).json({ msg: error.message });
+    return res.status(500).json({ message: error });
   }
 });
 
@@ -52,20 +52,43 @@ const deleteNote = asyncHandler(async (req, res) => {
   }
 });
 
+// const updateNote = asyncHandler(async (req, res) => {
+//   try {
+//     const { title, content, category } = req.body;
+//     await Note.findById(
+//       { _id: req.params.id },
+//       {
+//         title,
+//         content,
+//         category,
+//       }
+//     );
+//     res.json({ message: "Note updated!" });
+//   } catch (error) {
+//     return res.status(500).json({ message: error.message });
+//   }
+// });
+
 const updateNote = asyncHandler(async (req, res) => {
-  try {
-    const { title, content, category } = req.body;
-    await Note.findOneAndUpdate(
-      { _id: req.params.id },
-      {
-        title,
-        content,
-        category,
-      }
-    );
-    res.json({ message: "Note updated!" });
-  } catch (error) {
-    return res.status(500).json({ msg: error.message });
+  const { title, content, category } = req.body;
+
+  const note = await Note.findById(req.params.id);
+
+  if (note.user.toString() !== req.user._id.toString()) {
+    res.status(401);
+    throw new Error("You can't perform this action");
+  }
+
+  if (note) {
+    note.title = title;
+    note.content = content;
+    note.category = category;
+
+    const updatedNote = await note.save();
+    res.json(updatedNote);
+  } else {
+    res.status(404);
+    throw new Error("Note not found");
   }
 });
 
