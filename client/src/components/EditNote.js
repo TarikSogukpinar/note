@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useParams } from "react-router";
 import { getNote, updateNote } from "../services/noteService";
 import { FaUserEdit } from "react-icons/fa";
@@ -40,7 +39,7 @@ export default function EditNote({ match, history }) {
     try {
       const token = localStorage.getItem("token");
       if (token) {
-        const { title, category, content, id } = note;
+        // const { title, category, content, id } = note;
      
         updateNote(note.id, note.title, note.category, note.content, token)
           .then((res) => {

@@ -5,7 +5,8 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/esm/Container";
 import { Col, Row } from "react-bootstrap";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { Link } from "react-router-dom";
+
+
 export default function Main() {
   const auth = localStorage.getItem("token");
   return (

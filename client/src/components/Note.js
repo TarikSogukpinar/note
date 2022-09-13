@@ -1,20 +1,10 @@
 import React, { useEffect, useState } from "react";
-import CreateNote from "./CreateNote";
-import {
-  Accordion,
-  Button,
-  Col,
-  Container,
-  Row,
-  Card,
-  Nav,
-  Badge,
-} from "react-bootstrap";
+import { deletNotes} from "../services/noteService";
+import { Accordion, Button, Col, Container, Row } from "react-bootstrap";
 import { IoCreateSharp } from "react-icons/io5";
 import { FaNotEqual, FaRegStickyNote, FaRegEdit } from "react-icons/fa";
 import axios from "axios";
 import "../styles/Note.css";
-import { Link } from "react-router-dom";
 
 export default function Note() {
   const [notes, setNotes] = useState([]);
@@ -24,6 +14,7 @@ export default function Note() {
     const res = await axios.get("http://localhost:5000/notes/getNotes", {
       headers: { Authorization: token },
     });
+
     setNotes(res.data);
   };
 
@@ -38,14 +29,11 @@ export default function Note() {
   const deleteNote = async (id) => {
     try {
       if (token) {
-        await axios.delete(`http://localhost:5000/notes/deleteNote/${id}`, {
-          headers: { Authorization: token },
-        });
+        deletNotes(id, token);
         getNotes(token);
       }
     } catch (error) {
       console.log(error);
-      // window.location.href = "/";
     }
   };
 

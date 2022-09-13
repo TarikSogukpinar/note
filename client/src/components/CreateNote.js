@@ -3,7 +3,6 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import "../styles/CreateNote.css";
 import { AddNote } from "../services/noteService";
 import { FaStickyNote } from "react-icons/fa";
-import axios from "axios";
 
 export default function CreateNote() {
   const [data, setData] = useState({ title: "", content: "", category: "" });
@@ -18,7 +17,7 @@ export default function CreateNote() {
     try {
       const token = localStorage.getItem("token");
       if (token) {
-        const { title, category, content } = data;
+        // const { title, category, content } = data;
         AddNote(data.title, data.category, data.content, token)
           .then((res) => {
             window.location.href = "/notes";

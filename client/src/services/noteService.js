@@ -18,6 +18,12 @@ export const getNote = async (id, token) => {
   });
 };
 
+export const deletNotes = async (id, token) => {
+  return await axios.delete(`http://localhost:5000/notes/deleteNote/${id}`, {
+    headers: { Authorization: token },
+  });
+};
+
 export const updateNote = async (id, title, content, category, token) => {
   return await axios.put(
     `http://localhost:5000/notes/updateNote/${id}`,
@@ -28,13 +34,4 @@ export const updateNote = async (id, title, content, category, token) => {
     },
     { headers: { Authorization: token } }
   );
-};
-
-export const updateNotes = async (id) => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    return await axios.put(`http://localhost:5000/notes/updateNote/${id}`, {
-      headers: { Authorization: token },
-    });
-  }
 };

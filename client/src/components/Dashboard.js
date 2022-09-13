@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, useParams } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Main from "./Main";
 import Container from "react-bootstrap/esm/Container";
 import ProfilePrivateRoutes from "../constants/ProfilePrivateRoute";
@@ -11,9 +11,6 @@ import NotFound from "./NotFound";
 import EditNote from "./EditNote";
 
 export default function Dashboard() {
- 
-//   const edit = edit.find((p) => p._id === id);
-//  const { id } = useParams();
   return (
     <div>
       <Container>
