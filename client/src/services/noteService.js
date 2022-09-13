@@ -18,12 +18,16 @@ export const getNote = async (id, token) => {
   });
 };
 
-export const getAllNotes = async (title, content, category) => {
-  return await axios.get("notes/getAllNotes", {
-    title,
-    content,
-    category,
-  });
+export const updateNote = async (id, title, content, category, token) => {
+  return await axios.put(
+    `http://localhost:5000/notes/updateNote/${id}`,
+    {
+      title,
+      content,
+      category,
+    },
+    { headers: { Authorization: token } }
+  );
 };
 
 export const updateNotes = async (id) => {

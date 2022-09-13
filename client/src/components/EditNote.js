@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
-import { updateNotes } from "../services/noteService";
+import { getNote, updateNote } from "../services/noteService";
 import { FaUserEdit } from "react-icons/fa";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 export default function EditNote({ match, history }) {
@@ -14,15 +14,10 @@ export default function EditNote({ match, history }) {
   const { id } = useParams();
 
   useEffect(() => {
-    const getNote = async () => {
+    const getNotes = async () => {
       const token = localStorage.getItem("token");
       if (id) {
-        const res = await axios.get(
-          `http://localhost:5000/notes/getNote/${id}`,
-          {
-            headers: { Authorization: token },
-          }
-        );
+        const res = await getNote(id, token);
         setNote({
           title: res.data.title,
           content: res.data.content,
@@ -31,7 +26,7 @@ export default function EditNote({ match, history }) {
         });
       }
     };
-    getNote();
+    getNotes();
     console.log(note);
   }, [id]);
 
@@ -46,19 +41,16 @@ export default function EditNote({ match, history }) {
       const token = localStorage.getItem("token");
       if (token) {
         const { title, category, content, id } = note;
-        const newNote = {
-          title,
-          category,
-          content,
-        };
-        await axios.put(
-          `http://localhost:5000/notes/updateNote/${id}`,
-          newNote,
-          {
-            headers: { Authorization: token },
-          }
-        );
-        window.location.href = "/notes";
+     
+        updateNote(note.id, note.title, note.category, note.content, token)
+          .then((res) => {
+            window.location.href = "/notes";
+          })
+          .catch((error) => {
+            alert("hata");
+            console.log(error.response);
+          });
+  
       }
     } catch (error) {
       console.log(error);
@@ -79,39 +71,39 @@ export default function EditNote({ match, history }) {
           style={{ borderRadius: "15px" }}
         >
           <Form onSubmit={editNote} autoComplete="off">
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group controlId="formBasicTitle">
               <Form.Label className="form-label">Title</Form.Label>
               <Form.Control
                 size="lg"
                 type="text"
                 value={note.title}
-                id="title"
+                htmlFor="title"
                 name="title"
                 required
                 onChange={onChangeInput}
               />
             </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group controlId="formBasicCategory">
               <Form.Label className="form-label">Category</Form.Label>
               <Form.Control
                 size="lg"
                 type="text"
                 value={note.category}
-                id="category"
+                htmlFor="category"
                 name="category"
                 required
                 rows="10"
                 onChange={onChangeInput}
               />
             </Form.Group>
-            <Form.Group  className="mb-3" controlId="formBasicPassword">
+            <Form.Group className="mb-3" controlId="formBasicContent">
               <Form.Label className="form-label">Content</Form.Label>
               <Form.Control
                 size="lg"
                 type="text"
                 value={note.content}
-                id="content"
+                htmlFor="content"
                 name="content"
                 as="textarea"
                 required
