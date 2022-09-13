@@ -8,8 +8,6 @@ import axios from "axios";
 export default function CreateNote() {
   const [data, setData] = useState({ title: "", content: "", category: "" });
 
-
-
   const handleChange = (key) => (value) => {
     let valueTemp = value?.target ? value?.target?.value : value;
     setData({ ...data, [key]: valueTemp });
@@ -21,16 +19,7 @@ export default function CreateNote() {
       const token = localStorage.getItem("token");
       if (token) {
         const { title, category, content } = data;
-        const newNote = {
-          title,
-          content,
-          category,
-        };
-        //AddNote(data.title, data.category, data.content)
-        await axios
-          .post("http://localhost:5000/notes/addNote", newNote, {
-            headers: { Authorization: token },
-          })
+        AddNote(data.title, data.category, data.content, token)
           .then((res) => {
             window.location.href = "/notes";
           })

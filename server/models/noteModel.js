@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import moment from "moment";
-
+import bcrypt from "bcryptjs";
 const noteSchema = mongoose.Schema(
   {
     title: {
@@ -28,6 +28,8 @@ const noteSchema = mongoose.Schema(
     timestamps: true,
   }
 );
+
+
 
 const Note = mongoose.model("Note", noteSchema);
 

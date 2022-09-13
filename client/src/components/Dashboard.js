@@ -45,7 +45,7 @@ export default function Dashboard() {
             element={<CreateNotePrivateRoutes></CreateNotePrivateRoutes>}
           ></Route>
           <Route exact path="*" element={<NotFound></NotFound>}></Route>
-          <Route exact path="/edit/:id" element={<EditNote></EditNote>}></Route>
+          <Route path="/edit/:id" element={<EditNote></EditNote>}></Route>
         </Routes>
       </Container>
     </div>

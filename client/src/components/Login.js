@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-// import {NotificationContainer, NotificationManager} from 'react-notifications';
-// import { ToastContainer, toast } from 'react-toastify';
 import { loginUser } from "../services/authService";
-import { FaPushed } from "react-icons/fa";
-import {GrLogin} from "react-icons/gr"
+import { GrLogin } from "react-icons/gr";
 import "../styles/Login.css";
 
 export default function Login({ setLoginUser }) {
   const [data, setData] = useState({ email: "", password: "" });
-  //const [error, setError] = useState("");
 
   const handleChange = (key) => (value) => {
     let valueTemp = value?.target ? value?.target?.value : value;
@@ -26,8 +22,6 @@ export default function Login({ setLoginUser }) {
       })
       .catch(() => {
         alert("hataa !");
-        // toast("Wow so easy!");
-        //NotificationManager.info('Info message');
       });
   };
 
@@ -70,7 +64,7 @@ export default function Login({ setLoginUser }) {
                 />
               </Form.Group>
               <br></br>
-              <Button  size="lg" variant="dark btn-block" type="submit">
+              <Button size="lg" variant="dark btn-block" type="submit">
                 Login
               </Button>
               <div className="login-register">

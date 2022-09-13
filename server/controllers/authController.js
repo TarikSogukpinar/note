@@ -15,6 +15,7 @@ const loginUser = asyncHandler(async (req, res) => {
   );
 
   if (loginValidation) {
+    
     if (user) {
       if (await user.matchPassword(password)) {
         const payload = { id: user._id, name: user.username };
