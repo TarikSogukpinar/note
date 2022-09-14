@@ -49,8 +49,8 @@ export default function Note() {
         </Row>
       </Container>
       {notes != "" ? (
-        notes.map((note, index) => (
-          <Container key={index}>
+        notes.map((note) => (
+          <Container key={note.id}>
             <Accordion defaultActiveKey="0">
               <Accordion.Item eventKey="0">
                 <Accordion.Header>{note.category}</Accordion.Header>
