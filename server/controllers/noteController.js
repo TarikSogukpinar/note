@@ -8,15 +8,29 @@ const getNotes = asyncHandler(async (req, res) => {
   try {
     const notes = await Note.find({ user_id: req.user.id });
 
-    const bytes = await CryptoJS.AES.decrypt(notes, "secretkey123").toString()
-    //console.log(bytes);
-    const decryptedData = await JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-    // console.log(decryptedData);
+    const decryptNote = (note) => {
+      return {
+        user_id: note.user_id,
+        title: CryptoJS.AES.decrypt(
+          note.title,
+          process.env.CRYPTO_SECRET_KEY
+        ).toString(CryptoJS.enc.Utf8),
+        content: CryptoJS.AES.decrypt(
+          note.content,
+          process.env.CRYPTO_SECRET_KEY
+        ).toString(CryptoJS.enc.Utf8),
+        category: CryptoJS.AES.decrypt(
+          note.category,
+          process.env.CRYPTO_SECRET_KEY
+        ).toString(CryptoJS.enc.Utf8),
+      };
+    };
 
-    // // let ciphertext  = CryptoJS.AES.decrypt(notes.title,"secretkey123")
-    // // var decryptedData = JSON.stringify(ciphertext.toString(CryptoJS.enc.Utf8));
-    res.json(notes);
+    const result = notes.map((note) => decryptNote(note));
+
+    res.json(result);
   } catch (error) {
+    //console.log(error);
     return res.status(500).json({ message: error.message });
   }
 });
@@ -39,9 +53,18 @@ const AddNote = asyncHandler(async (req, res) => {
 
   if (addNoteValidation) {
     const newNote = new Note({
-      title: CryptoJS.AES.encrypt(title, "secret key 123").toString(),
-      content: CryptoJS.AES.encrypt(content, "secret key 123").toString(),
-      category: CryptoJS.AES.encrypt(category, "secret key 123").toString(),
+      title: CryptoJS.AES.encrypt(
+        title,
+        process.env.CRYPTO_SECRET_KEY
+      ).toString(),
+      content: CryptoJS.AES.encrypt(
+        content,
+        process.env.CRYPTO_SECRET_KEY
+      ).toString(),
+      category: CryptoJS.AES.encrypt(
+        category,
+        process.env.CRYPTO_SECRET_KEY
+      ).toString(),
       user_id: req.user.id,
     });
     console.log(newNote);

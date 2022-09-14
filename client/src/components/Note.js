@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { deletNotes} from "../services/noteService";
+import { deletNotes } from "../services/noteService";
 import { Accordion, Button, Col, Container, Row } from "react-bootstrap";
 import { IoCreateSharp } from "react-icons/io5";
 import { FaNotEqual, FaRegStickyNote, FaRegEdit } from "react-icons/fa";
@@ -14,7 +14,6 @@ export default function Note() {
     const res = await axios.get("http://localhost:5000/notes/getNotes", {
       headers: { Authorization: token },
     });
-   
 
     setNotes(res.data);
   };
@@ -50,8 +49,8 @@ export default function Note() {
         </Row>
       </Container>
       {notes != "" ? (
-        notes.map((note) => (
-          <Container key={note._id}>
+        notes.map((note, index) => (
+          <Container key={index}>
             <Accordion defaultActiveKey="0">
               <Accordion.Item eventKey="0">
                 <Accordion.Header>{note.category}</Accordion.Header>
