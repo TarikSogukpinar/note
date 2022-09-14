@@ -14,6 +14,7 @@ export default function Note() {
     const res = await axios.get("http://localhost:5000/notes/getNotes", {
       headers: { Authorization: token },
     });
+   
 
     setNotes(res.data);
   };

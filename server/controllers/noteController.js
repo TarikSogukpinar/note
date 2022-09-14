@@ -2,11 +2,19 @@ import asyncHandler from "express-async-handler";
 import Note from "../models/noteModel.js";
 import sanitize from "mongo-sanitize";
 import noteValidationSchema from "../validations/noteValidationSchema.js";
+import CryptoJS from "crypto-js";
 
 const getNotes = asyncHandler(async (req, res) => {
   try {
     const notes = await Note.find({ user_id: req.user.id });
 
+    const bytes = await CryptoJS.AES.decrypt(notes, "secretkey123").toString()
+    //console.log(bytes);
+    const decryptedData = await JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    // console.log(decryptedData);
+
+    // // let ciphertext  = CryptoJS.AES.decrypt(notes.title,"secretkey123")
+    // // var decryptedData = JSON.stringify(ciphertext.toString(CryptoJS.enc.Utf8));
     res.json(notes);
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -31,13 +39,15 @@ const AddNote = asyncHandler(async (req, res) => {
 
   if (addNoteValidation) {
     const newNote = new Note({
-      title,
-      content,
-      category,
+      title: CryptoJS.AES.encrypt(title, "secret key 123").toString(),
+      content: CryptoJS.AES.encrypt(content, "secret key 123").toString(),
+      category: CryptoJS.AES.encrypt(category, "secret key 123").toString(),
       user_id: req.user.id,
     });
+    console.log(newNote);
 
     await newNote.save();
+
     res.status(201).json({ message: "Note created" });
   } else {
     return res.status(500).json({ message: error.message });

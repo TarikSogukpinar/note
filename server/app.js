@@ -9,6 +9,7 @@ import noteRoutes from "./routes/noteRoutes.js";
 import connectionDatabase from "./helpers/connectionDatabase/connectDatabase.js";
 import cors from "cors";
 
+
 dotenv.config();
 
 const app = express();
@@ -27,3 +28,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running PORT : ${PORT}`.yellow.yellow);
 });
+
