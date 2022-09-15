@@ -4,13 +4,15 @@ import sanitize from "mongo-sanitize";
 import noteValidationSchema from "../validations/noteValidationSchema.js";
 import CryptoJS from "crypto-js";
 
+
 const getNotes = asyncHandler(async (req, res) => {
   try {
     const notes = await Note.find({ user_id: req.user.id });
+    // console.log(notes);
 
     const decryptNote = (note) => {
       return {
-        user_id: note.user_id,
+        _id: note._id,
         title: CryptoJS.AES.decrypt(
           note.title,
           process.env.CRYPTO_SECRET_KEY
@@ -27,10 +29,10 @@ const getNotes = asyncHandler(async (req, res) => {
     };
 
     const result = notes.map((note) => decryptNote(note));
+    // console.log(result);
 
     res.json(result);
   } catch (error) {
-    //console.log(error);
     return res.status(500).json({ message: error.message });
   }
 });
@@ -38,9 +40,31 @@ const getNotes = asyncHandler(async (req, res) => {
 const getNote = asyncHandler(async (req, res) => {
   try {
     const note = await Note.findById(req.params.id);
-    res.json(note);
+    const decryptNote = (note) => {
+      return {
+         _id: note._id,
+        title: CryptoJS.AES.decrypt(
+          note.title,
+          process.env.CRYPTO_SECRET_KEY
+        ).toString(CryptoJS.enc.Utf8),
+        content: CryptoJS.AES.decrypt(
+          note.content,
+          process.env.CRYPTO_SECRET_KEY
+        ).toString(CryptoJS.enc.Utf8),
+        category: CryptoJS.AES.decrypt(
+          note.category,
+          process.env.CRYPTO_SECRET_KEY
+        ).toString(CryptoJS.enc.Utf8),
+      };
+    };
+    // console.log(decryptNote(note))
+ 
+    // const result = notes.map((note) => decryptNote(note));
+    // console.log(result);
+    res.json(decryptNote(note));
   } catch (error) {
-    return res.status(500).json({ msg: err.message });
+    console.log(error.message);
+    // return res.status(500).json({ msg: error.message });
   }
 });
 
@@ -67,7 +91,7 @@ const AddNote = asyncHandler(async (req, res) => {
       ).toString(),
       user_id: req.user.id,
     });
-    console.log(newNote);
+    // console.log(newNote);
 
     await newNote.save();
 
@@ -89,17 +113,43 @@ const deleteNote = asyncHandler(async (req, res) => {
 const updateNote = asyncHandler(async (req, res) => {
   try {
     const { title, content, category } = req.body;
-    await Note.findByIdAndUpdate(
-      req.params.id,
+     await Note.findByIdAndUpdate(req.params.id,
       {
         $set: req.body,
       },
       { new: true }
     );
+
+    const encryptNote = (updateNote) =>{
+      return {
+        user_id: req.user.id,
+        title: CryptoJS.AES.encrypt(
+          title,
+          process.env.CRYPTO_SECRET_KEY
+        ).toString(),
+        content: CryptoJS.AES.encrypt(
+          content,
+          process.env.CRYPTO_SECRET_KEY
+        ).toString(),
+        category: CryptoJS.AES.encrypt(
+          category,
+          process.env.CRYPTO_SECRET_KEY
+        ).toString(),
+        
+      }
+    }
+    console.log(encryptNote(updateNote))
+    // const result = updateNote.map((note) => encryptNote(updateNote));
+    // console.log(encryptNote(updateNote));
+
     res.status(200);
-    res.json({ message: "Note updated!" });
+ 
+    res.json(encryptNote(updateNote))
+   
+    // res.json({ message: "Note updated!" });
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    console.log(error.message)
+    // return res.status(500).json({ message: error.message });
   }
 });
 
