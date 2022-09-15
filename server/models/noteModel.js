@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import moment from "moment";
-import CryptoJS from "crypto-js";
+
 const noteSchema = mongoose.Schema(
   {
     title: {
@@ -29,10 +29,7 @@ const noteSchema = mongoose.Schema(
   }
 );
 
-// CryptoJS.AES.encrypt(
-//   noteSchema,
-//   "secret key 123"
-// ).toString()
+
 
 const Note = mongoose.model("Note", noteSchema);
 

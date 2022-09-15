@@ -28,6 +28,7 @@ export default function Note() {
 
   const deleteNote = async (id) => {
     try {
+      const token = localStorage.getItem("token");
       if (token) {
         deletNotes(id, token);
         getNotes(token);

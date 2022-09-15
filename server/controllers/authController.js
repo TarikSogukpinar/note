@@ -18,7 +18,7 @@ const loginUser = asyncHandler(async (req, res) => {
     
     if (user) {
       if (await user.matchPassword(password)) {
-        const payload = { id: user._id, name: user.username };
+        const payload = { id: user._id };
         const token = jwt.sign(payload, process.env.JWT_SECRET, {
           expiresIn: "1d",
         });
