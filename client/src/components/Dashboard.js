@@ -13,38 +13,36 @@ import EditNote from "./EditNote";
 export default function Dashboard() {
   return (
     <div>
-      <Container>
-        <Routes>
-          <Route path="/" element={<Main></Main>}></Route>
-          <Route
-            exact
-            path="/login"
-            element={<LoginPrivateRoutes></LoginPrivateRoutes>}
-          ></Route>
-          <Route
-            exact
-            path="/register"
-            element={<RegisterPrivateRoutes></RegisterPrivateRoutes>}
-          ></Route>
-          <Route
-            exact
-            path="/profile"
-            element={<ProfilePrivateRoutes></ProfilePrivateRoutes>}
-          ></Route>
-          <Route
-            exact
-            path="/notes"
-            element={<NotesPrivateRoutes></NotesPrivateRoutes>}
-          ></Route>
-          <Route
-            exact
-            path="/createnote"
-            element={<CreateNotePrivateRoutes></CreateNotePrivateRoutes>}
-          ></Route>
-          <Route exact path="*" element={<NotFound></NotFound>}></Route>
-          <Route path="/edit/:id" element={<EditNote></EditNote>}></Route>
-        </Routes>
-      </Container>
+      <Routes>
+        <Route path="/" element={<Main></Main>}></Route>
+        <Route
+          exact
+          path="/login"
+          element={<LoginPrivateRoutes></LoginPrivateRoutes>}
+        ></Route>
+        <Route
+          exact
+          path="/register"
+          element={<RegisterPrivateRoutes></RegisterPrivateRoutes>}
+        ></Route>
+        <Route
+          exact
+          path="/profile"
+          element={<ProfilePrivateRoutes></ProfilePrivateRoutes>}
+        ></Route>
+        <Route
+          exact
+          path="/notes"
+          element={<NotesPrivateRoutes></NotesPrivateRoutes>}
+        ></Route>
+        <Route
+          exact
+          path="/createnote"
+          element={<CreateNotePrivateRoutes></CreateNotePrivateRoutes>}
+        ></Route>
+        <Route exact path="*" element={<NotFound></NotFound>}></Route>
+        <Route path="/edit/:id" element={<EditNote></EditNote>}></Route>
+      </Routes>
     </div>
   );
 }

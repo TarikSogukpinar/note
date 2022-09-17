@@ -3,72 +3,151 @@ import Alert from "react-bootstrap/Alert";
 import "../styles/Main.css";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/esm/Container";
+import { AiOutlineFileProtect } from "react-icons/ai";
+import { GiTakeMyMoney } from "react-icons/gi";
+import { SiFsecure } from "react-icons/si";
 import { Col, Row } from "react-bootstrap";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-
 
 export default function Main() {
   const auth = localStorage.getItem("token");
   return (
-    <div className="main-page m-4 p-3">
-      <Alert variant="warning">
-        <Alert.Heading>Welcome!</Alert.Heading>
-        <h4>
-          Welcome to the note taking application, this application is completely
-          free. We encrypt your passwords and all your notes. You can start
-          here.
-        </h4>
-
-        <div className="main-button">
-          {!auth ? (
-            <Container>
+    <div>
+      <header className="masthead text-center text-white">
+        <div className="masthead-content">
+          <div className="container px-5">
+            <h1>Welcome to the note taking application</h1>
+            <h4>
+              This application is completely free. We encrypt your passwords and
+              all your notes. You can start{" "}
+            </h4>
+            <br></br>
+            {!auth ? (
               <Row>
                 <Col>
-                  <Button className="m-2" variant="outline-dark" href="/login">
+                  <Button
+                    className="btn btn-light  btn-md m-2"
+                    href="/login"
+                    size="lg"
+                  >
                     Login
                   </Button>
-                  <Button variant="outline-dark" href="/register">
+                  <Button
+                    className="btn btn-light btn-md m-2"
+                    href="/register"
+                    size="lg"
+                  >
                     Register
                   </Button>
                 </Col>
               </Row>
-            </Container>
-          ) : (
-            <Container>
+            ) : (
               <Row>
                 <Col>
                   <Button
-                    className="m-2"
-                    variant="outline-dark"
+                    className="btn btn-light btn-md m-2"
                     href="/createnote"
+                    size="lg"
                   >
                     Create Note
                   </Button>
-                  <Button variant="outline-dark" href="/notes">
-                    My Notes
+                  <Button
+                    className="btn btn-light btn-md m-2"
+                    href="/notes"
+                    size="lg"
+                  >
+                    My Note
                   </Button>
                 </Col>
               </Row>
-            </Container>
-          )}
+            )}
+          </div>
         </div>
-        <hr></hr>
+        <div className="bg-circle-1 bg-circle"></div>
+        <div className="bg-circle-2 bg-circle"></div>
+        <div className="bg-circle-3 bg-circle"></div>
+        <div className="bg-circle-4 bg-circle"></div>
+      </header>
+  
+      <section  className="bg-dark text-light" id="learn-more m-5">
+        <div className="container px-5">
+          <div className="row gx-5 align-items-center">
+            <div className="col-lg-6 order-lg-2">
+              <div className="p-5">
+                <img
+                  className="img-fluid rounded-circle"
+                  src="assets/img/01.jpg"
+                  alt="..."
+                />
+              </div>
+            </div>
+            <div className="col-lg-6 order-lg-1">
+              <div className="p-5">
+                <h2 className="display-4"><AiOutlineFileProtect/> We Protect your data</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
+                  aliquid, mollitia odio veniam sit iste esse assumenda amet
+                  aperiam exercitationem, ea animi blanditiis recusandae!
+                  Ratione voluptatum molestiae adipisci, beatae obcaecati.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <Container>
-          <Row>
-            <Col>
-              <a href={"https://github.com/TarikSogukpinar"}>
-                <FaGithub style={{ fontSize: "30px", marginRight: "10px" }} />
-              </a>
-              <a href={"https://www.linkedin.com/in/tar%C4%B1k-so%C4%9Fukp%C4%B1nar/"}>
-                <FaLinkedin style={{ fontSize: "30px", marginRight: "10px" }} />
-              </a>
-            </Col>
-          </Row>
-        </Container>
+      <section className="bg-dark text-light">
+        <div className="container px-5">
+          <div className="row gx-5 align-items-center">
+            <div className="col-lg-6">
+              <div className="p-5">
+                <img
+                  className="img-fluid rounded-circle"
+                  src="assets/img/02.jpg"
+                  alt="..."
+                />
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <div className="p-5">
+                <h2 className="display-4"><GiTakeMyMoney/> Free To Use!</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
+                  aliquid, mollitia odio veniam sit iste esse assumenda amet
+                  aperiam exercitationem, ea animi blanditiis recusandae!
+                  Ratione voluptatum molestiae adipisci, beatae obcaecati.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <a href="https://github.com/TarikSogukpinar/note"> Project Link </a>
-      </Alert>
+      <section className="bg-dark text-light">
+        <div className="container px-5">
+          <div className="row gx-5 align-items-center">
+            <div className="col-lg-6 order-lg-2">
+              <div className="p-5">
+                <img
+                  className="img-fluid rounded-circle"
+                  src="assets/img/03.jpg"
+                  alt="..."
+                />
+              </div>
+            </div>
+            <div className="col-lg-6 order-lg-1">
+              <div className="p-5">
+                <h2 className="display-4"> <SiFsecure/> Secure Registration!</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
+                  aliquid, mollitia odio veniam sit iste esse assumenda amet
+                  aperiam exercitationem, ea animi blanditiis recusandae!
+                  Ratione voluptatum molestiae adipisci, beatae obcaecati.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
