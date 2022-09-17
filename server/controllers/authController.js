@@ -4,7 +4,7 @@ import loginValidationSchema from "../validations/loginValidationSchema.js";
 import registerValidationSchema from "../validations/registerValidationSchema.js";
 import sanitize from "mongo-sanitize";
 import generateToken from "../utils/generateToken.js";
-import jwt from "jsonwebtoken";
+
 
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = sanitize(req.body);
@@ -18,10 +18,10 @@ const loginUser = asyncHandler(async (req, res) => {
     
     if (user) {
       if (await user.matchPassword(password)) {
-        const payload = { id: user._id };
-        const token = jwt.sign(payload, process.env.JWT_SECRET, {
-          expiresIn: "1d",
-        });
+        // const payload = { id: user._id };
+        // const token = jwt.sign(payload, process.env.JWT_SECRET, {
+        //   expiresIn: "1d",
+        // });
 
         res.json({
           id: user._id,
@@ -29,7 +29,7 @@ const loginUser = asyncHandler(async (req, res) => {
           lastName: user.lastName,
           email: user.email,
           avatar: user.avatar,
-          token: token,
+          token: generateToken({id: user._id}),
         });
       }
     } else {
