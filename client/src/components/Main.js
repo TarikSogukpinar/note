@@ -1,8 +1,6 @@
 import React from "react";
-import Alert from "react-bootstrap/Alert";
 import "../styles/Main.css";
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/esm/Container";
 import { AiOutlineFileProtect } from "react-icons/ai";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { SiFsecure } from "react-icons/si";
@@ -73,7 +71,7 @@ export default function Main() {
           <div className="row gx-5 align-items-center">
             <div className="col-lg-6 order-lg-2">
               <div className="p-5">
-                <AiOutlineFileProtect size={200}  />
+                <AiOutlineFileProtect size={200} />
               </div>
             </div>
             <div className="col-lg-6 order-lg-1">
