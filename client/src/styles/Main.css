@@ -2,7 +2,6 @@ html {
   scroll-padding-top: 67px;
 }
 
-
 .btn-xl {
   text-transform: uppercase;
   padding: 1.5rem 3rem;
@@ -21,7 +20,6 @@ header.masthead {
   background-position: center center;
   background-attachment: scroll;
   background-size: cover;
-
 }
 header.masthead .masthead-content {
   z-index: 1;
@@ -80,4 +78,9 @@ header.masthead .bg-circle-4 {
   header.masthead .masthead-content .masthead-subheading {
     font-size: 4rem;
   }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
