@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/esm/Button";
 import { FaEvernote } from "react-icons/fa";
+import { deleteAccount } from "../services/authService";
 export default function Navigation() {
 	const auth = JSON.parse(localStorage.getItem("user"));
 
@@ -15,6 +16,19 @@ export default function Navigation() {
 		localStorage.clear();
 		sessionStorage.clear();
 		window.location.href = "/";
+	};
+
+	const deleteHandler = (id) => {
+		deleteAccount(id)
+			.then(() => {
+				console.log("Deleted Successfully.");
+				localStorage.clear();
+				sessionStorage.clear();
+				window.location.href = "/";
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 
 	return (
@@ -62,6 +76,20 @@ export default function Navigation() {
 												<Dropdown.Item href="/profile">Profile</Dropdown.Item>
 												<Dropdown.Item onClick={logoutOnClick} href="/logout">
 													Logout
+												</Dropdown.Item>
+												<Dropdown.Item
+													onClick={() => {
+														if (
+															window.confirm(
+																"Are you sure to delete your account permanently?"
+															)
+														) {
+															deleteHandler(auth.id);
+														}
+													}}
+												>
+													{" "}
+													Delete account
 												</Dropdown.Item>
 											</Dropdown.Menu>
 										</Dropdown>
