@@ -67,22 +67,18 @@ export default function Main() {
         <div className="bg-circle-3 bg-circle"></div>
         <div className="bg-circle-4 bg-circle"></div>
       </header>
-  
-      <section  className="bg-dark text-light" id="learn-more m-5">
+
+      <section className="bg-dark text-light" id="learn-more m-5">
         <div className="container px-5">
           <div className="row gx-5 align-items-center">
             <div className="col-lg-6 order-lg-2">
               <div className="p-5">
-                <img
-                  className="img-fluid rounded-circle"
-                  src="assets/img/01.jpg"
-                  alt="..."
-                />
+                <AiOutlineFileProtect size={200}  />
               </div>
             </div>
             <div className="col-lg-6 order-lg-1">
               <div className="p-5">
-                <h2 className="display-4"><AiOutlineFileProtect/> We Protect your data</h2>
+                <h2 className="display-4"> We Protect your data</h2>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
                   aliquid, mollitia odio veniam sit iste esse assumenda amet
@@ -100,16 +96,12 @@ export default function Main() {
           <div className="row gx-5 align-items-center">
             <div className="col-lg-6">
               <div className="p-5">
-                <img
-                  className="img-fluid rounded-circle"
-                  src="assets/img/02.jpg"
-                  alt="..."
-                />
+                <GiTakeMyMoney size={200} />
               </div>
             </div>
             <div className="col-lg-6">
               <div className="p-5">
-                <h2 className="display-4"><GiTakeMyMoney/> Free To Use!</h2>
+                <h2 className="display-4"> Free To Use!</h2>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
                   aliquid, mollitia odio veniam sit iste esse assumenda amet
@@ -127,16 +119,12 @@ export default function Main() {
           <div className="row gx-5 align-items-center">
             <div className="col-lg-6 order-lg-2">
               <div className="p-5">
-                <img
-                  className="img-fluid rounded-circle"
-                  src="assets/img/03.jpg"
-                  alt="..."
-                />
+                <SiFsecure size={200} />
               </div>
             </div>
             <div className="col-lg-6 order-lg-1">
               <div className="p-5">
-                <h2 className="display-4"> <SiFsecure/> Secure Registration!</h2>
+                <h2 className="display-4"> Secure Registration!</h2>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
                   aliquid, mollitia odio veniam sit iste esse assumenda amet
