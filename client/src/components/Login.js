@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { loginUser } from "../services/authService";
 import { GrLogin } from "react-icons/gr";
 import "../styles/Login.css";
 
 export default function Login({ setLoginUser }) {
+  const showToastMessage = (message) => {
+    toast.error(message, {
+      position: toast.POSITION.TOP_RIGHT
+    });
+  };
   const [data, setData] = useState({ email: "", password: "" });
 
   const handleChange = (key) => (value) => {
@@ -20,8 +27,8 @@ export default function Login({ setLoginUser }) {
         localStorage.setItem("user", JSON.stringify(res.data));
         window.location.href = "/";
       })
-      .catch(() => {
-        alert("hataa !");
+      .catch((error) => {
+        showToastMessage(error.message);
       });
   };
 
@@ -67,6 +74,7 @@ export default function Login({ setLoginUser }) {
               <Button size="lg" variant="dark btn-block" type="submit">
                 Login
               </Button>
+
               <div className="login-register">
                 New User? <a href="/register">Register</a>{" "}
               </div>
