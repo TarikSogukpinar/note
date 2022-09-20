@@ -28,7 +28,8 @@ export default function Login({ setLoginUser }) {
         window.location.href = "/";
       })
       .catch((error) => {
-        showToastMessage(error.message);
+        console.log(error)
+        showToastMessage(error);
       });
   };
 

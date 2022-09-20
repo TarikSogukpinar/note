@@ -9,35 +9,27 @@ const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = sanitize(req.body);
   const user = await User.findOne({ email });
 
-  // const loginValidation = await loginValidationSchema.validateAsync(
-  //   sanitize(req.body)
-  // );
+  const loginValidation = await loginValidationSchema.validateAsync(
+    sanitize(req.body)
+  );
 
-  try {
-    const loginValidation = await loginValidationSchema.validateAsync(
-      email,
-      password
-    );
-    if (loginValidation) {
-      if (user) {
-        if (await user.matchPassword(password)) {
-          res.json({
-            id: user._id,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            email: user.email,
-            avatar: user.avatar,
-            token: generateToken({ id: user._id }),
-            message: "Login Success"
-          });
-        }
-      } else {
-        res.status(401);
-        res.json({ message: "Invalid credentials" });
+  if (loginValidation) {
+    if (user) {
+      if (await user.matchPassword(password)) {
+        res.json({
+          id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          avatar: user.avatar,
+          token: generateToken({ id: user._id }),
+          message: "Login Success"
+        });
       }
+    } else {
+      res.status(401);
+      res.json({ message: "Invalid credentials" });
     }
-  } catch (err) {
-    console.log(err);
   }
 });
 
