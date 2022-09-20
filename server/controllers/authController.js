@@ -9,36 +9,35 @@ const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = sanitize(req.body);
   const user = await User.findOne({ email });
 
-  const loginValidation = await loginValidationSchema.validateAsync(
-    sanitize(req.body)
-  );
+  // const loginValidation = await loginValidationSchema.validateAsync(
+  //   sanitize(req.body)
+  // );
 
-  // if (error) {
-  //   res.status(400).send(error.details[0].message);
-  //   return;
-  // }else{
-
-  // }
-
-  if (loginValidation) {
-    if (user) {
-      if (await user.matchPassword(password)) {
-        res.json({
-          id: user._id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-          avatar: user.avatar,
-          token: generateToken({ id: user._id }),
-          message: "Login Success"
-        });
+  try {
+    const loginValidation = await loginValidationSchema.validateAsync(
+      email,
+      password
+    );
+    if (loginValidation) {
+      if (user) {
+        if (await user.matchPassword(password)) {
+          res.json({
+            id: user._id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            avatar: user.avatar,
+            token: generateToken({ id: user._id }),
+            message: "Login Success"
+          });
+        }
+      } else {
+        res.status(401);
+        res.json({ message: "Invalid credentials" });
       }
-    } else {
-      res.status(401);
-      res.json({ message: "Invalid credentials" });
     }
-    console.log('test')
-    return console.log(loginValidation)
+  } catch (err) {
+    console.log(err);
   }
 });
 
