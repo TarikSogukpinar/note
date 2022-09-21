@@ -1,84 +1,68 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import { AiFillGithub, AiFillLinkedin, AiOutlineMail } from "react-icons/ai";
+import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
+import { IoMdContacts } from "react-icons/io";
 export default function Contact() {
   return (
     <>
-      <h1>Who we are?</h1>
-      <h5>
-        Developed by 2 friends
-        <br />
-        You can Contact with us!
-      </h5>
+      <br></br>
+      <br></br>
+
       <Container>
-        <Row className="mt-5">
-          <Col
-            lg={5}
-            md={6}
-            sm={12}
-            className="p-5 m-auto shadow-lg rounded-lg"
-            style={{ borderRadius: "15px" }}
-          >
-            <Card style={{ width: "30rem" }}>
+        <h1 className="login-text text-dark  text-warning mt-6 p-3 text-center rounded">
+          <IoMdContacts /> Contact Us
+          <h3>You can contact us with any questions</h3>
+        </h1>
+
+        <Row xs={1} md={2} className="g-5">
+          <Col>
+            <Card>
+              <Col>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://github.com/taylankalkan01"
+                >
+                  <AiFillGithub size={150} />
+                </a>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.linkedin.com/in/taylankalkan01"
+                >
+                  <AiFillLinkedin size={150} />
+                </a>
+              </Col>
+
               <Card.Body>
-                <Card.Title>
-                  <b>Taylan Kalkan</b>
-                </Card.Title>
-                <Card.Text>
-                  <a
-                    href="https://github.com/taylankalkan01"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    Github Link <AiFillGithub size={30} />
-                  </a>
-                  <hr></hr>
-                  <a
-                    href="https://www.linkedin.com/in/taylankalkan01/"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Linkedin Link <AiFillLinkedin size={30} />
-                  </a>
-                  <hr></hr>
-                  Email: e.taylankalkan@hotmail.com <AiOutlineMail size={30} />
-                </Card.Text>
+                <Card.Title>Taylan Kalkan</Card.Title>
+                <Card.Text>e.taylankalkan@hotmail.com</Card.Text>
               </Card.Body>
             </Card>
           </Col>
-          <Col
-            lg={5}
-            md={6}
-            sm={12}
-            className="p-5 m-auto shadow-lg rounded-lg"
-            style={{ borderRadius: "15px" }}
-          >
-            <Card style={{ width: "30rem" }}>
+          <Col>
+            <Card>
+              <Col>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://github.com/TarikSogukpinar"
+                >
+                  <AiFillGithub size={150} />
+                </a>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.linkedin.com/in/tar%C4%B1k-so%C4%9Fukp%C4%B1nar"
+                >
+                  <AiFillLinkedin size={150} />
+                </a>
+              </Col>
+
               <Card.Body>
-                <Card.Title>
-                  <b>Tarık Soğukpınar</b>
-                </Card.Title>
-                <Card.Text>
-                  <a
-                    href="https://github.com/TarikSogukpinar"
-                    rel="noreferrer"
-                    target="_blank"
-                  >
-                    Github Link <AiFillGithub size={30} />
-                  </a>
-                  <hr></hr>
-                  <a
-                    href="https://www.linkedin.com/in/tarık-soğukpınar/"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Linkedin Link <AiFillLinkedin size={30} />
-                  </a>
-                  <hr></hr>
-                  Email: ledunv@protonmail.com
-                  <AiOutlineMail size={30} />
-                </Card.Text>
+                <Card.Title>Tarık Sogukpınar</Card.Title>
+                <Card.Text>ledunv@protonmail.com</Card.Text>
               </Card.Body>
             </Card>
           </Col>

@@ -10,37 +10,9 @@ export default function Footer() {
             <Col xs lg="1">
               <ul className="nav flex-column">
                 <li className="nav-item mb-2">
-                  <a href="/contact">Terms</a>{" "}
-                </li>
-              </ul>
-            </Col>
-            <Col xs lg="1">
-              <ul className="nav flex-column">
-                <li className="nav-item mb-2">
                   {" "}
                   <a href="/contact">Contact</a>{" "}
                 </li>
-              </ul>
-            </Col>
-            <Col xs lg="1">
-              <ul className="nav flex-column">
-                <li className="nav-item mb-2">
-                  <a href="/faq"> FAQ </a>{" "}
-                </li>
-              </ul>
-            </Col>
-          </Row>
-          <Row className="justify-content-md-center">
-            <Col xs lg="3">
-              <ul className="nav flex-column">
-                <li className="nav-item mb-1">English / Turkish </li>
-              </ul>
-            </Col>
-          </Row>
-          <Row className="justify-content-md-center">
-            <Col xs lg="3">
-              <ul className="nav flex-column">
-                <li className="nav-item mb-1">© 2022 xxx.com</li>
               </ul>
             </Col>
           </Row>

@@ -56,11 +56,7 @@ export default function Navigation() {
             ) : (
               <Container>
                 <Row>
-                  <Col>
-                    <Button variant="dark" bg="light" href="/contact">
-                      Contact
-                    </Button>
-                  </Col>
+                 
                   <Col>
                     <Button variant="dark" bg="light" href="/notes">
                       Notes
