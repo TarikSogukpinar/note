@@ -1,29 +1,28 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import "../styles/Profile.css";
-import Table from "react-bootstrap/Table";
+import Card from "react-bootstrap/Card";
+import { Col, Row } from "react-bootstrap";
 export default function Profile() {
   const auth = JSON.parse(localStorage.getItem("user"));
 
   return (
-    <Container fluid>
-      <h1>Welcome to the Profile Page!</h1>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{auth.firstName}</td>
-            <td>{auth.lastName}</td>
-            <td>{auth.email}</td>
-          </tr>
-        </tbody>
-      </Table>
+    <Container>
+      <h1 className="login-text text-dark  text-warning mt-6 p-3 text-center rounded">
+        <h3>Profile</h3>
+      </h1>
+
+      <Row xs={2} md={1} className="g-5">
+        <Col>
+          <Card>
+            <Card.Body>
+              <Card.Title>{auth.email}</Card.Title>
+              <Card.Text>{auth.firstName}</Card.Text>
+              <Card.Text>{auth.lastName}</Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
     </Container>
   );
 }

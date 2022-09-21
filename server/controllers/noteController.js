@@ -58,7 +58,7 @@ const getNote = asyncHandler(async (req, res) => {
     res.json(decryptNote(note));
   } catch (error) {
     console.log(error.message);
-    // return res.status(500).json({ msg: error.message });
+   
   }
 });
 
