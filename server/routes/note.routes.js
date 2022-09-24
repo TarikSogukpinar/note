@@ -1,14 +1,14 @@
-import express from "express";
+import { Router } from "express";
 import {
   AddNote,
   getNotes,
   getNote,
   deleteNote,
-  updateNote,
+  updateNote
 } from "../controllers/noteController.js";
 import { authUser } from "../middleware/authMiddleware.js";
 
-const router = express.Router();
+const router = Router();
 
 router.post("/addNote", authUser, AddNote);
 router.get("/getNotes", authUser, getNotes);

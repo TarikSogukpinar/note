@@ -1,9 +1,11 @@
 import Joi from "joi";
 
-const noteValidationSchema = Joi.object({
-  title: Joi.string().required().min(3).max(255),
-  content: Joi.string().required().min(3).max(1600),
-  category: Joi.string().required().min(3).max(255),
-});
+const noteValidationSchema = (body) => {
+  const schema = Joi.object({
+    email: Joi.string().required().email().min(5).max(255),
+    password: Joi.string().required().min(5).max(255)
+  });
+  return schema.validateAsync(body);
+};
 
 export default noteValidationSchema;

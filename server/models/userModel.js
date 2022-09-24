@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import moment from "moment";
 
+const Schema = mongoose.Schema
+
 const userSchema = new mongoose.Schema(
   {
     firstName: { type: String, required: true },
@@ -13,46 +15,31 @@ const userSchema = new mongoose.Schema(
       lowercase: true,
       match: [
         /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,
-        "Please provide valid email",
-      ],
+        "Please provide valid email"
+      ]
     },
     password: { type: String, required: true },
-    role: {
+    roles: {
       type: String,
       default: "user",
-      enum: ["user", "admin"],
+      enum: ["user", "admin"]
     },
     avatar: {
       type: String,
       required: true,
       default:
-        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
     },
 
     createdAt: {
       type: String,
-      default: moment().format("MMMM Do YYYY, h:mm:ss a"),
-    },
+      default: moment().format("MMMM Do YYYY, h:mm:ss a")
+    }
   },
   {
-    timestamps: true,
+    versionKey: false
   }
 );
-
-userSchema.methods.matchPassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
-};
-
-userSchema.pre("save", async function (next) {
-  const user = this;
-  if (!user.isModified("password")) {
-    return next();
-  }
-  const salt = await bcrypt.genSaltSync(10);
-  const hash = await bcrypt.hashSync(user.password, salt);
-  user.password = hash;
-  next();
-});
 
 const User = new mongoose.model("User", userSchema);
 
