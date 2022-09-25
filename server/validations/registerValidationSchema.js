@@ -7,7 +7,7 @@ const registerValidationSchema = (body) => {
     email: Joi.string().email().required().min(5).max(255),
     password: Joi.string().required().min(5).max(255),
   });
-  return schema.validateAsync(body);
+  return schema.validate(body);
 };
 
 export default registerValidationSchema;

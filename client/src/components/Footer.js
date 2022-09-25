@@ -11,7 +11,23 @@ export default function Footer() {
               <ul className="nav flex-column">
                 <li className="nav-item mb-2">
                   {" "}
+                  <a href="/contact">Terms</a>{" "}
+                </li>
+              </ul>
+            </Col>
+            <Col xs lg="1">
+              <ul className="nav flex-column">
+                <li className="nav-item mb-2">
+                  {" "}
                   <a href="/contact">Contact</a>{" "}
+                </li>
+              </ul>
+            </Col>
+            <Col xs lg="1">
+              <ul className="nav flex-column">
+                <li className="nav-item mb-2">
+                  {" "}
+                  <a href="/contact">FAQ</a>{" "}
                 </li>
               </ul>
             </Col>

@@ -12,11 +12,10 @@
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
-    "react-notifications": "^1.7.4",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-    "react-toastify": "^9.0.8",
+    "react-simple-snackbar": "^1.1.11",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },

@@ -11,63 +11,45 @@ export default function Main() {
   const auth = localStorage.getItem("token");
   return (
     <div>
-      <header className="masthead text-center text-white">
-        <div className="masthead-content">
-          <div className="container px-5">
-            <h1>Welcome to the note taking application</h1>
-            <h4>
-              This application is completely free. We encrypt your passwords and
-              all your notes. You can start here{" "}
-            </h4>
-            <br></br>
-            {!auth ? (
-              <Row>
-                <Col>
-                  <Button
-                    className="btn btn-light  btn-md m-2"
-                    href="/login"
-                    size="lg"
+      <header class="masthead bg-warning">
+        <div class="container px-5">
+          <div class="row gx-5 align-items-center">
+            <div class="col-lg-6">
+              <div class="mb-5 mb-lg-0 text-center text-lg-start">
+                <h1 class="display-1 lh-1 mb-3">
+                  Showcase your app beautifully.
+                </h1>
+                <p class="lead fw-normal text-muted mb-5">
+                  Launch your mobile app landing page faster with this free,
+                  open source theme from Start Bootstrap!
+                </p>
+                <div class="d-flex flex-column flex-lg-row align-items-center">
+                  <Button>Test</Button>
+                  <Button>Test</Button>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="masthead-device-mockup">
+                <SiCrowdsource size={400} />
+
+                <div class="device-wrapper">
+                  <div
+                    class="device"
+                    data-device="iPhoneX"
+                    data-orientation="portrait"
+                    data-color="black"
                   >
-                    Login
-                  </Button>
-                  <Button
-                    className="btn btn-light btn-md m-2"
-                    href="/register"
-                    size="lg"
-                  >
-                    Register
-                  </Button>
-                </Col>
-              </Row>
-            ) : (
-              <Row>
-                <Col>
-                  <Button
-                    className="btn btn-light btn-md m-2"
-                    href="/createnote"
-                    size="lg"
-                  >
-                    Create Note
-                  </Button>
-                  <Button
-                    className="btn btn-light btn-md m-2"
-                    href="/notes"
-                    size="lg"
-                  >
-                    My Note
-                  </Button>
-                </Col>
-              </Row>
-            )}
+                    <div class="screen bg-black"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="bg-circle-1 bg-circle"></div>
-        <div className="bg-circle-2 bg-circle"></div>
-        <div className="bg-circle-3 bg-circle"></div>
-        <div className="bg-circle-4 bg-circle"></div>
       </header>
 
-      <section className="bg-dark text-light" id="learn-more m-5">
+      <section className="bg-light text-dark" id="learn-more m-5">
         <div className="container px-5">
           <div className="row gx-5 align-items-center">
             <div className="col-lg-6 order-lg-2">
@@ -88,7 +70,7 @@ export default function Main() {
         </div>
       </section>
 
-      <section className="bg-dark text-light">
+      <section className="bg-light text-dark">
         <div className="container px-5">
           <div className="row gx-5 align-items-center">
             <div className="col-lg-6">
@@ -108,7 +90,7 @@ export default function Main() {
         </div>
       </section>
 
-      <section className="bg-dark text-light">
+      <section className="bg-light text-dark">
         <div className="container px-5">
           <div className="row gx-5 align-items-center">
             <div className="col-lg-6 order-lg-2">
@@ -129,7 +111,7 @@ export default function Main() {
         </div>
       </section>
 
-      <section className="bg-dark text-light">
+      <section className="bg-light text-dark">
         <div className="container px-5">
           <div className="row gx-5 align-items-center">
             <div className="col-lg-6">

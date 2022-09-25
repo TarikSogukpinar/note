@@ -1,19 +1,13 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useSnackbar } from "react-simple-snackbar";
 import { loginUser } from "../services/authService";
 import { GrLogin } from "react-icons/gr";
 import "../styles/Login.css";
 
 export default function Login({ setLoginUser }) {
-  const showToastMessage = (message) => {
-    toast.error(message, {
-      position: toast.POSITION.TOP_RIGHT
-    });
-  };
   const [data, setData] = useState({ email: "", password: "" });
-
+  const [openSnackbar, closeSnackbar] = useSnackbar();
   const handleChange = (key) => (value) => {
     let valueTemp = value?.target ? value?.target?.value : value;
     setData({ ...data, [key]: valueTemp });
@@ -23,13 +17,17 @@ export default function Login({ setLoginUser }) {
     e.preventDefault();
     loginUser(data.email, data.password)
       .then((res) => {
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", JSON.stringify(res.data));
-        window.location.href = "/";
+        openSnackbar("Login Success");
+        setTimeout(function () {
+          localStorage.setItem("token", res.data.token);
+          localStorage.setItem("user", JSON.stringify(res.data));
+          window.location.href = "/";
+        }, 3000);
       })
-      .catch((error) => {
-        console.log(error)
-        showToastMessage(error);
+      .catch(function (error) {
+        if (error.response) {
+          openSnackbar(error.response.data.message);
+        }
       });
   };
 
