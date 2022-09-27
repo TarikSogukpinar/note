@@ -2,8 +2,9 @@ import bcrypt from "bcryptjs";
 import loginValidationSchema from "../../validations/loginValidationSchema.js";
 import generateToken from "../../helpers/tokens/generateToken.js";
 import User from "../../models/userModel.js";
+import asyncHandler from "express-async-handler";
 
-const loginUser = async (req, res) => {
+const loginUser = asyncHandler(async (req, res) => {
   try {
     const { error } = loginValidationSchema(req.body);
 
@@ -44,6 +45,6 @@ const loginUser = async (req, res) => {
     console.log(error);
     res.status(500).json({ error: true, message: "Internal Server Error" });
   }
-};
+});
 
 export default { loginUser };

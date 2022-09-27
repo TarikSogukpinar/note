@@ -5,7 +5,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start":"nodemon app.js",
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -23,6 +23,7 @@
     "express-rate-limit": "^6.5.2",
     "helmet": "^6.0.0",
     "joi": "^17.6.0",
+    "joi-password-complexity": "^5.1.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.4",
     "mongo-sanitize": "^1.1.0",

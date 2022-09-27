@@ -1,8 +1,9 @@
 import User from "../../models/userModel.js";
 import bcrypt from "bcryptjs";
 import registerValidationSchema from "../../validations/registerValidationSchema.js";
+import asyncHandler from "express-async-handler";
 
-const registerUser = async (req, res) => {
+const registerUser = asyncHandler(async (req, res) => {
   try {
     const { error } = registerValidationSchema(req.body);
     if (error) {
@@ -29,6 +30,6 @@ const registerUser = async (req, res) => {
     console.log(error);
     res.status(500).json({ error: true, message: "Internal Server Error" });
   }
-};
+});
 
 export default { registerUser };

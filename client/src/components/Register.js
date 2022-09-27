@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { FaRegPaperPlane } from "react-icons/fa";
 import { registerUser } from "../services/authService";
+import { useSnackbar } from "react-simple-snackbar";
 import "../styles/Register.css";
 
 export default function Register() {
@@ -9,8 +10,9 @@ export default function Register() {
     firstName: "",
     lastName: "",
     email: "",
-    password: "",
+    password: ""
   });
+  const [openSnackbar, closeSnackbar] = useSnackbar();
 
   const handleChange = (key) => (value) => {
     let valueTemp = value?.target ? value?.target?.value : value;
@@ -20,10 +22,15 @@ export default function Register() {
     e.preventDefault();
     registerUser(data.firstName, data.lastName, data.email, data.password)
       .then((res) => {
-        window.location.href = "/login";
+        openSnackbar("Register Success! Redirect Login Page");
+        setTimeout(function () {
+          window.location.href = "/login";
+        }, 2000);
       })
-      .catch(() => {
-        alert("kayıt başarısız!");
+      .catch(function (error) {
+        if (error.response) {
+          openSnackbar(error.response.data.message);
+        }
       });
   };
 
@@ -88,7 +95,7 @@ export default function Register() {
                 />
               </Form.Group>
               <br></br>
-              <Button  size="lg" variant="dark btn-block" type="submit">
+              <Button size="lg" variant="dark btn-block" type="submit">
                 Register
               </Button>
             </Form>
