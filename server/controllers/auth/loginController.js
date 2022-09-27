@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 import loginValidationSchema from "../../validations/loginValidationSchema.js";
-import generateAccessToken from "../../helpers/tokens/generateToken.js";
+import generateToken from "../../helpers/tokens/generateToken.js";
 import User from "../../models/userModel.js";
 
 const loginUser = async (req, res) => {
@@ -29,13 +29,16 @@ const loginUser = async (req, res) => {
         .status(400)
         .json({ error: true, message: "Email or Password is wrong!" });
     }
-    const { accessToken, refreshToken } = await generateAccessToken(user);
 
     res.status(200).json({
       error: false,
-      accessToken,
-      refreshToken,
-      message: "Logged in successfully"
+      id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      avatar: user.avatar,
+      token: generateToken({ id: user._id }),
+      message: "Login Success"
     });
   } catch (error) {
     console.log(error);

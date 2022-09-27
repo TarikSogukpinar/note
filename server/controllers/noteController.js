@@ -30,7 +30,7 @@ const getNotes = asyncHandler(async (req, res) => {
 
     res.json(result);
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    return res.status(500).json({ error: true, message: error.message });
   }
 });
 
@@ -57,18 +57,22 @@ const getNote = asyncHandler(async (req, res) => {
 
     res.json(decryptNote(note));
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
+    res.status(500).json({ error: true, message: "Internal Server Error" });
   }
 });
 
 const AddNote = asyncHandler(async (req, res) => {
-  const { title, content, category } = sanitize(req.body);
+  try {
+    const { error } = noteValidationSchema(req.body);
 
-  const addNoteValidation = await noteValidationSchema.validateAsync(
-    sanitize(req.body)
-  );
+    if (error) {
+      return res
+        .status(400)
+        .json({ error: true, message: error.details[0].message });
+    }
+    const { title, content, category } = req.body;
 
-  if (addNoteValidation) {
     const newNote = new Note({
       title: CryptoJS.AES.encrypt(
         title,
@@ -88,8 +92,9 @@ const AddNote = asyncHandler(async (req, res) => {
     await newNote.save();
 
     res.status(201).json({ message: "Note created" });
-  } else {
-    return res.status(500).json({ message: error.message });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: true, message: "Internal Server Error" });
   }
 });
 
@@ -98,7 +103,7 @@ const deleteNote = asyncHandler(async (req, res) => {
     await Note.findByIdAndDelete(req.params.id);
     res.json({ message: "Note deleted" });
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    return res.status(500).json({ error: true, message: error.message });
   }
 });
 
@@ -128,7 +133,7 @@ const updateNote = asyncHandler(async (req, res) => {
 
     res.status(200).json(note);
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    return res.status(500).json({ error: true, message: error.message });
   }
 });
 
