@@ -31,6 +31,18 @@ const loginUser = asyncHandler(async (req, res) => {
         .json({ error: true, message: "Email or Password is wrong!" });
     }
 
+    const { accessToken, refreshToken } = await generateToken(user);
+
+    console.log('here')
+    console.log(refreshToken)
+   
+    res.cookie("jwt", refreshToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None", //cross-site cookie
+      maxAge: 24 * 60 * 60 * 1000
+    });
+
     res.status(200).json({
       error: false,
       id: user._id,
@@ -38,7 +50,8 @@ const loginUser = asyncHandler(async (req, res) => {
       lastName: user.lastName,
       email: user.email,
       avatar: user.avatar,
-      token: generateToken({ id: user._id }),
+      token: accessToken,
+
       message: "Login Success"
     });
   } catch (error) {

@@ -2,6 +2,7 @@ import express from "express";
 import loginRoutes from "./login.routes.js";
 import registerRoutes from "./register.routes.js";
 import noteRoutes from "./note.routes.js";
+
 const app = express();
 
 export function initRoutes(app) {

@@ -3,13 +3,15 @@ import { useParams } from "react-router";
 import { getNote, updateNote } from "../services/noteService";
 import { FaUserEdit } from "react-icons/fa";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { useSnackbar } from "react-simple-snackbar";
 export default function EditNote({ match, history }) {
   const [note, setNote] = useState({
     title: "",
     content: "",
     category: "",
-    id: "",
+    id: ""
   });
+  const [openSnackbar] = useSnackbar();
   const { id } = useParams();
 
   useEffect(() => {
@@ -21,7 +23,7 @@ export default function EditNote({ match, history }) {
           title: res.data.title,
           content: res.data.content,
           category: res.data.category,
-          id: res.data._id,
+          id: res.data._id
         });
       }
     };
@@ -40,16 +42,16 @@ export default function EditNote({ match, history }) {
       const token = localStorage.getItem("token");
       if (token) {
         // const { title, category, content, id } = note;
-     
+
         updateNote(note.id, note.title, note.category, note.content, token)
           .then((res) => {
             window.location.href = "/notes";
           })
-          .catch((error) => {
-            alert("hata");
-            console.log(error.response);
+          .catch(function (error) {
+            if (error.response) {
+              openSnackbar(error.response.data.message);
+            }
           });
-  
       }
     } catch (error) {
       console.log(error);

@@ -1,6 +1,5 @@
 import asyncHandler from "express-async-handler";
 import Note from "../models/noteModel.js";
-import sanitize from "mongo-sanitize";
 import noteValidationSchema from "../validations/noteValidationSchema.js";
 import CryptoJS from "crypto-js";
 
@@ -58,7 +57,7 @@ const getNote = asyncHandler(async (req, res) => {
     res.json(decryptNote(note));
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: true, message: "Internal Server Error" });
+    res.status(500).json({ error: true, message: error.message });
   }
 });
 
@@ -94,7 +93,7 @@ const AddNote = asyncHandler(async (req, res) => {
     res.status(201).json({ message: "Note created" });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: true, message: "Internal Server Error" });
+    res.status(500).json({ error: true, message: error.message });
   }
 });
 
