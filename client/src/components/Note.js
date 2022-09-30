@@ -6,21 +6,21 @@ import { FaNotEqual, FaRegStickyNote, FaRegEdit } from "react-icons/fa";
 import axios from "axios";
 import "../styles/Note.css";
 import { useSnackbar } from "react-simple-snackbar";
-
+import Cookies from "js-cookie";
 export default function Note() {
   const [notes, setNotes] = useState([]);
   const [token, setToken] = useState("");
   const [openSnackbar] = useSnackbar();
   const getNotes = async (token) => {
     const res = await axios.get("http://localhost:5000/api/notes/getNotes", {
-      headers: { Authorization: token }
+      withCredentials: true,
     });
 
     setNotes(res.data);
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = Cookies.get();
     setToken(token);
     if (token) {
       getNotes(token);
@@ -29,7 +29,7 @@ export default function Note() {
 
   const deleteNote = async (id) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = Cookies.get();
       if (token) {
         openSnackbar("Note Deleted!");
         setTimeout(function () {

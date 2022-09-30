@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Cookies from "js-cookie";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import "../styles/CreateNote.css";
 import { AddNote } from "../services/noteService";
@@ -15,10 +16,9 @@ export default function CreateNote() {
   const handleAddNote = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("token");
-      if (token) {
+     
         // const { title, category, content } = data;
-        AddNote(data.title, data.category, data.content, token)
+        AddNote(data.title, data.category, data.content)
           .then((res) => {
             openSnackbar("Note Created! Redirect Notes");
             setTimeout(function () {
@@ -30,7 +30,7 @@ export default function CreateNote() {
               openSnackbar(error.response.data.message);
             }
           });
-      }
+      
     } catch (error) {
       console.log(error);
     }

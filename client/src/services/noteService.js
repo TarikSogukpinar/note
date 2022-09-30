@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const AddNote = async (title, content, category, token) => {
+export const AddNote = async (title, content, category) => {
   return await axios.post(
     "http://localhost:5000/api/notes/addNote",
     {
@@ -8,23 +8,27 @@ export const AddNote = async (title, content, category, token) => {
       content,
       category,
     },
-    { headers: { Authorization: token } }
+    { withCredentials: true }
   );
 };
 
-export const getNote = async (id, token) => {
-  return await axios.get(`http://localhost:5000/api/notes/getNote/${id}`, {
-    headers: { Authorization: token },
-  });
+export const getNote = async (id) => {
+  return await axios.get(
+    `http://localhost:5000/api/notes/getNote/${id}`,
+
+    { withCredentials: true }
+  );
 };
 
-export const deletNotes = async (id, token) => {
-  return await axios.delete(`http://localhost:5000/api/notes/deleteNote/${id}`, {
-    headers: { Authorization: token },
-  });
+export const deletNotes = async (id) => {
+  return await axios.delete(
+    `http://localhost:5000/api/notes/deleteNote/${id}`,
+
+    { withCredentials: true }
+  );
 };
 
-export const updateNote = async (id, title, content, category, token) => {
+export const updateNote = async (id, title, content, category) => {
   return await axios.put(
     `http://localhost:5000/api/notes/updateNote/${id}`,
     {
@@ -32,6 +36,6 @@ export const updateNote = async (id, title, content, category, token) => {
       content,
       category,
     },
-    { headers: { Authorization: token } }
+    { withCredentials: true }
   );
 };

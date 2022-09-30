@@ -19,7 +19,7 @@ export default function Login({ setLoginUser }) {
       .then((res) => {
         openSnackbar("Login Success");
         setTimeout(function () {
-          localStorage.setItem("token", res.data.token);
+          // localStorage.setItem("token", res.data.token);
           localStorage.setItem("user", JSON.stringify(res.data));
           window.location.href = "/";
         }, 1500);
