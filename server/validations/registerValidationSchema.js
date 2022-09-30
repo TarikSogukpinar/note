@@ -11,8 +11,8 @@ const registerValidationSchema = (body) => {
       max: 250,
       lowerCase: 1,
       upperCase: 1,
-      requirementCount: 2
-    }).label("Password")
+      requirementCount: 2,
+    }).label("Password"),
   });
   return schema.validate(body);
 };

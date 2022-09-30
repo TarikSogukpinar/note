@@ -8,6 +8,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/esm/Button";
 import { FaEvernote } from "react-icons/fa";
 import { deleteAccount } from "../services/authService";
+import Cookies from "js-cookie";
 export default function Navigation() {
   const auth = JSON.parse(localStorage.getItem("user"));
 
@@ -15,6 +16,7 @@ export default function Navigation() {
     e.preventDefault();
     localStorage.clear();
     sessionStorage.clear();
+    Cookies.remove("jwt");
     window.location.href = "/";
   };
 
@@ -24,6 +26,7 @@ export default function Navigation() {
         console.log("Deleted Successfully.");
         localStorage.clear();
         sessionStorage.clear();
+        Cookies.remove("jwt");
         window.location.href = "/";
       })
       .catch((err) => {
@@ -56,7 +59,6 @@ export default function Navigation() {
             ) : (
               <Container>
                 <Row>
-                 
                   <Col>
                     <Button variant="dark" bg="light" href="/notes">
                       Notes
