@@ -37,7 +37,7 @@ export default function Register() {
   return (
     <>
       <Container>
-        <h1 className="login-text text-dark shadow-sm text-warning mt-5 p-3 text-center rounded">
+        <h1 className="login-text text-dark  text-warning mt-5 p-3 text-center rounded">
           <FaRegPaperPlane /> Register
         </h1>
         <Row className="mt-5">

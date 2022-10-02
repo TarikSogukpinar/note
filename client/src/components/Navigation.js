@@ -9,6 +9,8 @@ import Cookies from "js-cookie";
 import { logoutUser } from "../services/authService";
 import { useSnackbar } from "react-simple-snackbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import "../styles/Navigation.css";
+
 export default function Navigation() {
   const auth = JSON.parse(localStorage.getItem("user"));
   const [openSnackbar] = useSnackbar();
@@ -53,32 +55,19 @@ export default function Navigation() {
           <FaEvernote size={"25px"} /> Note App
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
+        <Navbar.Collapse id="navbarScroll" className="text">
           <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
+            <Nav.Link href="/notes">My Notes</Nav.Link>
             <Nav.Link href="#action2">Link</Nav.Link>
-            <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href="#" disabled>
-              Link
-            </Nav.Link>
           </Nav>
           {!auth ? (
             <Nav>
               <Nav.Link href="/login">Login</Nav.Link>
-              <Nav.Link eventKey={2} href="#memes">
+              <Nav.Link eventKey={2}  href="/register">
                 Register
               </Nav.Link>
             </Nav>
