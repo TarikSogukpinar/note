@@ -7,8 +7,8 @@ import SnackbarProvider from "react-simple-snackbar";
 function App() {
   return (
     <div className="App">
-      <Navigation></Navigation>
       <SnackbarProvider>
+        <Navigation></Navigation>
         <Dashboard></Dashboard>
       </SnackbarProvider>
     </div>

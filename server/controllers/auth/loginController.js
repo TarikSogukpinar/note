@@ -41,7 +41,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
     const token = createToken(user._id);
     res.cookie("jwt", token, {
-      httpOnly: true,
+      httpOnly: false,
       secure: true,
       maxAge: maxAge * 1000,
     });
@@ -61,4 +61,14 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-export default { loginUser };
+const logoutUser = asyncHandler(async (req, res) => {
+  try {
+    res.clearCookie("jwt", { domain: "localhost", path: "/" });
+    return res.status(200).json({ message: "Logout success!" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: true, message: "Internal Server Error" });
+  }
+});
+
+export default { loginUser, logoutUser };

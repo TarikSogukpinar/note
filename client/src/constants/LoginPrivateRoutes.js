@@ -4,6 +4,6 @@ import Login from "../components/Login";
 import Cookies from "js-cookie";
 
 export default function LoginPrivateRoutes() {
-  const auth = !Cookies.get();
-  return !auth ? <Login></Login> : <Navigate to="/" />;
+  const auth = !Cookies.get("jwt");
+  return auth ? <Login></Login> : <Navigate to="/" />;
 }

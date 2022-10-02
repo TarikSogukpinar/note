@@ -11,6 +11,7 @@ export default function Note() {
   const [notes, setNotes] = useState([]);
   const [token, setToken] = useState("");
   const [openSnackbar] = useSnackbar();
+
   const getNotes = async (token) => {
     const res = await axios.get("http://localhost:5000/api/notes/getNotes", {
       withCredentials: true,

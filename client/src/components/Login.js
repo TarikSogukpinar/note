@@ -19,7 +19,6 @@ export default function Login({ setLoginUser }) {
       .then((res) => {
         openSnackbar("Login Success");
         setTimeout(function () {
-          // localStorage.setItem("token", res.data.token);
           localStorage.setItem("user", JSON.stringify(res.data));
           window.location.href = "/";
         }, 1500);
@@ -34,7 +33,7 @@ export default function Login({ setLoginUser }) {
   return (
     <>
       <Container>
-        <h1 className="login-text text-dark shadow-sm text-warning mt-5 p-3 text-center rounded">
+        <h1 className="login-text text-dark  text-warning mt-3 p-5 text-center rounded">
           <GrLogin /> Login
         </h1>
         <Row className="mt-5">
@@ -76,6 +75,9 @@ export default function Login({ setLoginUser }) {
 
               <div className="login-register">
                 New User? <a href="/register">Register</a>{" "}
+              </div>
+              <div className="login-register">
+                <a href="/forget-password">Forget Password</a>{" "}
               </div>
             </Form>
           </Col>

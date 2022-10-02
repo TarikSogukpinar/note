@@ -9,41 +9,46 @@ import CreateNotePrivateRoutes from "../constants/CreateNotesPrivateRoutes";
 import NotFound from "./NotFound";
 import EditNote from "./EditNote";
 import Contact from "./Contact";
+import ForgetPassword from "./ForgetPassword";
 
 export default function Dashboard() {
-	return (
-		<div>
-			<Routes>
-				<Route path="/" element={<Main></Main>}></Route>
-				<Route
-					exact
-					path="/login"
-					element={<LoginPrivateRoutes></LoginPrivateRoutes>}
-				></Route>
-				<Route
-					exact
-					path="/register"
-					element={<RegisterPrivateRoutes></RegisterPrivateRoutes>}
-				></Route>
-				<Route
-					exact
-					path="/profile"
-					element={<ProfilePrivateRoutes></ProfilePrivateRoutes>}
-				></Route>
-				<Route
-					exact
-					path="/notes"
-					element={<NotesPrivateRoutes></NotesPrivateRoutes>}
-				></Route>
-				<Route
-					exact
-					path="/createnote"
-					element={<CreateNotePrivateRoutes></CreateNotePrivateRoutes>}
-				></Route>
-				<Route exact path="*" element={<NotFound></NotFound>}></Route>
-				<Route path="/edit/:id" element={<EditNote></EditNote>}></Route>
-				<Route path="/contact" element={<Contact />}></Route>
-			</Routes>
-		</div>
-	);
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<Main></Main>}></Route>
+        <Route
+          path="/forget-password"
+          element={<ForgetPassword></ForgetPassword>}
+        ></Route>
+        <Route
+          exact
+          path="/login"
+          element={<LoginPrivateRoutes></LoginPrivateRoutes>}
+        ></Route>
+        <Route
+          exact
+          path="/register"
+          element={<RegisterPrivateRoutes></RegisterPrivateRoutes>}
+        ></Route>
+        <Route
+          exact
+          path="/profile"
+          element={<ProfilePrivateRoutes></ProfilePrivateRoutes>}
+        ></Route>
+        <Route
+          exact
+          path="/notes"
+          element={<NotesPrivateRoutes></NotesPrivateRoutes>}
+        ></Route>
+        <Route
+          exact
+          path="/createnote"
+          element={<CreateNotePrivateRoutes></CreateNotePrivateRoutes>}
+        ></Route>
+        <Route exact path="*" element={<NotFound></NotFound>}></Route>
+        <Route path="/edit/:id" element={<EditNote></EditNote>}></Route>
+        <Route path="/contact" element={<Contact />}></Route>
+      </Routes>
+    </div>
+  );
 }

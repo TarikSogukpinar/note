@@ -4,6 +4,6 @@ import Register from "../components/Register";
 import Cookies from "js-cookie";
 
 export default function RegisterPrivateRoutes() {
-  const auth = !Cookies.get();
-  return !auth ? <Register></Register> : <Navigate to="/" />;
+  const auth = !Cookies.get("jwt");
+  return auth ? <Register></Register> : <Navigate to="/" />;
 }

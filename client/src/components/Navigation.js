@@ -2,22 +2,34 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Dropdown from "react-bootstrap/Dropdown";
-import Button from "react-bootstrap/esm/Button";
 import { FaEvernote } from "react-icons/fa";
+import { ImExit } from "react-icons/im";
 import { deleteAccount } from "../services/authService";
 import Cookies from "js-cookie";
+import { logoutUser } from "../services/authService";
+import { useSnackbar } from "react-simple-snackbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 export default function Navigation() {
   const auth = JSON.parse(localStorage.getItem("user"));
+  const [openSnackbar] = useSnackbar();
 
   const logoutOnClick = (e) => {
     e.preventDefault();
-    localStorage.clear();
-    sessionStorage.clear();
-    Cookies.remove("jwt");
-    window.location.href = "/";
+    logoutUser()
+      .then((res) => {
+        openSnackbar("Logout Success!");
+        setTimeout(function () {
+          localStorage.clear();
+          sessionStorage.clear();
+          window.location.href = "/";
+        }, 1500);
+      })
+      .catch(function (error) {
+        console.log(error);
+        if (error.response) {
+          openSnackbar(error.response.data.message);
+        }
+      });
   };
 
   const deleteHandler = (id) => {
@@ -35,67 +47,49 @@ export default function Navigation() {
   };
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar bg="ligt" variant="light" expand="lg">
       <Container>
         <Navbar.Brand href="/">
-          {" "}
-          <FaEvernote /> Note App
+          <FaEvernote size={"25px"} /> Note App
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto"></Nav>
-          <Nav>
-            {!auth ? (
-              <Container>
-                <Row>
-                  <Col>
-                    <Nav.Link href="/login">Login</Nav.Link>
-                  </Col>
-                  <Col>
-                    <Nav.Link href="/register">Register</Nav.Link>
-                  </Col>
-                </Row>
-              </Container>
-            ) : (
-              <Container>
-                <Row>
-                  <Col>
-                    <Button variant="dark" bg="light" href="/notes">
-                      Notes
-                    </Button>
-                  </Col>
-                  <Col>
-                    <Dropdown>
-                      <Dropdown.Toggle variant="dark">
-                        {auth.firstName}
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href="/profile">Profile</Dropdown.Item>
-                        <Dropdown.Item onClick={logoutOnClick} href="/logout">
-                          Logout
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                          onClick={() => {
-                            if (
-                              window.confirm(
-                                "Are you sure to delete your account permanently?"
-                              )
-                            ) {
-                              deleteHandler(auth.id);
-                            }
-                          }}
-                        >
-                          {" "}
-                          Delete account
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </Col>
-                </Row>
-              </Container>
-            )}
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: "100px" }}
+            navbarScroll
+          >
+            <Nav.Link href="#action1">Home</Nav.Link>
+            <Nav.Link href="#action2">Link</Nav.Link>
+            <NavDropdown title="Link" id="navbarScrollingDropdown">
+              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+              <NavDropdown.Item href="#action4">
+                Another action
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="#action5">
+                Something else here
+              </NavDropdown.Item>
+            </NavDropdown>
+            <Nav.Link href="#" disabled>
+              Link
+            </Nav.Link>
           </Nav>
+          {!auth ? (
+            <Nav>
+              <Nav.Link href="/login">Login</Nav.Link>
+              <Nav.Link eventKey={2} href="#memes">
+                Register
+              </Nav.Link>
+            </Nav>
+          ) : (
+            <Nav>
+              <Nav.Link href="/profile">Welcome {auth.firstName}</Nav.Link>
+              <Nav.Link eventKey={2} onClick={logoutOnClick} href="/logout">
+                <ImExit size={"25px"} />
+              </Nav.Link>
+            </Nav>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
