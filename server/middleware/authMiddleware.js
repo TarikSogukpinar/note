@@ -1,12 +1,12 @@
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 
-const authUser = asyncHandler(async (req, res, next) => {
+const authUser = (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (!token)
+    return res.status(403).json({ message: "Invalid Authentication" });
   try {
-    const token = req.header("Authorization");
-    if (!token)
-      return res.status(400).json({ message: "Invalid Authentication" });
-    jwt.verify(token, process.env.JWT_SECRET, (error, user) => {
+    jwt.verify(token, process.env.ACCESS_TOKEN_PRIVATE_KEY, (error, user) => {
       if (error)
         return res.status(400).json({ message: "Authorization not valid." });
 
@@ -14,8 +14,10 @@ const authUser = asyncHandler(async (req, res, next) => {
       next();
     });
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    console.log(error);
+    return res.status(500).json({ error: true, message: error.message });
   }
-});
+};
+
 
 export { authUser };

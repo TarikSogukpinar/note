@@ -1,31 +1,29 @@
 import express from "express";
 import dotenv from "dotenv";
 import helmet from "helmet";
+import mongoSanitize from "express-mongo-sanitize";
 import colors from "colors";
 import initCors from "./helpers/cors/cors.js";
-import rateLimit from "./helpers/limiter/limiter.js";
-import authRoutes from "./routes/authRoutes.js";
-import noteRoutes from "./routes/noteRoutes.js";
+import initLimit from "./helpers/limiter/limiter.js"
 import connectionDatabase from "./helpers/connectionDatabase/connectDatabase.js";
-import cors from "cors";
-
+import { initRoutes } from "./routes/index.routes.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser())
 app.use(helmet());
-app.use(rateLimit);
-app.use(cors());
-// initCors(app);
+app.use(mongoSanitize());
 connectionDatabase();
-
-app.use("/auth", authRoutes);
-app.use("/notes", noteRoutes);
+initLimit(app)
+initCors(app);
+initRoutes(app);
 
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
   console.log(`Server running PORT : ${PORT}`.yellow.yellow);
 });
-

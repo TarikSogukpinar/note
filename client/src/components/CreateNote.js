@@ -1,12 +1,13 @@
 import React, { useState } from "react";
+import Cookies from "js-cookie";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import "../styles/CreateNote.css";
 import { AddNote } from "../services/noteService";
 import { FaStickyNote } from "react-icons/fa";
-
+import { useSnackbar } from "react-simple-snackbar";
 export default function CreateNote() {
   const [data, setData] = useState({ title: "", content: "", category: "" });
-
+  const [openSnackbar] = useSnackbar();
   const handleChange = (key) => (value) => {
     let valueTemp = value?.target ? value?.target?.value : value;
     setData({ ...data, [key]: valueTemp });
@@ -15,18 +16,21 @@ export default function CreateNote() {
   const handleAddNote = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("token");
-      if (token) {
+     
         // const { title, category, content } = data;
-        AddNote(data.title, data.category, data.content, token)
+        AddNote(data.title, data.category, data.content)
           .then((res) => {
-            window.location.href = "/notes";
+            openSnackbar("Note Created! Redirect Notes");
+            setTimeout(function () {
+              window.location.href = "/notes";
+            }, 1000);
           })
-          .catch((error) => {
-            alert("hata");
-            console.log(error.response);
+          .catch(function (error) {
+            if (error.response) {
+              openSnackbar(error.response.data.message);
+            }
           });
-      }
+      
     } catch (error) {
       console.log(error);
     }

@@ -3,13 +3,17 @@ import cors from "cors";
 const initCors = (app) => {
   app.use(
     cors({
-      origin: [
-        `https://${process.env.HOST}`,
-        `http://${process.env.HOST}`,
-        `${process.env.HOST}`,
+      allowedHeaders: [
+        "Origin",
+        "X-Requested-With",
+        "Content-Type",
+        "Accept",
+        "X-Access-Token",
+        "Authorization"
       ],
-      methods: ["GET", "POST", "PUT", "OPTIONS", "DELETE"],
-      credentials: true, // enable set cookie
+      origin: [`http://${process.env.HOST}`, `https://${process.env.HOST}`],
+      methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+      credentials: true
     })
   );
 };

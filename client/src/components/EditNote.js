@@ -3,6 +3,8 @@ import { useParams } from "react-router";
 import { getNote, updateNote } from "../services/noteService";
 import { FaUserEdit } from "react-icons/fa";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { useSnackbar } from "react-simple-snackbar";
+import Cookies from "js-cookie";
 export default function EditNote({ match, history }) {
   const [note, setNote] = useState({
     title: "",
@@ -10,13 +12,14 @@ export default function EditNote({ match, history }) {
     category: "",
     id: "",
   });
+  const [openSnackbar] = useSnackbar();
   const { id } = useParams();
 
   useEffect(() => {
     const getNotes = async () => {
-      const token = localStorage.getItem("token");
+      // const token = Cookies.get();
       if (id) {
-        const res = await getNote(id, token);
+        const res = await getNote(id);
         setNote({
           title: res.data.title,
           content: res.data.content,
@@ -37,19 +40,19 @@ export default function EditNote({ match, history }) {
   const editNote = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("token");
+      const token = Cookies.get();
       if (token) {
         // const { title, category, content, id } = note;
-     
+
         updateNote(note.id, note.title, note.category, note.content, token)
           .then((res) => {
             window.location.href = "/notes";
           })
-          .catch((error) => {
-            alert("hata");
-            console.log(error.response);
+          .catch(function (error) {
+            if (error.response) {
+              openSnackbar(error.response.data.message);
+            }
           });
-  
       }
     } catch (error) {
       console.log(error);
