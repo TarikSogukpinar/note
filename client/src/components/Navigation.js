@@ -56,18 +56,32 @@ export default function Navigation() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll" className="text">
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px" }}
-            navbarScroll
-          >
-            <Nav.Link href="/notes">My Notes</Nav.Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
-          </Nav>
+          {!auth ? (
+            <Nav
+              className="me-auto my-2 my-lg-0"
+              style={{ maxHeight: "100px" }}
+              navbarScroll
+            >
+              <Nav.Link href="/notes">Welcome!</Nav.Link>
+              
+            </Nav>
+          ) : (
+            <Nav
+              className="me-auto my-2 my-lg-0"
+              style={{ maxHeight: "100px" }}
+              navbarScroll
+            >
+              <Nav.Link href="/notes">My Notes</Nav.Link>
+              <Nav.Link href="#action2">Contact</Nav.Link>
+              <Nav.Link href="#action2">FAQ</Nav.Link>
+              <Nav.Link href="#action2">How does it work</Nav.Link>
+            </Nav>
+          )}
+
           {!auth ? (
             <Nav>
               <Nav.Link href="/login">Login</Nav.Link>
-              <Nav.Link eventKey={2}  href="/register">
+              <Nav.Link eventKey={2} href="/register">
                 Register
               </Nav.Link>
             </Nav>

@@ -3,6 +3,7 @@ import loginValidationSchema from "../../validations/loginValidationSchema.js";
 import User from "../../models/userModel.js";
 import asyncHandler from "express-async-handler";
 import jwt from "jsonwebtoken";
+import generateTokens from "../../helpers/tokens/generateToken.js";
 
 const maxAge = 60 * 60 * 24;
 
@@ -53,6 +54,8 @@ const loginUser = asyncHandler(async (req, res) => {
       lastName: user.lastName,
       email: user.email,
       avatar: user.avatar,
+      roles: user.roles,
+      token: token,
       message: "Login Success",
     });
   } catch (error) {

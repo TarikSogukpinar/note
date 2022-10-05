@@ -21,7 +21,7 @@ const getNotes = asyncHandler(async (req, res) => {
         category: CryptoJS.AES.decrypt(
           note.category,
           process.env.CRYPTO_SECRET_KEY
-        ).toString(CryptoJS.enc.Utf8)
+        ).toString(CryptoJS.enc.Utf8),
       };
     };
 
@@ -50,7 +50,7 @@ const getNote = asyncHandler(async (req, res) => {
         category: CryptoJS.AES.decrypt(
           note.category,
           process.env.CRYPTO_SECRET_KEY
-        ).toString(CryptoJS.enc.Utf8)
+        ).toString(CryptoJS.enc.Utf8),
       };
     };
 
@@ -85,7 +85,7 @@ const AddNote = asyncHandler(async (req, res) => {
         category,
         process.env.CRYPTO_SECRET_KEY
       ).toString(),
-      user_id: req.user.id
+      user_id: req.user.id,
     });
 
     await newNote.save();
@@ -125,7 +125,7 @@ const updateNote = asyncHandler(async (req, res) => {
           category,
           process.env.CRYPTO_SECRET_KEY
         ).toString(),
-        user_id: req.user.id
+        user_id: req.user.id,
       },
       { new: true }
     );
@@ -136,4 +136,4 @@ const updateNote = asyncHandler(async (req, res) => {
   }
 });
 
-export { AddNote, getNotes, getNote, deleteNote, updateNote };
+export default { AddNote, getNotes, getNote, deleteNote, updateNote };

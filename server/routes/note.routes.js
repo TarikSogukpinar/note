@@ -1,19 +1,13 @@
 import { Router } from "express";
-import {
-  AddNote,
-  getNotes,
-  getNote,
-  deleteNote,
-  updateNote
-} from "../controllers/noteController.js";
-import { authUser } from "../middleware/authMiddleware.js";
+import noteController from "../controllers/noteController.js";
+import { verifyToken } from "../middleware/verifyToken.js";
 
 const router = Router();
 
-router.post("/addNote", authUser, AddNote);
-router.get("/getNotes", authUser, getNotes);
-router.get("/getNote/:id", authUser, getNote);
-router.put("/updateNote/:id", authUser, updateNote);
-router.delete("/deleteNote/:id", authUser, deleteNote);
+router.post("/addNote", verifyToken, noteController.AddNote);
+router.get("/getNotes", verifyToken, noteController.getNotes);
+router.get("/getNote/:id", verifyToken, noteController.getNote);
+router.put("/updateNote/:id", verifyToken, noteController.updateNote);
+router.delete("/deleteNote/:id", verifyToken, noteController.deleteNote);
 
 export default router;

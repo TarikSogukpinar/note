@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const AddNote = async (title, content, category) => {
+export const AddNote = async (title, content, category, token) => {
   return await axios.post(
     "http://localhost:5000/api/notes/addNote",
     {
@@ -8,7 +8,8 @@ export const AddNote = async (title, content, category) => {
       content,
       category,
     },
-    { withCredentials: true }
+    { withCredentials: true },
+    { headers: { Authorization: token } }
   );
 };
 

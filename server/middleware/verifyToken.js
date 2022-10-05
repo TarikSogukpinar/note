@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import asyncHandler from "express-async-handler";
 
-const authUser = (req, res, next) => {
+const verifyToken = (req, res, next) => {
   const token = req.cookies.jwt;
   if (!token)
     return res.status(403).json({ message: "Invalid Authentication" });
@@ -19,5 +19,4 @@ const authUser = (req, res, next) => {
   }
 };
 
-
-export { authUser };
+export { verifyToken };

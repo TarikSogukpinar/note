@@ -8,10 +8,10 @@ import { Col, Row } from "react-bootstrap";
 import Footer from "./Footer";
 
 export default function Main() {
-  const auth = localStorage.getItem("token");
+  const auth = JSON.parse(localStorage.getItem("user"));
   return (
     <div>
-      <header class="masthead bg-warning">
+      <header class="masthead bg-light">
         <div class="container px-5">
           <div class="row gx-5 align-items-center">
             <div class="col-lg-6">
@@ -24,8 +24,25 @@ export default function Main() {
                   open source theme from Start Bootstrap!
                 </p>
                 <div class="d-flex flex-column flex-lg-row align-items-center">
-                  <Button>Test</Button>
-                  <Button>Test</Button>
+                  {!auth ? (
+                    <Row>
+                      <Col>
+                        <Button href="/login">Login</Button>
+                      </Col>
+                      <Col>
+                        <Button href="/register">Register</Button>
+                      </Col>
+                    </Row>
+                  ) : (
+                    <Row>
+                      <Col>
+                        <Button href="/notes">Notes</Button>
+                      </Col>
+                      <Col>
+                        <Button hreft="/terms">Terms</Button>
+                      </Col>
+                    </Row>
+                  )}
                 </div>
               </div>
             </div>
