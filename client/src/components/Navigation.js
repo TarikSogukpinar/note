@@ -62,8 +62,7 @@ export default function Navigation() {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="/notes">Welcome!</Nav.Link>
-              
+              <Nav.Link href="/">Welcome!</Nav.Link>
             </Nav>
           ) : (
             <Nav
@@ -72,9 +71,8 @@ export default function Navigation() {
               navbarScroll
             >
               <Nav.Link href="/notes">My Notes</Nav.Link>
-              <Nav.Link href="#action2">Contact</Nav.Link>
-              <Nav.Link href="#action2">FAQ</Nav.Link>
-              <Nav.Link href="#action2">How does it work</Nav.Link>
+              <Nav.Link href="/contact">Contact</Nav.Link>
+              <Nav.Link href="/faq">FAQ</Nav.Link>
             </Nav>
           )}
 

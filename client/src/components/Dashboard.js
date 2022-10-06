@@ -10,12 +10,14 @@ import NotFound from "./NotFound";
 import EditNote from "./EditNote";
 import Contact from "./Contact";
 import ForgetPassword from "./ForgetPassword";
+import Faq from "./Faq";
 
 export default function Dashboard() {
   return (
     <div>
       <Routes>
         <Route path="/" element={<Main></Main>}></Route>
+        <Route path="/faq" element={<Faq></Faq>}></Route>
         <Route
           path="/forget-password"
           element={<ForgetPassword></ForgetPassword>}

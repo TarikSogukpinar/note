@@ -16,21 +16,19 @@ export default function CreateNote() {
   const handleAddNote = async (e) => {
     e.preventDefault();
     try {
-     
-        // const { title, category, content } = data;
-        AddNote(data.title, data.category, data.content)
-          .then((res) => {
-            openSnackbar("Note Created! Redirect Notes");
-            setTimeout(function () {
-              window.location.href = "/notes";
-            }, 1000);
-          })
-          .catch(function (error) {
-            if (error.response) {
-              openSnackbar(error.response.data.message);
-            }
-          });
-      
+      // const { title, category, content } = data;
+      AddNote(data.title, data.category, data.content)
+        .then((res) => {
+          openSnackbar("Note Created! Redirect Notes");
+          setTimeout(function () {
+            window.location.href = "/notes";
+          }, 1000);
+        })
+        .catch(function (error) {
+          if (error.response) {
+            openSnackbar(error.response.data.message);
+          }
+        });
     } catch (error) {
       console.log(error);
     }

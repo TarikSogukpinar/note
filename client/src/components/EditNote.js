@@ -61,7 +61,7 @@ export default function EditNote({ match, history }) {
 
   return (
     <Container>
-      <h1 className="login-text text-dark shadow-sm text-warning mt-5 p-3 text-center rounded">
+      <h1 className="login-text text-dark text-warning mt-5 p-3 text-center rounded">
         <FaUserEdit /> Edit Note
       </h1>
       <Row>

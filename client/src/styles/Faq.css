@@ -1,0 +1,22 @@
+.how-section1 {
+
+  margin-top: -10%;
+  padding: 10%;
+}
+.how-section1 h4 {
+  color: #242322;
+  font-weight: bold;
+  font-size: 30px;
+}
+.how-section1 .subheading {
+  font-size: 20px;
+}
+.how-section1 .row {
+  margin-top: 10%;
+}
+.how-img {
+  text-align: center;
+}
+.how-img img {
+  width: 40%;
+}
