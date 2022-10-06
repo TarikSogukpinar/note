@@ -2,16 +2,10 @@ import bcrypt from "bcryptjs";
 import loginValidationSchema from "../../validations/loginValidationSchema.js";
 import User from "../../models/userModel.js";
 import asyncHandler from "express-async-handler";
-import jwt from "jsonwebtoken";
-import generateTokens from "../../helpers/tokens/generateToken.js";
+import createToken from "../../helpers/tokens/createToken.js";
+
 
 const maxAge = 60 * 60 * 24;
-
-const createToken = (id) => {
-  return jwt.sign({ id }, process.env.ACCESS_TOKEN_PRIVATE_KEY, {
-    expiresIn: maxAge,
-  });
-};
 
 const loginUser = asyncHandler(async (req, res) => {
   try {
@@ -44,6 +38,7 @@ const loginUser = asyncHandler(async (req, res) => {
     res.cookie("jwt", token, {
       httpOnly: false,
       secure: true,
+      sameSite: "None", //cross-site cookie
       maxAge: maxAge * 1000,
     });
 
@@ -58,6 +53,7 @@ const loginUser = asyncHandler(async (req, res) => {
       token: token,
       message: "Login Success",
     });
+    
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: true, message: "Internal Server Error" });

@@ -109,13 +109,13 @@ export default function EditNote({ match, history }) {
                 name="content"
                 as="textarea"
                 required
-                rows={3}
+                rows={6}
                 onChange={onChangeInput}
               />
             </Form.Group>
             <br></br>
             <Button size="lg" variant="dark btn-block" type="submit">
-              Save
+              Save Note
             </Button>
           </Form>
         </Col>

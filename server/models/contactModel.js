@@ -19,11 +19,11 @@ const contactSchema = new mongoose.Schema(
     },
     github: {
       type: String,
-      require: false,
+      require: true,
     },
     linkedin: {
       type: String,
-      require: false,
+      require: true,
     },
     createdAt: {
       type: String,

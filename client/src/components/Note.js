@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { deletNotes } from "../services/noteService";
 import { Accordion, Button, Col, Container, Row } from "react-bootstrap";
 import { IoCreateSharp } from "react-icons/io5";
+import { MdDateRange, MdSubtitles } from "react-icons/md";
 import { FaNotEqual, FaRegStickyNote, FaRegEdit } from "react-icons/fa";
 import axios from "axios";
 import "../styles/Note.css";
 import { useSnackbar } from "react-simple-snackbar";
 import Cookies from "js-cookie";
+
 export default function Note() {
   const [notes, setNotes] = useState([]);
   const [token, setToken] = useState("");
@@ -15,8 +17,8 @@ export default function Note() {
   const getNotes = async (token) => {
     const res = await axios.get("http://localhost:5000/api/notes/getNotes", {
       withCredentials: true,
-    })
-    console.log(res.data)
+    });
+    console.log(res.data);
     setNotes(res.data);
   };
 
@@ -61,13 +63,15 @@ export default function Note() {
       {notes != "" ? (
         notes.map((note, index) => (
           <Container key={index}>
-            <Accordion defaultActiveKey="0">
+            <Accordion defaultActiveKey="0" style={{marginTop:20}}>
               <Accordion.Item eventKey="0">
-                <Accordion.Header>{note.category}</Accordion.Header>
+                <Accordion.Header>
+                  <MdSubtitles /> {note.category}
+                </Accordion.Header>
                 <Accordion.Body>
                   <Row>
                     <Col>
-                      <h4>{note.title}</h4>
+                      <h4>{note.title} </h4>
                     </Col>
                   </Row>
                   <Row>
@@ -91,6 +95,9 @@ export default function Note() {
                           href={`/edit/${note._id}`}
                         >
                           <FaRegEdit /> Edit Note
+                        </Button>
+                        <Button variant="link" className="close">
+                          <MdDateRange /> {note.createdAt}
                         </Button>
                       </Col>
                     </Row>

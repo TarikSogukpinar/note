@@ -22,6 +22,7 @@ const getNotes = asyncHandler(async (req, res) => {
           note.category,
           process.env.CRYPTO_SECRET_KEY
         ).toString(CryptoJS.enc.Utf8),
+        createdAt: note.createdAt,
       };
     };
 
@@ -81,7 +82,10 @@ const AddNote = asyncHandler(async (req, res) => {
         content,
         process.env.CRYPTO_SECRET_KEY
       ).toString(),
-      category: CryptoJS.AES.encrypt(category,process.env.CRYPTO_SECRET_KEY).toString(),
+      category: CryptoJS.AES.encrypt(
+        category,
+        process.env.CRYPTO_SECRET_KEY
+      ).toString(),
       user_id: req.user.id,
     });
 

@@ -12,6 +12,6 @@ export function initRoutes(app) {
   app.use("/api/auth", registerRoutes);
   app.use("/api/notes", noteRoutes);
   app.use("/api/user", userRoutes);
-  app.use("/api/createContact", contactRoutes);
+  app.use("/api/contact", contactRoutes);
   app.use("/check", (req, res) => res.json({ message: "Ok!" }));
 }

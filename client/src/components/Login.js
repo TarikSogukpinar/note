@@ -8,6 +8,7 @@ import "../styles/Login.css";
 export default function Login({ setLoginUser }) {
   const [data, setData] = useState({ email: "", password: "" });
   const [openSnackbar] = useSnackbar();
+  
   const handleChange = (key) => (value) => {
     let valueTemp = value?.target ? value?.target?.value : value;
     setData({ ...data, [key]: valueTemp });
