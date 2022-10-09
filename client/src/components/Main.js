@@ -5,67 +5,61 @@ import { AiOutlineFileProtect } from "react-icons/ai";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { SiFsecure, SiCrowdsource } from "react-icons/si";
 import { Col, Row } from "react-bootstrap";
-import Footer from "./Footer";
 
 export default function Main() {
   const auth = JSON.parse(localStorage.getItem("user"));
   return (
     <div>
-      <header class="masthead bg-light">
+      <header class="masthead bg-dark text-light">
         <div class="container px-5">
           <div class="row gx-5 align-items-center">
-            <div class="col-lg-6">
+            <div class="text-center">
               <div class="mb-5 mb-lg-0 text-center text-lg-start">
-                <h1 class="display-1 lh-1 mb-3">
-                  Showcase your app beautifully.
+                <h1 class="display-4 text-center lh-1 mb-3">
+                  <strong>Welcome Note Taking Application</strong>
                 </h1>
-                <p class="lead fw-normal text-muted mb-5">
-                  Launch your mobile app landing page faster with this free,
-                  open source theme from Start Bootstrap!
+                <p class="lead fw-normal text-center mb-5">
+                  Free, Safe, Open Source and{" "}
+                  <a href="/faq" target={"_blank"}>
+                    Learn More
+                  </a>
                 </p>
-                <div class="d-flex flex-column flex-lg-row align-items-center">
+
+                <div class="d-flex flex-column text-center flex-sm-row justify-content-center">
                   {!auth ? (
                     <Row>
                       <Col>
-                        <Button href="/login">Login</Button>
+                        <Button size="lg" className="bg-dark" href="/login">
+                          Login
+                        </Button>
                       </Col>
                       <Col>
-                        <Button href="/register">Register</Button>
+                        <Button size="lg" className="bg-dark" href="/register">
+                          Register
+                        </Button>
                       </Col>
                     </Row>
                   ) : (
                     <Row>
                       <Col>
-                        <Button href="/notes">Notes</Button>
+                        <Button size="lg" className="bg-dark" href="/notes">
+                          Notes
+                        </Button>
                       </Col>
                       <Col>
-                        <Button hreft="/terms">Terms</Button>
+                        <Button size="lg" className="bg-dark" href="/profile">
+                          Profile
+                        </Button>
                       </Col>
                     </Row>
                   )}
                 </div>
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="masthead-device-mockup">
-                <SiCrowdsource size={400} />
-
-                <div class="device-wrapper">
-                  <div
-                    class="device"
-                    data-device="iPhoneX"
-                    data-orientation="portrait"
-                    data-color="black"
-                  >
-                    <div class="screen bg-black"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </header>
-
+      <br></br>
       <section className="bg-light text-dark" id="learn-more m-5">
         <div className="container px-5">
           <div className="row gx-5 align-items-center">
@@ -148,8 +142,6 @@ export default function Main() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 }

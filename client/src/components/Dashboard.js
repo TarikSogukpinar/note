@@ -11,6 +11,7 @@ import EditNote from "./EditNote";
 import Contact from "./Contact";
 import ForgetPassword from "./ForgetPassword";
 import Faq from "./Faq";
+import EditUserInfo from "./EditUserInfo";
 
 export default function Dashboard() {
   return (
@@ -37,6 +38,13 @@ export default function Dashboard() {
           path="/profile"
           element={<ProfilePrivateRoutes></ProfilePrivateRoutes>}
         ></Route>
+
+        <Route
+          path="/editUserInfo/:id"
+          exact
+          element={<EditUserInfo></EditUserInfo>}
+        ></Route>
+
         <Route
           exact
           path="/notes"

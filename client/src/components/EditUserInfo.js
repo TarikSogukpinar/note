@@ -1,58 +1,57 @@
+import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { getNote, updateNote } from "../services/noteService";
-import { FaUserEdit } from "react-icons/fa";
+// import { useSnackbar } from "react-simple-snackbar/dist";
+import { updateUserInfo, getUserById } from "../services/userService";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { useSnackbar } from "react-simple-snackbar";
-import Cookies from "js-cookie";
 
-export default function EditNote() {
-  const [note, setNote] = useState({
-    title: "",
-    content: "",
-    category: "",
+export default function EditUserInfo() {
+  const [userInfo, setUserInfo] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
     id: "",
   });
-  const [openSnackbar] = useSnackbar();
+
+  //   const [openSnackbar] = useSnackbar();
   const { id } = useParams();
 
   useEffect(() => {
-    const getNotes = async () => {
-      // const token = Cookies.get();
+    const getInfos = async () => {
       if (id) {
-        const res = await getNote(id);
-        setNote({
-          title: res.data.title,
-          content: res.data.content,
-          category: res.data.category,
+        const res = await getUserById(id);
+        setUserInfo({
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
+          email: res.data.email,
           id: res.data._id,
         });
       }
     };
-    getNotes();
-    console.log(note);
+    getInfos();
+    console.log(userInfo);
   }, [id]);
 
   const onChangeInput = (e) => {
     const { name, value } = e.target;
-    setNote({ ...note, [name]: value });
+    setUserInfo({ ...userInfo, [name]: value });
   };
-
-  const editNote = async (e) => {
+  const editUserInfo = async (e) => {
     e.preventDefault();
     try {
       const token = Cookies.get();
       if (token) {
-        // const { title, category, content, id } = note;
-
-        updateNote(note.id, note.title, note.category, note.content, token)
+        updateUserInfo(
+          userInfo.id,
+          userInfo.firstName,
+          userInfo.lastName,
+          userInfo.email
+        )
           .then((res) => {
-            window.location.href = "/notes";
+            window.location.href = "/";
           })
           .catch(function (error) {
-            if (error.response) {
-              openSnackbar(error.response.data.message);
-            }
+            console.log(error);
           });
       }
     } catch (error) {
@@ -63,7 +62,7 @@ export default function EditNote() {
   return (
     <Container>
       <h1 className="login-text text-dark text-warning mt-5 p-3 text-center rounded">
-        <FaUserEdit /> Edit Note
+        Edit User Info
       </h1>
       <Row>
         <Col
@@ -73,54 +72,54 @@ export default function EditNote() {
           className="p-5 m-auto shadow-lg rounded-lg"
           style={{ borderRadius: "15px" }}
         >
-          <Form onSubmit={editNote} autoComplete="off">
+          <Form onSubmit={editUserInfo} autoComplete="off">
             <Form.Group controlId="formBasicTitle">
-              <Form.Label className="form-label">Title</Form.Label>
+              <Form.Label className="form-label">First Name</Form.Label>
               <Form.Control
                 size="lg"
                 type="text"
-                value={note.title}
-                htmlFor="title"
-                name="title"
+                value={userInfo.firstName}
+                htmlFor="firstName"
+                name="firstName"
                 required
                 onChange={onChangeInput}
               />
             </Form.Group>
 
             <Form.Group controlId="formBasicCategory">
-              <Form.Label className="form-label">Category</Form.Label>
+              <Form.Label className="form-label">Last Name</Form.Label>
               <Form.Control
                 size="lg"
                 type="text"
-                value={note.category}
-                htmlFor="category"
-                name="category"
+                value={userInfo.lastName}
+                htmlFor="lastName"
+                name="lastName"
                 required
                 rows="10"
                 onChange={onChangeInput}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicContent">
-              <Form.Label className="form-label">Content</Form.Label>
+            <Form.Group controlId="formBasicCategory">
+              <Form.Label className="form-label">Email</Form.Label>
               <Form.Control
                 size="lg"
                 type="text"
-                value={note.content}
-                htmlFor="content"
-                name="content"
-                as="textarea"
+                value={userInfo.email}
+                htmlFor="email"
+                name="email"
                 required
-                rows={6}
+                rows="10"
                 onChange={onChangeInput}
               />
             </Form.Group>
             <br></br>
             <Button size="lg" variant="dark btn-block" type="submit">
-              Save Note
+              Update User Info
             </Button>
           </Form>
         </Col>
       </Row>
+     
     </Container>
   );
 }

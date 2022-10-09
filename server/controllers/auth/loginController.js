@@ -4,9 +4,6 @@ import User from "../../models/userModel.js";
 import asyncHandler from "express-async-handler";
 import createToken from "../../helpers/tokens/createToken.js";
 
-
-const maxAge = 60 * 60 * 24;
-
 const loginUser = asyncHandler(async (req, res) => {
   try {
     const { error } = loginValidationSchema(req.body);
@@ -39,7 +36,7 @@ const loginUser = asyncHandler(async (req, res) => {
       httpOnly: false,
       secure: true,
       sameSite: "None", //cross-site cookie
-      maxAge: maxAge * 1000,
+      maxAge: 60 * 60 * 24 * 1000,
     });
 
     res.status(200).json({
@@ -53,7 +50,6 @@ const loginUser = asyncHandler(async (req, res) => {
       token: token,
       message: "Login Success",
     });
-    
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: true, message: "Internal Server Error" });

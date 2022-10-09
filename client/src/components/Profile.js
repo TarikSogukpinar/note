@@ -8,11 +8,10 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import axios from "axios";
 export default function Profile() {
   const [userInfo, setUserInfo] = useState([]);
-  const auth = JSON.parse(localStorage.getItem("user"));
   const [token, setToken] = useState("");
 
   const getUserInfo = async () => {
-    const res = await axios.get("http://localhost:5000/api/user/getUserById", {
+    const res = await axios.get("http://localhost:5000/api/user/getUser", {
       withCredentials: true,
     });
 
@@ -32,307 +31,133 @@ export default function Profile() {
     <div className="container">
       {userInfo.map((userInfos, index) => (
         <Container key={index}>
-          <section className="section about-section gray-bg" id="about">
-            <div className="container">
-              <div className="row">
-                <div className="col-12">
-                  {/* Page title */}
-                  <div className="my-5">
-                    <h3>My Profile</h3>
-                    <hr />
-                  </div>
-                  {/* Form START */}
-                  <form className="file-upload">
-                    <div className="row mb-5 gx-5">
-                      {/* Contact detail */}
-                      <div className="col-xxl-8 mb-5 mb-xxl-0">
-                        <div className="bg-secondary-soft px-4 py-5 rounded">
-                          <div className="row g-3">
-                            <h4 className="mb-4 mt-0">Contact detail</h4>
-                            {/* First Name */}
-                            <div className="col-md-6">
-                              <label className="form-label">First Name *</label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                placeholder
-                                value={userInfos.firstName}
-                                aria-label="First name"
-                                defaultValue="Scaralet"
-                              />
-                            </div>
-                            {/* Last name */}
-                            <div className="col-md-6">
-                              <label className="form-label">Last Name *</label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                placeholder
-                                value={userInfos.lastName}
-                                aria-label="Last name"
-                                defaultValue="Doe"
-                              />
-                            </div>
-                            {/* Phone number */}
-                            <div className="col-md-6">
-                              <label className="form-label">
-                                Phone number *
-                              </label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                placeholder
-                                aria-label="Phone number"
-                                defaultValue="(333) 000 555"
-                              />
-                            </div>
-                            {/* Mobile number */}
-                            <div className="col-md-6">
-                              <label className="form-label">
-                                Mobile number *
-                              </label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                placeholder
-                                aria-label="Phone number"
-                                defaultValue="+91 9852 8855 252"
-                              />
-                            </div>
-                            {/* Email */}
-                            <div className="col-md-6">
-                              <label
-                                htmlFor="inputEmail4"
-                                className="form-label"
-                              >
-                                Email *
-                              </label>
-                              <input
-                                value={userInfos.email}
-                                type="email"
-                                className="form-control"
-                                id="inputEmail4"
-                                defaultValue="example@homerealty.com"
-                              />
-                            </div>
-                            {/* Skype */}
-                            <div className="col-md-6">
-                              <label className="form-label">Skype *</label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                placeholder
-                                aria-label="Phone number"
-                                defaultValue="Scaralet D"
-                              />
-                            </div>
-                          </div>{" "}
-                          {/* Row END */}
-                        </div>
-                      </div>
-                      {/* Upload profile */}
-                      <div className="col-xxl-4">
-                        <div className="bg-secondary-soft px-4 py-5 rounded">
-                          <div className="row g-3">
-                            <h4 className="mb-4 mt-0">
-                              Upload your profile photo
-                            </h4>
-                            <div className="text-center">
-                              {/* Image upload */}
-                              <div className="square position-relative display-2 mb-3">
-                                <i className="fas fa-fw fa-user position-absolute top-50 start-50 translate-middle text-secondary" />
-                              </div>
-                              {/* Button */}
-                              <input
-                                type="file"
-                                id="customFile"
-                                name="file"
-                                hidden
-                              />
-                              <label
-                                className="btn btn-success-soft btn-block"
-                                htmlFor="customFile"
-                              >
-                                Upload
-                              </label>
-                              <button
-                                type="button"
-                                className="btn btn-danger-soft"
-                              >
-                                Remove
-                              </button>
-                              {/* Content */}
-                              <p className="text-muted mt-3 mb-0">
-                                <span className="me-1">Note:</span>Minimum size
-                                300px x 300px
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>{" "}
-                    {/* Row END */}
-                    {/* Social media detail */}
-                    <div className="row mb-5 gx-5">
-                      <div className="col-xxl-6 mb-5 mb-xxl-0">
-                        <div className="bg-secondary-soft px-4 py-5 rounded">
-                          <div className="row g-3">
-                            <h4 className="mb-4 mt-0">Social media detail</h4>
-                            {/* Facebook */}
-                            <div className="col-md-6">
-                              <label className="form-label">
-                                <i className="fab fa-fw fa-facebook me-2 text-facebook" />
-                                Facebook *
-                              </label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                placeholder
-                                aria-label="Facebook"
-                                defaultValue="http://www.facebook.com"
-                              />
-                            </div>
-                            {/* Twitter */}
-                            <div className="col-md-6">
-                              <label className="form-label">
-                                <i className="fab fa-fw fa-twitter text-twitter me-2" />
-                                Twitter *
-                              </label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                placeholder
-                                aria-label="Twitter"
-                                defaultValue="http://www.twitter.com"
-                              />
-                            </div>
-                            {/* Linkedin */}
-                            <div className="col-md-6">
-                              <label className="form-label">
-                                <i className="fab fa-fw fa-linkedin-in text-linkedin me-2" />
-                                Linkedin *
-                              </label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                placeholder
-                                aria-label="Linkedin"
-                                defaultValue="http://www.linkedin.com"
-                              />
-                            </div>
-                            {/* Instragram */}
-                            <div className="col-md-6">
-                              <label className="form-label">
-                                <i className="fab fa-fw fa-instagram text-instagram me-2" />
-                                Instagram *
-                              </label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                placeholder
-                                aria-label="Instragram"
-                                defaultValue="http://www.instragram.com"
-                              />
-                            </div>
-                            {/* Dribble */}
-                            <div className="col-md-6">
-                              <label className="form-label">
-                                <i className="fas fa-fw fa-basketball-ball text-dribbble me-2" />
-                                Dribble *
-                              </label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                placeholder
-                                aria-label="Dribble"
-                                defaultValue="http://www.dribble.com"
-                              />
-                            </div>
-                            {/* Pinterest */}
-                            <div className="col-md-6">
-                              <label className="form-label">
-                                <i className="fab fa-fw fa-pinterest text-pinterest" />
-                                Pinterest *
-                              </label>
-                              <input
-                                type="text"
-                                className="form-control"
-                                placeholder
-                                aria-label="Pinterest"
-                                defaultValue="http://www.pinterest.com"
-                              />
-                            </div>
-                          </div>{" "}
-                          {/* Row END */}
-                        </div>
-                      </div>
-                      {/* change password */}
-                      <div className="col-xxl-6">
-                        <div className="bg-secondary-soft px-4 py-5 rounded">
-                          <div className="row g-3">
-                            <h4 className="my-4">Change Password</h4>
-                            {/* Old password */}
-                            <div className="col-md-6">
-                              <label
-                                htmlFor="exampleInputPassword1"
-                                className="form-label"
-                              >
-                                Old password *
-                              </label>
-                              <input
-                                type="password"
-                                className="form-control"
-                                id="exampleInputPassword1"
-                              />
-                            </div>
-                            {/* New password */}
-                            <div className="col-md-6">
-                              <label
-                                htmlFor="exampleInputPassword2"
-                                className="form-label"
-                              >
-                                New password *
-                              </label>
-                              <input
-                                type="password"
-                                className="form-control"
-                                id="exampleInputPassword2"
-                              />
-                            </div>
-                            {/* Confirm password */}
-                            <div className="col-md-12">
-                              <label
-                                htmlFor="exampleInputPassword3"
-                                className="form-label"
-                              >
-                                Confirm Password *
-                              </label>
-                              <input
-                                type="password"
-                                className="form-control"
-                                id="exampleInputPassword3"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>{" "}
-                    {/* Row END */}
-                    {/* button */}
-                    <div className="gap-3 d-md-flex justify-content-md-end text-center">
-                      <button type="button" className="btn btn-danger btn-lg">
-                        Delete profile
-                      </button>
-                      <button type="button" className="btn btn-primary btn-lg">
-                        Update profile
-                      </button>
+          <h1>Profile Settings</h1>
+          <div className="container-xl px-4 mt-4">
+            <hr className="mt-0 mb-4" />
+            <div className="row">
+              <div className="col-xl-4">
+                {/* Profile picture card*/}
+                <div className="card mb-4 mb-xl-0">
+                  <div className="card-header">Profile Picture</div>
+                  <div className="card-body text-center">
+                    {/* Profile picture image*/}
+                    <img
+                      className="img-account-profile rounded-circle mb-2"
+                      src="http://bootdey.com/img/Content/avatar/avatar1.png"
+                      alt=""
+                    />
+                    {/* Profile picture help block*/}
+                    <div className="small font-italic text-muted mb-4">
+                      JPG or PNG no larger than 5 MB
                     </div>
-                  </form>{" "}
-                  {/* Form END */}
+                    {/* Profile picture upload button*/}
+                    <button className="btn btn-primary" type="button">
+                      Upload new image
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className="col-xl-8">
+                {/* Account details card*/}
+                <div className="card mb-4">
+                  <div className="card-header">Account Details</div>
+                  <div className="card-body">
+                    <form>
+                      {/* Form Group (username)*/}
+                      <div className="mb-3">
+                        <label className="small mb-1" htmlFor="inputUsername">
+                          Email
+                        </label>
+                        <input
+                          className="form-control"
+                          id="email"
+                          type="text"
+                          htmlFor="email"
+                          value={userInfos.email}
+                        />
+                      </div>
+                      {/* Form Row*/}
+                      <div className="row gx-3 mb-3">
+                        {/* Form Group (first name)*/}
+                        <div className="col-md-6">
+                          <label
+                            className="small mb-1"
+                            htmlFor="inputFirstName"
+                          >
+                            First name
+                          </label>
+                          <input
+                            className="form-control"
+                            id="inputFirstName"
+                            type="text"
+                            htmlFor="firstName"
+                            value={userInfos.firstName}
+                          />
+                        </div>
+                        {/* Form Group (last name)*/}
+                        <div className="col-md-6">
+                          <label className="small mb-1" htmlFor="inputLastName">
+                            Last name
+                          </label>
+                          <input
+                            className="form-control"
+                            id="inputLastName"
+                            type="text"
+                            htmlFor="lastName"
+                            value={userInfos.lastName}
+                          />
+                        </div>
+                        <div className="col-md-6">
+                          <label className="small mb-1" htmlFor="inputLastName">
+                            Created Date
+                          </label>
+                          <input
+                            className="form-control"
+                            id="inputLastName"
+                            type="text"
+                            htmlFor="lastName"
+                            value={userInfos.createdAt}
+                          />
+                        </div>
+                        <div className="col-md-6">
+                          <label className="small mb-1" htmlFor="inputLastName">
+                            System Role
+                          </label>
+                          <input
+                            className="form-control"
+                            id="inputLastName"
+                            type="text"
+                            htmlFor="lastName"
+                            value={userInfos.roles}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="row gx-3 mb-3"></div>
+                      {/* Save changes button*/}
+
+                      <Button
+                        href={`/editUserInfo/${userInfos._id}`}
+                        className="btn btn-primary"
+                        type="button"
+                        style={{ margin: "0 20px" }}
+                      >
+                        Edit Profile
+                      </Button>
+
+                      <Button
+                        href={`/editUserInfo/${userInfos._id}`}
+                        className="btn btn-danger"
+                        type="button"
+                      >
+                        Delete Profile
+                      </Button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
-          </section>
+          </div>
         </Container>
       ))}
     </div>

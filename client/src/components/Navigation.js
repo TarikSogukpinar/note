@@ -49,7 +49,7 @@ export default function Navigation() {
   };
 
   return (
-    <Navbar bg="ligt" variant="light" expand="lg">
+    <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand href="/">
           <FaEvernote size={"25px"} /> Note App
