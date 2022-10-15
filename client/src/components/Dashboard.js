@@ -11,9 +11,9 @@ import EditNote from "./EditNote";
 import Contact from "./Contact";
 import ForgetPassword from "./ForgetPassword";
 import Faq from "./Faq";
-import EditUserInfo from "./EditUserInfo";
 import PasswordReset from "./PasswordReset";
 import EmailVerify from "./EmailVerify";
+import EditUserInfoPrivateRoutes from "../constants/EditUserInfoPrivateRoutes";
 
 export default function Dashboard() {
   return (
@@ -50,9 +50,9 @@ export default function Dashboard() {
         ></Route>
 
         <Route
-          path="/editUserInfo/:id"
           exact
-          element={<EditUserInfo></EditUserInfo>}
+          path="/editUserInfo/:id"
+          element={<EditUserInfoPrivateRoutes></EditUserInfoPrivateRoutes>}
         ></Route>
 
         <Route

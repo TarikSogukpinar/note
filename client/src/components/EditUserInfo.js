@@ -1,11 +1,13 @@
-import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { updateUserInfo, getUserById } from "../services/userService";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { useSnackbar } from "react-simple-snackbar/dist";
+import { useSnackbar } from "react-simple-snackbar";
+import Cookies from "js-cookie";
+import { FaUserAlt } from "react-icons/fa";
 
 export default function EditUserInfo() {
+  const [openSnackbar] = useSnackbar();
   const [userInfo, setUserInfo] = useState({
     firstName: "",
     lastName: "",
@@ -13,7 +15,6 @@ export default function EditUserInfo() {
     id: "",
   });
 
-  const [openSnackbar] = useSnackbar();
   const { id } = useParams();
 
   useEffect(() => {
@@ -36,6 +37,7 @@ export default function EditUserInfo() {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
   };
+
   const editUserInfo = async (e) => {
     e.preventDefault();
     try {
@@ -52,7 +54,7 @@ export default function EditUserInfo() {
               "Your information has been successfully updated. You are being redirected."
             );
             setTimeout(function () {
-              window.location.href = "/";
+              window.location.href = "/profile";
             }, 1500);
           })
           .catch(function (error) {
@@ -75,7 +77,10 @@ export default function EditUserInfo() {
           <div className="container">
             <div className="col-md-6 mx-auto text-center">
               <div className="header-title">
-                <h1 className="wv-heading--title"> Edit User Info</h1>
+                <h1 className="wv-heading--title">
+                  {" "}
+                  <FaUserAlt /> Edit User Info
+                </h1>
               </div>
             </div>
             <div className="row">
