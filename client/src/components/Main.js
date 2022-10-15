@@ -89,11 +89,12 @@ export default function Main() {
                 <GiTakeMyMoney size={200} />
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-6 order-lg-1">
               <div className="p-5">
-                <h2 className="display-2"> Free To Use</h2>
+                <p className="display-3"> Free to Use</p>
                 <h4>
-                  Note App is completely free. No need to pay to save notes
+                  We securely store your user password. You don't have to worry
+                  about it!
                 </h4>
               </div>
             </div>
@@ -130,12 +131,12 @@ export default function Main() {
                 <SiCrowdsource size={200} />
               </div>
             </div>
-            <div className="col-lg-6">
+            <div className="col-lg-6 order-lg-1">
               <div className="p-5">
-                <h2 className="display-2"> Open Source</h2>
+                <p className="display-3"> Open Source</p>
                 <h4>
-                  This software is completely open source. You can support us on{" "}
-                  <a href="https://github.com/"> Github</a> and review the code.
+                  We securely store your user password. You don't have to worry
+                  about it!
                 </h4>
               </div>
             </div>
