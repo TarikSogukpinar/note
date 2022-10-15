@@ -1,9 +1,9 @@
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-// import { useSnackbar } from "react-simple-snackbar/dist";
 import { updateUserInfo, getUserById } from "../services/userService";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { useSnackbar } from "react-simple-snackbar/dist";
 
 export default function EditUserInfo() {
   const [userInfo, setUserInfo] = useState({
@@ -13,7 +13,7 @@ export default function EditUserInfo() {
     id: "",
   });
 
-  //   const [openSnackbar] = useSnackbar();
+  const [openSnackbar] = useSnackbar();
   const { id } = useParams();
 
   useEffect(() => {
@@ -48,78 +48,94 @@ export default function EditUserInfo() {
           userInfo.email
         )
           .then((res) => {
-            window.location.href = "/";
+            openSnackbar(
+              "Your information has been successfully updated. You are being redirected."
+            );
+            setTimeout(function () {
+              window.location.href = "/";
+            }, 1500);
           })
           .catch(function (error) {
-            console.log(error);
+            if (error.response) {
+              openSnackbar(error.response.data.message);
+            }
           });
       }
     } catch (error) {
-      console.log(error);
+      if (error.response) {
+        openSnackbar(error.response.data.message);
+      }
     }
   };
 
   return (
     <Container>
-      <h1 className="login-text text-dark text-warning mt-5 p-3 text-center rounded">
-        Edit User Info
-      </h1>
-      <Row>
-        <Col
-          lg={5}
-          md={6}
-          sm={12}
-          className="p-5 m-auto shadow-lg rounded-lg"
-          style={{ borderRadius: "15px" }}
-        >
-          <Form onSubmit={editUserInfo} autoComplete="off">
-            <Form.Group controlId="formBasicTitle">
-              <Form.Label className="form-label">First Name</Form.Label>
-              <Form.Control
-                size="lg"
-                type="text"
-                value={userInfo.firstName}
-                htmlFor="firstName"
-                name="firstName"
-                required
-                onChange={onChangeInput}
-              />
-            </Form.Group>
-
-            <Form.Group controlId="formBasicCategory">
-              <Form.Label className="form-label">Last Name</Form.Label>
-              <Form.Control
-                size="lg"
-                type="text"
-                value={userInfo.lastName}
-                htmlFor="lastName"
-                name="lastName"
-                required
-                rows="10"
-                onChange={onChangeInput}
-              />
-            </Form.Group>
-            <Form.Group controlId="formBasicCategory">
-              <Form.Label className="form-label">Email</Form.Label>
-              <Form.Control
-                size="lg"
-                type="text"
-                value={userInfo.email}
-                htmlFor="email"
-                name="email"
-                required
-                rows="10"
-                onChange={onChangeInput}
-              />
-            </Form.Group>
-            <br></br>
-            <Button size="lg" variant="dark btn-block" type="submit">
-              Update User Info
-            </Button>
-          </Form>
-        </Col>
+      <Row className="mt-5">
+        <Form onSubmit={editUserInfo}>
+          <div className="container">
+            <div className="col-md-6 mx-auto text-center">
+              <div className="header-title">
+                <h1 className="wv-heading--title"> Edit User Info</h1>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-4 mx-auto">
+                <div className="myform form ">
+                  <div className="form-group">
+                    <Form.Group controlId="formBasicEmail">
+                      <Form.Control
+                        size="lg"
+                        type="text"
+                        value={userInfo.firstName}
+                        htmlFor="firstName"
+                        name="firstName"
+                        required
+                        onChange={onChangeInput}
+                      />
+                    </Form.Group>
+                  </div>
+                  <br></br>
+                  <div className="form-group">
+                    <Form.Control
+                      size="lg"
+                      type="text"
+                      value={userInfo.lastName}
+                      htmlFor="lastName"
+                      name="lastName"
+                      required
+                      rows="10"
+                      onChange={onChangeInput}
+                    />
+                  </div>
+                  <br></br>
+                  <div className="form-group">
+                    <Form.Control
+                      size="lg"
+                      type="text"
+                      value={userInfo.email}
+                      htmlFor="email"
+                      name="email"
+                      required
+                      rows="10"
+                      onChange={onChangeInput}
+                    />
+                  </div>
+                  <br></br>
+                  <div className="text-center ">
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="bg-dark btn btn-block send-button tx-tfm"
+                    >
+                      Edit Info
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Form>
       </Row>
-     
     </Container>
   );
 }

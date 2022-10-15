@@ -63,7 +63,7 @@ export default function Note() {
       {notes != "" ? (
         notes.map((note, index) => (
           <Container key={index}>
-            <Accordion defaultActiveKey="0" style={{marginTop:20}}>
+            <Accordion defaultActiveKey="0" style={{ marginTop: 20 }}>
               <Accordion.Item eventKey="0">
                 <Accordion.Header>
                   <MdSubtitles /> {note.category}
@@ -109,7 +109,7 @@ export default function Note() {
         ))
       ) : (
         <h2>
-          <FaNotEqual /> You have zero notes!
+          <FaNotEqual /> You have zero notes! Please Create Note
         </h2>
       )}
     </div>

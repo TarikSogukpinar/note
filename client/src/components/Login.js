@@ -8,7 +8,7 @@ import "../styles/Login.css";
 export default function Login({ setLoginUser }) {
   const [data, setData] = useState({ email: "", password: "" });
   const [openSnackbar] = useSnackbar();
-  
+
   const handleChange = (key) => (value) => {
     let valueTemp = value?.target ? value?.target?.value : value;
     setData({ ...data, [key]: valueTemp });
@@ -34,54 +34,77 @@ export default function Login({ setLoginUser }) {
   return (
     <>
       <Container>
-        <h1 className="login-text text-dark  text-warning mt-3 p-5 text-center rounded">
-          <GrLogin /> Login
-        </h1>
         <Row className="mt-5">
-          <Col
-            lg={5}
-            md={6}
-            sm={12}
-            className="p-5 m-auto shadow-lg rounded-lg"
-            style={{ borderRadius: "15px" }}
-          >
-            <Form onSubmit={handleLogin}>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label className="form-label">Email address</Form.Label>
-                <Form.Control
-                  size="lg"
-                  name="email"
-                  type="email"
-                  onChange={handleChange("email")}
-                  placeholder="Enter email"
-                  required
-                />
-              </Form.Group>
-
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label className="form-label">Password</Form.Label>
-                <Form.Control
-                  size="lg"
-                  name="password"
-                  type="password"
-                  onChange={handleChange("password")}
-                  placeholder="Password"
-                  required
-                />
-              </Form.Group>
-              <br></br>
-              <Button size="lg" variant="dark btn-block" type="submit">
-                Login
-              </Button>
-
-              <div className="login-register">
-                New User? <a href="/register">Register</a>{" "}
+          <Form onSubmit={handleLogin}>
+            <div className="container">
+              <div className="col-md-6 mx-auto text-center">
+                <div className="header-title">
+                  <h1 className="wv-heading--title">
+                    {" "}
+                    <GrLogin /> Login
+                  </h1>
+                </div>
               </div>
-              <div className="login-register">
-                <a href="/forget-password">Forget Password</a>{" "}
+              <div className="row">
+                <div className="col-md-4 mx-auto">
+                  <div className="myform form ">
+                    <div className="form-group">
+                      <Form.Group controlId="formBasicEmail">
+                        <Form.Control
+                          size="lg"
+                          name="email"
+                          type="email"
+                          onChange={handleChange("email")}
+                          placeholder="Enter email"
+                          required
+                        />
+                      </Form.Group>
+                    </div>
+                    <br></br>
+                    <div className="form-group">
+                      <Form.Control
+                        size="lg"
+                        name="password"
+                        type="password"
+                        onChange={handleChange("password")}
+                        placeholder="Password"
+                        required
+                      />
+                    </div>
+                    <br></br>
+                    <div className="text-center ">
+                      <Button
+                        type="submit"
+                        size="lg"
+                        className="bg-dark btn btn-block send-button tx-tfm"
+                      >
+                        Login
+                      </Button>
+                    </div>
+                    <div className="col-md-12 ">
+                      <div className="login-or">
+                        <hr className="hr-or" />
+                        <span className="span-or">or</span>
+                      </div>
+                    </div>
+
+                    <p className="small mt-3">
+                      <div className="login-register">
+                        New User? <a href="/register">Register</a>{" "}
+                      </div>
+                      <div className="login-register">
+                        <a href="/forget-password">Forget Password</a>{" "}
+                      </div>
+                      <a href="#" className="ps-hero__content__link">
+                        Terms&nbsp;of&nbsp;Use
+                      </a>{" "}
+                      and <a href="#">Privacy&nbsp;Policy</a>.
+                    </p>
+                  </div>
+                </div>
               </div>
-            </Form>
-          </Col>
+            </div>
+          </Form>
         </Row>
       </Container>
     </>

@@ -5,7 +5,9 @@ import "../styles/CreateNote.css";
 import { AddNote } from "../services/noteService";
 import { FaStickyNote } from "react-icons/fa";
 import { useSnackbar } from "react-simple-snackbar";
+
 export default function CreateNote() {
+
   const [data, setData] = useState({ title: "", content: "", category: "" });
   const [openSnackbar] = useSnackbar();
   const handleChange = (key) => (value) => {
@@ -37,61 +39,82 @@ export default function CreateNote() {
   return (
     <Container>
       <Row className="mt-5">
-        <Col
-          lg={5}
-          md={6}
-          sm={12}
-          className="p-5 m-auto"
-          style={{ borderRadius: "15px" }}
-        >
-          <Form onSubmit={handleAddNote}>
-            <h1 className="note-text">
-              <FaStickyNote /> Create New Note
-            </h1>
-            <br></br>
-            <Form.Group className="mb-3" controlId="formBasicTitle">
-              <Form.Label className="note-titles">Title</Form.Label>
-              <Form.Control
-                size="lg"
-                name="title"
-                type="text"
-                onChange={handleChange("title")}
-                placeholder="Enter Title"
-                required
-              />
-            </Form.Group>
+        <Form onSubmit={handleAddNote}>
+          <div className="container">
+            <div className="col-md-6 mx-auto text-center">
+              <div className="header-title">
+                <h1 className="wv-heading--title">
+                  {" "}
+                  <FaStickyNote /> Create New Note
+                </h1>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-4 mx-auto">
+                <div className="myform form ">
+                  <div className="form-group">
+                    <Form.Group controlId="formBasicEmail">
+                      <Form.Control
+                        size="lg"
+                        name="title"
+                        type="text"
+                        onChange={handleChange("title")}
+                        placeholder="Enter Title"
+                        required
+                      />
+                    </Form.Group>
+                  </div>
+                  <br></br>
+                  <div className="form-group">
+                    <Form.Control
+                      size="lg"
+                      name="category"
+                      onChange={handleChange("category")}
+                      type="text"
+                      placeholder="Category"
+                      required
+                    />
+                  </div>
+                  <br></br>
+                  <div className="form-group">
+                    <Form.Control
+                      size="lg"
+                      name="content"
+                      onChange={handleChange("content")}
+                      type="text"
+                      placeholder="Content"
+                      as="textarea"
+                      rows={3}
+                      required
+                    />
+                  </div>
+                  <br></br>
+                  <div className="text-center ">
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="bg-dark btn btn-block send-button tx-tfm"
+                    >
+                      Create Note
+                    </Button>
+                  </div>
+                  <div className="col-md-12 ">
+                    <div className="login-or">
+                      <hr className="hr-or" />
+                      <span className="span-or">or</span>
+                    </div>
+                  </div>
 
-            <Form.Group className="mb-4" controlId="formBasicContent">
-              <Form.Label className="note-titles">Category</Form.Label>
-              <Form.Control
-                size="lg"
-                name="category"
-                onChange={handleChange("category")}
-                type="text"
-                placeholder="Category"
-                required
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label className="note-titles">Content</Form.Label>
-              <Form.Control
-                size="lg"
-                name="content"
-                onChange={handleChange("content")}
-                type="text"
-                placeholder="Content"
-                as="textarea"
-                rows={3}
-              />
-            </Form.Group>
-            <Button size="md" variant="dark" type="submit">
-              Create Note
-            </Button>
-          </Form>
-        </Col>
+                  <p className="small mt-3">
+                    <div className="login-register">
+                      <a href="/notes">Back Notes</a>{" "}
+                    </div>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Form>
       </Row>
     </Container>
   );

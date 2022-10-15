@@ -12,6 +12,8 @@ import Contact from "./Contact";
 import ForgetPassword from "./ForgetPassword";
 import Faq from "./Faq";
 import EditUserInfo from "./EditUserInfo";
+import PasswordReset from "./PasswordReset";
+import EmailVerify from "./EmailVerify";
 
 export default function Dashboard() {
   return (
@@ -22,6 +24,14 @@ export default function Dashboard() {
         <Route
           path="/forget-password"
           element={<ForgetPassword></ForgetPassword>}
+        ></Route>
+        <Route
+          path="/password-reset/:id/:token"
+          element={<PasswordReset></PasswordReset>}
+        ></Route>
+        <Route
+          path="/user/:id/verify/:token"
+          element={<EmailVerify></EmailVerify>}
         ></Route>
         <Route
           exact

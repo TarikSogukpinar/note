@@ -46,86 +46,99 @@ export default function Contact() {
 
   return (
     <>
-      <br></br>
-      <br></br>
+    
 
-      <h1 className="login-text text-dark  text-warning mt-6 p-3 text-center rounded">
-        <IoMdContacts /> Contact Us
-        <h3>You can contact us with any questions.</h3>
-      </h1>
-      <Container fluid="md">
+      <Container>
         <Row className="mt-5">
-          <Col
-            lg={5}
-            md={6}
-            sm={12}
-            className="p-5 m-auto shadow-lg rounded-lg"
-            style={{ borderRadius: "15px" }}
-          >
-            <Form onSubmit={handleContact}>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label className="form-label">Title</Form.Label>
-                <Form.Control
-                  size="lg"
-                  name="title"
-                  type="text"
-                  onChange={handleChange("title")}
-                  placeholder="Enter Title"
-                  required
-                />
-              </Form.Group>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label className="form-label">Email address</Form.Label>
-                <Form.Control
-                  size="lg"
-                  name="email"
-                  type="email"
-                  placeholder="note@info.com"
-                  onChange={handleChange("email")}
-                  required
-                />
-              </Form.Group>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label className="form-label">Description</Form.Label>
-                <Form.Control
-                  size="lg"
-                  name="descrition"
-                  type="text"
-                  placeholder="Description"
-                  onChange={handleChange("description")}
-                  as="textarea"
-                  rows={6}
-                  required
-                />
-              </Form.Group>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label className="form-label">Github</Form.Label>
-                <Form.Control
-                  size="lg"
-                  name="github"
-                  type="text"
-                  placeholder="Github"
-                  onChange={handleChange("github")}
-                  required
-                />
-              </Form.Group>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label className="form-label">Linkedin</Form.Label>
-                <Form.Control
-                  size="lg"
-                  name="github"
-                  type="text"
-                  placeholder="Linkedin"
-                  onChange={handleChange("linkedin")}
-                  required
-                />
-              </Form.Group>
-              <br></br>
-              <Button size="lg" variant="dark btn-block" type="submit">
-                Send Contact
-              </Button>
-            </Form>
-          </Col>
+          <Form onSubmit={handleContact}>
+            <div className="container">
+              <div className="col-md-6 mx-auto text-center">
+                <div className="header-title">
+                  <h1 className="wv-heading--title">
+                    {" "}
+                    <IoMdContacts /> Contact
+                    <h3>You can contact us with any questions.</h3>
+                  </h1>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-4 mx-auto">
+                  <div className="myform form ">
+                    <div className="form-group">
+                      <Form.Group controlId="formBasicEmail">
+                        <Form.Control
+                          size="lg"
+                          name="title"
+                          type="text"
+                          onChange={handleChange("title")}
+                          placeholder="Enter Title"
+                          required
+                        />
+                      </Form.Group>
+                    </div>
+                    <br></br>
+                    <div className="form-group">
+                      <Form.Control
+                        size="lg"
+                        name="email"
+                        type="email"
+                        placeholder="note@info.com"
+                        onChange={handleChange("email")}
+                        required
+                      />
+                    </div>
+                    <br></br>
+                    <div className="form-group">
+                      <Form.Control
+                        size="lg"
+                        name="descrition"
+                        type="text"
+                        placeholder="Description"
+                        onChange={handleChange("description")}
+                        as="textarea"
+                        rows={6}
+                        required
+                      />
+                    </div>
+                    <br></br>
+                    <div className="form-group">
+                      <Form.Control
+                        size="lg"
+                        name="github"
+                        type="text"
+                        placeholder="Github"
+                        onChange={handleChange("github")}
+                        required
+                      />
+                    </div>
+                    <br></br>
+                    <div className="form-group">
+                      <Form.Control
+                        size="lg"
+                        name="github"
+                        type="text"
+                        placeholder="Linkedin"
+                        onChange={handleChange("linkedin")}
+                        required
+                      />
+                    </div>
+                    <br></br>
+                    <br></br>
+                    <div className="text-center ">
+                      <Button
+                        type="submit"
+                        size="lg"
+                        className="bg-dark btn btn-block send-button tx-tfm"
+                      >
+                        Send Contact
+                      </Button>
+                    </div>
+                    <br></br>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Form>
         </Row>
       </Container>
     </>

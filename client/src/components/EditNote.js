@@ -62,64 +62,75 @@ export default function EditNote() {
 
   return (
     <Container>
-      <h1 className="login-text text-dark text-warning mt-5 p-3 text-center rounded">
-        <FaUserEdit /> Edit Note
-      </h1>
-      <Row>
-        <Col
-          lg={5}
-          md={6}
-          sm={12}
-          className="p-5 m-auto shadow-lg rounded-lg"
-          style={{ borderRadius: "15px" }}
-        >
-          <Form onSubmit={editNote} autoComplete="off">
-            <Form.Group controlId="formBasicTitle">
-              <Form.Label className="form-label">Title</Form.Label>
-              <Form.Control
-                size="lg"
-                type="text"
-                value={note.title}
-                htmlFor="title"
-                name="title"
-                required
-                onChange={onChangeInput}
-              />
-            </Form.Group>
-
-            <Form.Group controlId="formBasicCategory">
-              <Form.Label className="form-label">Category</Form.Label>
-              <Form.Control
-                size="lg"
-                type="text"
-                value={note.category}
-                htmlFor="category"
-                name="category"
-                required
-                rows="10"
-                onChange={onChangeInput}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicContent">
-              <Form.Label className="form-label">Content</Form.Label>
-              <Form.Control
-                size="lg"
-                type="text"
-                value={note.content}
-                htmlFor="content"
-                name="content"
-                as="textarea"
-                required
-                rows={6}
-                onChange={onChangeInput}
-              />
-            </Form.Group>
-            <br></br>
-            <Button size="lg" variant="dark btn-block" type="submit">
-              Save Note
-            </Button>
-          </Form>
-        </Col>
+      <Row className="mt-5">
+        <Form onSubmit={editNote}>
+          <div className="container">
+            <div className="col-md-6 mx-auto text-center">
+              <div className="header-title">
+                <h1 className="wv-heading--title">
+                  {" "}
+                  <FaUserEdit /> Edit Note
+                </h1>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-4 mx-auto">
+                <div className="myform form ">
+                  <div className="form-group">
+                    <Form.Group controlId="formBasicEmail">
+                      <Form.Control
+                        size="lg"
+                        type="text"
+                        value={note.title}
+                        htmlFor="title"
+                        name="title"
+                        required
+                        onChange={onChangeInput}
+                      />
+                    </Form.Group>
+                  </div>
+                  <br></br>
+                  <div className="form-group">
+                    <Form.Control
+                      size="lg"
+                      type="text"
+                      value={note.category}
+                      htmlFor="category"
+                      name="category"
+                      required
+                      rows="10"
+                      onChange={onChangeInput}
+                    />
+                  </div>
+                  <br></br>
+                  <div className="form-group">
+                    <Form.Control
+                      size="lg"
+                      type="text"
+                      value={note.content}
+                      htmlFor="content"
+                      name="content"
+                      as="textarea"
+                      required
+                      rows={6}
+                      onChange={onChangeInput}
+                    />
+                  </div>
+                  <br></br>
+                  <div className="text-center ">
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="bg-dark btn btn-block send-button tx-tfm"
+                    >
+                      Save Note
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Form>
       </Row>
     </Container>
   );

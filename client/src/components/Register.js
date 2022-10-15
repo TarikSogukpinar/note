@@ -10,7 +10,7 @@ export default function Register() {
     firstName: "",
     lastName: "",
     email: "",
-    password: ""
+    password: "",
   });
   const [openSnackbar, closeSnackbar] = useSnackbar();
 
@@ -37,73 +37,97 @@ export default function Register() {
   return (
     <>
       <Container>
-        <h1 className="login-text text-dark  text-warning mt-5 p-3 text-center rounded">
-          <FaRegPaperPlane /> Register
-        </h1>
-        <Row className="mt-5">
-          <Col
-            lg={5}
-            md={6}
-            sm={12}
-            className="p-5 m-auto shadow-lg rounded-lg"
-            style={{ borderRadius: "15px" }}
-          >
-            <Form onSubmit={handleRegister}>
-              <Form.Group controlId="formBasicfirstName">
-                <Form.Label className="form-label">First Name</Form.Label>
-                <Form.Control
-                  size="lg"
-                  name="firstName"
-                  type="text"
-                  onChange={handleChange("firstName")}
-                  placeholder="First Name"
-                  required
-                />
-              </Form.Group>
-              <Form.Group controlId="formBasiclastName">
-                <Form.Label className="form-label">Last Name</Form.Label>
-                <Form.Control
-                  size="lg"
-                  name="lastName"
-                  type="text"
-                  onChange={handleChange("lastName")}
-                  placeholder="Last Name"
-                  required
-                />
-              </Form.Group>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label className="form-label">Email address</Form.Label>
-                <Form.Control
-                  size="lg"
-                  name="email"
-                  onChange={handleChange("email")}
-                  type="email"
-                  placeholder="Enter email"
-                  required
-                />
-              </Form.Group>
+        <Form onSubmit={handleRegister}>
+          <Row className="mt-5">
+            <div className="container">
+              <div className="col-md-6 mx-auto text-center">
+                <div className="header-title">
+                  <h1 className="wv-heading--title">
+                    {" "}
+                    <FaRegPaperPlane /> Register
+                  </h1>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-4 mx-auto">
+                  <div className="myform form ">
+                    <div className="form-group">
+                      <Form.Group controlId="formBasicEmail">
+                        <Form.Control
+                          size="lg"
+                          name="firstName"
+                          type="text"
+                          onChange={handleChange("firstName")}
+                          placeholder="First Name"
+                          required
+                        />
+                      </Form.Group>
+                    </div>
+                    <br></br>
+                    <div className="form-group">
+                      <Form.Control
+                        size="lg"
+                        name="lastName"
+                        type="text"
+                        onChange={handleChange("lastName")}
+                        placeholder="Last Name"
+                        required
+                      />
+                    </div>
+                    <br></br>
+                    <div className="form-group">
+                      <Form.Control
+                        size="lg"
+                        name="email"
+                        type="email"
+                        onChange={handleChange("email")}
+                        placeholder="Email"
+                        required
+                      />
+                    </div>
+                    <br></br>
 
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label className="form-label">Password</Form.Label>
-                <Form.Control
-                  size="lg"
-                  name="password"
-                  type="password"
-                  onChange={handleChange("password")}
-                  placeholder="Password"
-                  required
-                />
-              </Form.Group>
-              <br></br>
-              <Button size="lg" variant="dark btn-block" type="submit">
-                Register
-              </Button>
-            </Form>
-            <div className="register-register">
-              Already Register? <a href="/login">Login</a>{" "}
+                    <div className="form-group">
+                      <Form.Control
+                        size="lg"
+                        name="password"
+                        type="password"
+                        onChange={handleChange("password")}
+                        placeholder="Password"
+                        required
+                      />
+                    </div>
+                    <br></br>
+                    <div className="text-center ">
+                      <Button
+                        type="submit"
+                        size="lg"
+                        className="bg-dark btn btn-block send-button tx-tfm"
+                      >
+                        Register
+                      </Button>
+                    </div>
+                    <div className="col-md-12 ">
+                      <div className="login-or">
+                        <hr className="hr-or" />
+                        <span className="span-or">or</span>
+                      </div>
+                    </div>
+
+                    <p className="small mt-3">
+                      <div className="register-register">
+                        Already Register? <a href="/login">Login</a>{" "}
+                      </div>
+                      <div className="register-register">
+                        <a href="/faq">FAQ</a>{" "}
+                      </div>
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-          </Col>
-        </Row>
+          </Row>
+        </Form>
       </Container>
     </>
   );
