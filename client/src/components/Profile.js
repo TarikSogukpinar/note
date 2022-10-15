@@ -31,7 +31,6 @@ export default function Profile() {
       {userInfo.map((userInfos, index) => (
         <Container key={index}>
           <div className="container-xl px-4 mt-4">
-            {/* Account page navigation*/}
             <h1 className="wv-heading--title">
               {" "}
               <FiSettings /> User Settings
@@ -40,10 +39,7 @@ export default function Profile() {
             <hr className="mt-0 mb-4" />
             <div className="row">
               <div className="col">
-                {/* Account details card*/}
-
                 <form>
-                  {/* Form Group (username)*/}
                   <div className="mb-3">
                     <label className="small mb-1" htmlFor="inputUsername">
                       Email Address
@@ -56,9 +52,8 @@ export default function Profile() {
                       value={userInfos.email}
                     />
                   </div>
-                  {/* Form Row*/}
+
                   <div className="row gx-3 mb-3">
-                    {/* Form Group (first name)*/}
                     <div className="col-md-6">
                       <label className="small mb-1" htmlFor="inputFirstName">
                         First name
@@ -71,7 +66,7 @@ export default function Profile() {
                         value={userInfos.firstName}
                       />
                     </div>
-                    {/* Form Group (last name)*/}
+
                     <div className="col-md-6">
                       <label className="small mb-1" htmlFor="inputLastName">
                         Last name
@@ -110,7 +105,6 @@ export default function Profile() {
                     </div>
                   </div>
 
-                  {/* Save changes button*/}
                   <Button
                     href={`/editUserInfo/${userInfos._id}`}
                     className="bg-dark btn  "

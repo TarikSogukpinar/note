@@ -8,10 +8,16 @@ import initLimit from "./helpers/limiter/limiter.js";
 import connectionDatabase from "./helpers/connectionDatabase/connectDatabase.js";
 import { initRoutes } from "./routes/index.routes.js";
 import cookieParser from "cookie-parser";
+import swaggerUi from "swagger-ui-express";
+import swaggerDocument from "./swagger.json" assert { type: "json" };
 
 dotenv.config();
 
+//swagger-docs
+
+
 const app = express();
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());

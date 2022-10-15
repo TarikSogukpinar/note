@@ -154,12 +154,11 @@ const newPasswordPost = asyncHandler(async (req, res) => {
 });
 
 
-
 const deleteUser = asyncHandler(async (req, res) => {
   const { id } = req.body;
   try {
     const user = await User.findByIdAndRemove(req.params.id);
-    res.status(200).json("account deleted" + user);
+    res.status(200).json("Account deleted" + user);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: true, message: error.message });

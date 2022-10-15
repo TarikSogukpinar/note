@@ -11,6 +11,7 @@ export default function Register() {
     lastName: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
   const [openSnackbar, closeSnackbar] = useSnackbar();
 
@@ -20,6 +21,7 @@ export default function Register() {
   };
   const handleRegister = (e) => {
     e.preventDefault();
+
     registerUser(data.firstName, data.lastName, data.email, data.password)
       .then((res) => {
         openSnackbar("Register Success! Redirect Login Page");
@@ -94,6 +96,17 @@ export default function Register() {
                         type="password"
                         onChange={handleChange("password")}
                         placeholder="Password"
+                        required
+                      />
+                    </div>
+                    <br></br>
+                    <div className="form-group">
+                      <Form.Control
+                        size="lg"
+                        name="password"
+                        type="password"
+                        onChange={handleChange("password")}
+                        placeholder="Confirm Password"
                         required
                       />
                     </div>
