@@ -92,7 +92,10 @@ const passwordReset = asyncHandler(async (req, res) => {
 
     res
       .status(200)
-      .send({ message: "Password reset link sent to your email account" });
+      .send({
+        error: false,
+        message: "Password reset link sent to your email account",
+      });
   } catch (error) {
     console.log(error);
     res.status(500).send({ error: true, message: "Internal Server Error" });

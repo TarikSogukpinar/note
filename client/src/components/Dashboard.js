@@ -48,13 +48,11 @@ export default function Dashboard() {
           path="/profile"
           element={<ProfilePrivateRoutes></ProfilePrivateRoutes>}
         ></Route>
-
         <Route
           exact
           path="/editUserInfo/:id"
           element={<EditUserInfoPrivateRoutes></EditUserInfoPrivateRoutes>}
         ></Route>
-
         <Route
           exact
           path="/notes"

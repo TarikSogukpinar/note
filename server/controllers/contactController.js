@@ -22,7 +22,9 @@ const createContact = asyncHandler(async (req, res) => {
 
     await newContact.save();
 
-    res.status(201).json({ message: "New Contact Form Created!" });
+    res
+      .status(201)
+      .json({ error: false, message: "New Contact Form Created!" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: true, message: error.message });

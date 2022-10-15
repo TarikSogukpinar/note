@@ -19,3 +19,7 @@ export const getUserById = async (id) => {
     { withCredentials: true }
   );
 };
+
+export const resetPassword = async () => {
+  return await axios.post(`http://localhost:5000/api/user/reset-password`);
+};
