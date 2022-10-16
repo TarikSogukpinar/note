@@ -66,7 +66,7 @@ If you have any feedback, please reach out to us at e.taylankalkan@hotmail.com &
 
 ## Screenshots
 
-![App Screenshot](https://cdn.discordapp.com/attachments/996926716540878951/1021935852072484894/unknown.png)
+![App Screenshot](https://cdn.discordapp.com/attachments/996926716540878951/1031226164171243590/FireShot_Capture_002_-_Note_App_-_localhost.png)
 
 ![App Screenshot](https://cdn.discordapp.com/attachments/996926716540878951/1021935709285789828/unknown.png)
 
