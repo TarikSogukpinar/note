@@ -68,6 +68,12 @@ If you have any feedback, please reach out to us at e.taylankalkan@hotmail.com &
 
 ![App Screenshot](https://cdn.discordapp.com/attachments/996926716540878951/1031226164171243590/FireShot_Capture_002_-_Note_App_-_localhost.png)
 
+![App Screenshot](https://cdn.discordapp.com/attachments/996926716540878951/1031226409638699119/FireShot_Capture_007_-_Note_App_-_localhost.png)
+
+![App Screenshot](https://cdn.discordapp.com/attachments/996926716540878951/1031226566304333874/FireShot_Capture_003_-_Note_App_-_localhost.png)
+
+![App Screenshot](https://cdn.discordapp.com/attachments/996926716540878951/1031226636059815997/FireShot_Capture_004_-_Note_App_-_localhost.png)
+
 ![App Screenshot](https://cdn.discordapp.com/attachments/996926716540878951/1021935709285789828/unknown.png)
 
 ![App Screenshot](https://cdn.discordapp.com/attachments/996926716540878951/1021935799601733733/unknown.png)
