@@ -5,4 +5,5 @@ const router = Router();
 
 router.post("/login", loginController.loginUser);
 router.get("/logout", loginController.logoutUser);
+
 export default router;
