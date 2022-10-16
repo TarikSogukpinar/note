@@ -52,7 +52,7 @@ const loginUser = asyncHandler(async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: true, message: "Internal Server Error" });
+    res.status(500).json({ error: true, message: error.message });
   }
 });
 
@@ -62,7 +62,7 @@ const logoutUser = asyncHandler(async (req, res) => {
     return res.status(200).json({ message: "Logout success!" });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: true, message: "Internal Server Error" });
+    res.status(500).json({ error: true, message: error.message });
   }
 });
 

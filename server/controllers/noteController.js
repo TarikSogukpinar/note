@@ -30,7 +30,8 @@ const getNotes = asyncHandler(async (req, res) => {
 
     res.json(result);
   } catch (error) {
-    return res.status(500).json({ error: true, message: error.message });
+    console.log(error);
+    res.status(500).json({ error: true, message: error.message });
   }
 });
 
@@ -103,7 +104,8 @@ const deleteNote = asyncHandler(async (req, res) => {
     await Note.findByIdAndDelete(req.params.id);
     res.json({ message: "Note deleted" });
   } catch (error) {
-    return res.status(500).json({ error: true, message: error.message });
+    console.log(error);
+    res.status(500).json({ error: true, message: error.message });
   }
 });
 
@@ -133,7 +135,8 @@ const updateNote = asyncHandler(async (req, res) => {
 
     res.status(200).json(note);
   } catch (error) {
-    return res.status(500).json({ error: true, message: error.message });
+    console.log(error);
+    res.status(500).json({ error: true, message: error.message });
   }
 });
 

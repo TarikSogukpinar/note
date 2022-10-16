@@ -15,7 +15,7 @@ const registerUser = asyncHandler(async (req, res) => {
     if (emailExist) {
       return res.status(400).json({
         error: true,
-        message: "You cannot register, email already exist"
+        message: "You cannot register, email already exist",
       });
     }
     const hashedPass = await bcrypt.hashSync(req.body.password, 10);
@@ -24,11 +24,11 @@ const registerUser = asyncHandler(async (req, res) => {
 
     res.status(201).json({
       error: false,
-      message: "Account created sucessfully"
+      message: "Account created sucessfully",
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: true, message: "Internal Server Error" });
+    res.status(500).json({ error: true, message: error.message });
   }
 });
 

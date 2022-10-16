@@ -66,7 +66,6 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 });
 
-// send password link
 const passwordReset = asyncHandler(async (req, res) => {
   try {
     const { error } = passwordResetValidationSchema(req.body);
@@ -96,13 +95,11 @@ const passwordReset = asyncHandler(async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).send({ error: true, message: "Internal Server Error" });
+    res.status(500).send({ error: true, message: error.message });
   }
 });
 
-//set new password get
-
-const newPasswordGet = asyncHandler(async (req, res) => {
+const newPasswordGetByToken = asyncHandler(async (req, res) => {
   const { id, token } = req.params;
 
   const { error } = newPasswordValidationSchema(req.body);
@@ -121,13 +118,11 @@ const newPasswordGet = asyncHandler(async (req, res) => {
     return res.json({ message: "Verified!" });
   } catch (error) {
     console.log(error);
-    res.json({ message: "Not Verified!" });
+    res.status(500).send({ error: true, message: error.message });
   }
 });
 
-//set new password post
-
-const newPasswordPost = asyncHandler(async (req, res) => {
+const newPasswordPostByToken = asyncHandler(async (req, res) => {
   const { id, token } = req.params;
   const { password } = req.body;
   const user = await User.findOne({ _id: id });
@@ -150,18 +145,17 @@ const newPasswordPost = asyncHandler(async (req, res) => {
     );
   } catch (error) {
     console.log(error);
-    res.json({ status: "Someting Went Wrong!" });
+    res.status(500).send({ error: true, message: error.message });
   }
 });
 
 const deleteUser = asyncHandler(async (req, res) => {
-  // const { id } = req.body;
   try {
     const user = await User.findByIdAndDelete(req.params.id);
     res.status(200).json("Account Deleted" + user);
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ error: true, message: error.message });
+    res.status(500).send({ error: true, message: error.message });
   }
 });
 
@@ -172,6 +166,6 @@ export default {
   getUser,
   getUserById,
   passwordReset,
-  newPasswordGet,
-  newPasswordPost,
+  newPasswordGetByToken,
+  newPasswordPostByToken,
 };
