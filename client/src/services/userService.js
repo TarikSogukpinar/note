@@ -23,3 +23,11 @@ export const getUserById = async (id) => {
 export const resetPassword = async () => {
   return await axios.post(`http://localhost:5000/api/user/reset-password`);
 };
+
+export const deleteUsers = async (id) => {
+  return await axios.delete(
+    `http://localhost:5000/api/user/delete/${id}`,
+
+    { withCredentials: true }
+  );
+};

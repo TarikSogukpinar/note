@@ -92,10 +92,7 @@ export default function Main() {
             <div className="col-lg-6 order-lg-1">
               <div className="p-5">
                 <p className="display-3"> Free to Use</p>
-                <h4>
-                  We securely store your user password. You don't have to worry
-                  about it!
-                </h4>
+                <h4>This app is completely free. You will not pay any fees</h4>
               </div>
             </div>
           </div>
@@ -135,8 +132,14 @@ export default function Main() {
               <div className="p-5">
                 <p className="display-3"> Open Source</p>
                 <h4>
-                  We securely store your user password. You don't have to worry
-                  about it!
+                  This app is completely open source. You can find all the codes
+                  on{" "}
+                  <a
+                    href="https://github.com/TarikSogukpinar/note"
+                    target={"_blank"}
+                  >
+                    github.
+                  </a>
                 </h4>
               </div>
             </div>

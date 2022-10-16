@@ -13,11 +13,11 @@ import swaggerDocument from "./swagger.json" assert { type: "json" };
 
 dotenv.config();
 
-//swagger-docs
-
 
 const app = express();
+//swagger-docs
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());

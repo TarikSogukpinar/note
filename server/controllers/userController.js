@@ -90,12 +90,10 @@ const passwordReset = asyncHandler(async (req, res) => {
     const url = `http://localhost:3000/password-reset/${user._id}/${token}/`;
     await sendEmail(user.email, "Password Reset", url);
 
-    res
-      .status(200)
-      .send({
-        error: false,
-        message: "Password reset link sent to your email account",
-      });
+    res.status(200).send({
+      error: false,
+      message: "Password reset link sent to your email account",
+    });
   } catch (error) {
     console.log(error);
     res.status(500).send({ error: true, message: "Internal Server Error" });
@@ -156,12 +154,11 @@ const newPasswordPost = asyncHandler(async (req, res) => {
   }
 });
 
-
 const deleteUser = asyncHandler(async (req, res) => {
-  const { id } = req.body;
+  // const { id } = req.body;
   try {
-    const user = await User.findByIdAndRemove(req.params.id);
-    res.status(200).json("Account deleted" + user);
+    const user = await User.findByIdAndDelete(req.params.id);
+    res.status(200).json("Account Deleted" + user);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: true, message: error.message });

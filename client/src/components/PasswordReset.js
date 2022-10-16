@@ -1,5 +1,6 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { GrPowerReset } from "react-icons/gr";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -42,7 +43,9 @@ export default function PasswordReset() {
             <div className="container">
               <div className="col-md-6 mx-auto text-center">
                 <div className="header-title">
-                  <h1 className="wv-heading--title"> Reset Password</h1>
+                  <h1 className="wv-heading--title">
+                    <GrPowerReset /> Reset Password
+                  </h1>
                 </div>
               </div>
               <div className="row">

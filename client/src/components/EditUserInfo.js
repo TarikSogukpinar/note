@@ -30,7 +30,7 @@ export default function EditUserInfo() {
       }
     };
     getInfos();
-    console.log(userInfo);
+
   }, [id]);
 
   const onChangeInput = (e) => {

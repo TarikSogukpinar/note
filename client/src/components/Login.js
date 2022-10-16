@@ -95,10 +95,7 @@ export default function Login({ setLoginUser }) {
                       <div className="login-register">
                         <a href="/forget-password">Forget Password</a>{" "}
                       </div>
-                      <a href="#" className="ps-hero__content__link">
-                        Terms&nbsp;of&nbsp;Use
-                      </a>{" "}
-                      and <a href="#">Privacy&nbsp;Policy</a>.
+                       <a href="/faq">FAQ&nbsp;</a>
                     </p>
                   </div>
                 </div>

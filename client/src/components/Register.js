@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Container, Form, Row } from "react-bootstrap";
 import { FaRegPaperPlane } from "react-icons/fa";
 import { registerUser } from "../services/authService";
 import { useSnackbar } from "react-simple-snackbar";
@@ -11,7 +11,6 @@ export default function Register() {
     lastName: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
   const [openSnackbar, closeSnackbar] = useSnackbar();
 
@@ -99,17 +98,7 @@ export default function Register() {
                         required
                       />
                     </div>
-                    <br></br>
-                    <div className="form-group">
-                      <Form.Control
-                        size="lg"
-                        name="password"
-                        type="password"
-                        onChange={handleChange("password")}
-                        placeholder="Confirm Password"
-                        required
-                      />
-                    </div>
+
                     <br></br>
                     <div className="text-center ">
                       <Button

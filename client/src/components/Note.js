@@ -18,7 +18,7 @@ export default function Note() {
     const res = await axios.get("http://localhost:5000/api/notes/getNotes", {
       withCredentials: true,
     });
-    console.log(res.data);
+  
     setNotes(res.data);
   };
 
