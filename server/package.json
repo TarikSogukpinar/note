@@ -31,7 +31,7 @@
     "mongoose": "^5.13.15",
     "nodemailer": "^6.8.0",
     "swagger-autogen": "^2.22.0",
-    "swagger-ui-express": "^4.5.0",
+    "swagger-ui-express": "^4.6.0",
     "update": "^0.7.4",
     "winston": "^3.8.1",
     "winston-mail": "^2.0.0",
