@@ -1,32 +1,31 @@
 import mongoose from "mongoose";
 import moment from "moment";
 
-
 const noteSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     content: {
       type: String,
-      required: true
+      required: true,
     },
     category: {
       type: String,
-      required: true
+      required: true,
     },
     user_id: {
       type: String,
-      required: true
+      required: true,
     },
     createdAt: {
       type: String,
-      default: moment().format("MMMM Do YYYY, h:mm:ss a")
-    }
+      default: moment().format("MMMM Do YYYY, h:mm:ss a"),
+    },
   },
   {
-    versionKey: false
+    versionKey: false,
   }
 );
 

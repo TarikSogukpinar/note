@@ -2,8 +2,6 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import moment from "moment";
 
-
-
 const userSchema = new mongoose.Schema(
   {
     firstName: { type: String, required: true },
