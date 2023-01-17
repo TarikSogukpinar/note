@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import loginValidationSchema from "../../validations/loginValidationSchema.js";
 import User from "../../models/userModel.js";
 import asyncHandler from "express-async-handler";
-import createToken from "../../helpers/tokens/createToken.js";
+import generateToken from "../../helpers/tokens/generateToken.js";
 
 const loginUser = asyncHandler(async (req, res) => {
   try {
@@ -31,39 +31,24 @@ const loginUser = asyncHandler(async (req, res) => {
         .json({ error: true, message: "Email or Password is wrong!" });
     }
 
-    const token = createToken(user._id);
-    res.cookie("jwt", token, {
-      httpOnly: false,
-      secure: true,
+    const token = generateToken(user);
+
+    const cookieOptions = {
+      httpOnly: true,
+      secure: false,
       sameSite: "None", //cross-site cookie
       maxAge: 60 * 60 * 24 * 1000,
-    });
+    };
 
-    res.status(200).json({
-      error: false,
-      id: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      avatar: user.avatar,
-      roles: user.roles,
-      token: token,
-      message: "Login Success",
-    });
+    res.cookie("token", token, cookieOptions);
+
+    res
+      .status(200)
+      .json({ data: user, message: "Login Succesfully!", tokens: token });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: true, message: error.message });
   }
 });
 
-const logoutUser = asyncHandler(async (req, res) => {
-  try {
-    res.clearCookie("jwt", { domain: "localhost", path: "/" });
-    return res.status(200).json({ message: "Logout success!" });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: true, message: error.message });
-  }
-});
-
-export default { loginUser, logoutUser };
+export default { loginUser };

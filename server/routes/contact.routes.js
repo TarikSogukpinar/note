@@ -1,6 +1,6 @@
 import { Router } from "express";
 import contactController from "../controllers/contactController.js";
-import { verifyToken } from "../middleware/verifyToken.js";
+import { verifyToken } from "../middleware/verify.js";
 
 const router = Router();
 

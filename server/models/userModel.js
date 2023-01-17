@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import moment from "moment";
 
-const Schema = mongoose.Schema
+
 
 const userSchema = new mongoose.Schema(
   {

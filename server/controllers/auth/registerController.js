@@ -18,9 +18,10 @@ const registerUser = asyncHandler(async (req, res) => {
         message: "You cannot register, email already exist",
       });
     }
-    const hashedPass = await bcrypt.hashSync(req.body.password, 10);
+    const saltPassword = await bcrypt.genSaltSync(10);
+    const hashPassword = await bcrypt.hashSync(req.body.password, saltPassword);
 
-    await new User({ ...req.body, password: hashedPass }).save();
+    await new User({ ...req.body, password: hashPassword }).save();
 
     res.status(201).json({
       error: false,

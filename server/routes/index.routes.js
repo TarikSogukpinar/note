@@ -14,4 +14,11 @@ export function initRoutes(app) {
   app.use("/api/user", userRoutes);
   app.use("/api/contact", contactRoutes);
   app.use("/check", (req, res) => res.json({ message: "Ok!" }));
+
+  app.all("*", (req, res) => {
+    res.status(404).json({
+      error: true,
+      message: "Route is not found!",
+    });
+  });
 }

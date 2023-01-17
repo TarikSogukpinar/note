@@ -8,10 +8,10 @@ const connectionMongoDb = () => {
       useNewUrlParser: true,
     })
     .then((res) =>
-      console.log(`MongoDB Connected: ${res.connection.host}`.blue.bold)
+      console.log(`MongoDB Connected: ${res.connection.host}`)
     )
     .catch((error) => {
-      console.error(`Error: ${error.message}`.red.underline.bold);
+      console.error(`Error: ${error.message}`);
       process.exit(1);
     });
 };
